@@ -89,9 +89,9 @@ These equations provide a fundamental description of projectile motion. In furth
 
 ---
 
+# Python/Plot
 
-
-
+![alt text](image.png)
 
 
 
