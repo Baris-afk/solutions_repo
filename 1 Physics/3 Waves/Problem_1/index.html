@@ -66,6 +66,24 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#theoretical-foundation-governing-equations-of-projectile-motion">Theoretical Foundation: Governing Equations of Projectile Motion</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-introduction">1. Introduction</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-equations-of-motion">2. Equations of Motion</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-time-of-flight">3. Time of Flight</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-range-of-the-projectile">4. Range of the Projectile</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#5-maximum-height">5. Maximum Height</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#6-influence-of-initial-conditions">6. Influence of Initial Conditions</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#7-conclusion">7. Conclusion</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,8 +190,61 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
-<p>New write 
-<span class="arithmatex">\(<span class="arithmatex">\(a^2+b^2=c^2\)</span>\)</span></p>
+<hr/>
+<h2 id="theoretical-foundation-governing-equations-of-projectile-motion"><strong>Theoretical Foundation: Governing Equations of Projectile Motion</strong></h2>
+<h3 id="1-introduction"><strong>1. Introduction</strong></h3>
+<p>Projectile motion describes the motion of an object under the influence of gravity, assuming no air resistance. The motion occurs in two dimensions: horizontal (
+<span class="arithmatex">\(x\)</span>-axis) and vertical (
+<span class="arithmatex">\(y\)</span>-axis). We derive the governing equations starting from Newton’s laws of motion.</p>
+<h3 id="2-equations-of-motion"><strong>2. Equations of Motion</strong></h3>
+<p>Newton’s second law states:</p>
+<div class="arithmatex">\[ F = m a \]</div>
+<p>For projectile motion, the only force acting on the object (neglecting air resistance) is gravity:</p>
+<div class="arithmatex">\[ F_y = -mg, \quad F_x = 0 \]</div>
+<p>Thus, the acceleration components are:</p>
+<div class="arithmatex">\[ a_x = 0, \quad a_y = -g \]</div>
+<p>where <span class="arithmatex">\( g \)</span> is the acceleration due to gravity.</p>
+<p>Using kinematic equations:</p>
+<h4 id="21-horizontal-motion"><strong>2.1 Horizontal Motion</strong></h4>
+<p>Since there is no horizontal acceleration,</p>
+<div class="arithmatex">\[ v_x = v_0 \cos(\theta) \]</div>
+<div class="arithmatex">\[ x = v_0 \cos(\theta) t \]</div>
+<h4 id="22-vertical-motion"><strong>2.2 Vertical Motion</strong></h4>
+<p>Using the kinematic equations for constant acceleration,</p>
+<div class="arithmatex">\[ v_y = v_0 \sin(\theta) - gt \]</div>
+<div class="arithmatex">\[ y = v_0 \sin(\theta) t - \frac{1}{2} g t^2 \]</div>
+<h3 id="3-time-of-flight"><strong>3. Time of Flight</strong></h3>
+<p>The time of flight is found by solving for when the projectile returns to <span class="arithmatex">\( y = 0 \)</span>:</p>
+<div class="arithmatex">\[ 0 = v_0 \sin(\theta) t - \frac{1}{2} g t^2 \]</div>
+<p>Factoring out <span class="arithmatex">\( t \)</span>:</p>
+<div class="arithmatex">\[ t ( v_0 \sin(\theta) - \frac{1}{2} g t ) = 0 \]</div>
+<p>Ignoring the trivial solution <span class="arithmatex">\( t = 0 \)</span>, we solve for <span class="arithmatex">\( t \)</span>:</p>
+<div class="arithmatex">\[ t = \frac{2 v_0 \sin(\theta)}{g} \]</div>
+<h3 id="4-range-of-the-projectile"><strong>4. Range of the Projectile</strong></h3>
+<p>The horizontal range is given by:</p>
+<div class="arithmatex">\[ R = v_x \times t_{flight} \]</div>
+<p>Substituting <span class="arithmatex">\( v_x = v_0 \cos(\theta) \)</span> and <span class="arithmatex">\( t_{flight} \)</span>:</p>
+<div class="arithmatex">\[ R = v_0 \cos(\theta) \times \frac{2 v_0 \sin(\theta)}{g} \]</div>
+<p>Using the identity <span class="arithmatex">\( 2 \sin(\theta) \cos(\theta) = \sin(2\theta) \)</span>,</p>
+<div class="arithmatex">\[ R = \frac{v_0^2 \sin(2\theta)}{g} \]</div>
+<h3 id="5-maximum-height"><strong>5. Maximum Height</strong></h3>
+<p>At maximum height, <span class="arithmatex">\( v_y = 0 \)</span>:</p>
+<div class="arithmatex">\[ 0 = v_0 \sin(\theta) - g t_{max} \]</div>
+<p>Solving for <span class="arithmatex">\( t_{max} \)</span>:</p>
+<div class="arithmatex">\[ t_{max} = \frac{v_0 \sin(\theta)}{g} \]</div>
+<p>Using the vertical displacement equation:</p>
+<div class="arithmatex">\[ h_{max} = v_0 \sin(\theta) t_{max} - \frac{1}{2} g t_{max}^2 \]</div>
+<p>Substituting <span class="arithmatex">\( t_{max} \)</span>:</p>
+<div class="arithmatex">\[ h_{max} = \frac{v_0^2 \sin^2(\theta)}{2g} \]</div>
+<h3 id="6-influence-of-initial-conditions"><strong>6. Influence of Initial Conditions</strong></h3>
+<ul>
+<li><strong>Initial Velocity <span class="arithmatex">\( v_0 \)</span></strong>: Higher velocity increases both range and height.</li>
+<li><strong>Launch Angle <span class="arithmatex">\( \theta \)</span></strong>: The range is maximized at <span class="arithmatex">\( \theta = 45^\circ \)</span>.</li>
+<li><strong>Gravity <span class="arithmatex">\( g \)</span></strong>: Higher gravity decreases range and height.</li>
+</ul>
+<h3 id="7-conclusion"><strong>7. Conclusion</strong></h3>
+<p>These equations provide a fundamental description of projectile motion. In further analysis, we will explore numerical simulations and practical applications, including air resistance and varying terrains.</p>
+<hr/>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
