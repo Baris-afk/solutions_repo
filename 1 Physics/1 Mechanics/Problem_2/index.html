@@ -50,6 +50,18 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#theoretical-foundation-of-the-forced-damped-pendulum">Theoretical Foundation of the Forced Damped Pendulum</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-governing-differential-equation">1. Governing Differential Equation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-approximate-solutions-for-small-angle-oscillations">2. Approximate Solutions for Small-Angle Oscillations</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-resonance-conditions-and-energy-considerations">3. Resonance Conditions and Energy Considerations</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#4-conclusion">4. Conclusion</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +184,59 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h2 id="theoretical-foundation-of-the-forced-damped-pendulum"><strong>Theoretical Foundation of the Forced Damped Pendulum</strong></h2>
+<h3 id="1-governing-differential-equation"><strong>1. Governing Differential Equation</strong></h3>
+<p>The motion of a forced damped pendulum is described by the second-order nonlinear differential equation:</p>
+<div class="arithmatex">\[\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\sin\theta = A\cos(\omega t)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\theta\)</span> is the angular displacement,</li>
+<li><span class="arithmatex">\(b\)</span> is the damping coefficient,</li>
+<li><span class="arithmatex">\(g\)</span> is the acceleration due to gravity,</li>
+<li><span class="arithmatex">\(L\)</span> is the length of the pendulum,</li>
+<li><span class="arithmatex">\(A\)</span> is the amplitude of the external driving force,</li>
+<li><span class="arithmatex">\(\omega\)</span> is the driving frequency.</li>
+</ul>
+<h3 id="2-approximate-solutions-for-small-angle-oscillations"><strong>2. Approximate Solutions for Small-Angle Oscillations</strong></h3>
+<p>For small oscillations (<span class="arithmatex">\(\theta \approx 0\)</span>), we use the small-angle approximation:</p>
+<div class="arithmatex">\[\sin\theta \approx \theta\]</div>
+<p>Thus, the governing equation simplifies to:</p>
+<div class="arithmatex">\[\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = A\cos(\omega t)\]</div>
+<p>This is a linear nonhomogeneous differential equation, which has the general solution:</p>
+<div class="arithmatex">\[\theta(t) = \theta_h(t) + \theta_p(t)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\theta_h(t)\)</span> is the solution to the homogeneous equation:</li>
+</ul>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = 0\)</span>\)</span></p>
+<p>which yields:</p>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\theta_h(t) = e^{-\frac{b}{2}t} \left(C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t)\right)\)</span>\)</span></p>
+<p>where <span class="arithmatex">\(\omega_0 = \sqrt{\frac{g}{L} - \frac{b^2}{4}}\)</span>.</p>
+<ul>
+<li><span class="arithmatex">\(\theta_p(t)\)</span> is a particular solution due to the external forcing term:</li>
+</ul>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\theta_p(t) = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b\omega)^2}} \cos(\omega t - \phi)\)</span>\)</span></p>
+<p>where the phase shift <span class="arithmatex">\(\phi\)</span> is given by:</p>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\tan\phi = \frac{b\omega}{\omega_0^2 - \omega^2}\)</span>\)</span>.</p>
+<h3 id="3-resonance-conditions-and-energy-considerations"><strong>3. Resonance Conditions and Energy Considerations</strong></h3>
+<p>Resonance occurs when the driving frequency <span class="arithmatex">\(\omega\)</span> is close to the natural frequency of the system. The natural frequency (in the absence of damping) is given by:</p>
+<div class="arithmatex">\[\omega_0 = \sqrt{\frac{g}{L}}\]</div>
+<p>For weak damping (<span class="arithmatex">\(b \ll 1\)</span>), resonance approximately occurs when:</p>
+<div class="arithmatex">\[\omega \approx \omega_0\]</div>
+<p>At resonance, the amplitude of oscillations becomes large, leading to significant energy absorption by the system. The total energy of the system consists of kinetic and potential energy:</p>
+<ul>
+<li><strong>Kinetic Energy:</strong></li>
+</ul>
+<p><span class="arithmatex">\(<span class="arithmatex">\(KE = \frac{1}{2}mL^2\left(\frac{d\theta}{dt}\right)^2\)</span>\)</span></p>
+<ul>
+<li><strong>Potential Energy:</strong></li>
+</ul>
+<p><span class="arithmatex">\(<span class="arithmatex">\(PE = mgL(1 - \cos\theta)\)</span>\)</span></p>
+<p>The total energy:</p>
+<div class="arithmatex">\[E = KE + PE\]</div>
+<p>Oscillates over time, with damping causing a gradual decay unless sustained by external forcing.</p>
+<h3 id="4-conclusion"><strong>4. Conclusion</strong></h3>
+<p>The forced damped pendulum exhibits complex dynamics, ranging from periodic motion to chaotic behavior, depending on the values of <span class="arithmatex">\(b, A, \omega\)</span>. Further analysis will involve numerical simulations and graphical representations of phase space and resonance conditions.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
