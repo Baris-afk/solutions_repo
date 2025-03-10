@@ -93,6 +93,59 @@ These equations provide a fundamental description of projectile motion. In furth
 
 ![alt text](image.png)
 
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
 
+def projectile_motion_no_drag(v0, theta, g=9.81):
+    """Computes the range of projectile motion without air resistance."""
+    theta_rad = np.radians(theta)
+    range_ = (v0**2 * np.sin(2 * theta_rad)) / g
+    return range_
 
+def projectile_motion_with_drag(v0, theta, mass, Cd, A, rho=1.225, g=9.81):
+    """Solves the projectile motion equations numerically with air resistance."""
+    theta_rad = np.radians(theta)
+    vx0 = v0 * np.cos(theta_rad)
+    vy0 = v0 * np.sin(theta_rad)
+    
+    def equations(t, y):
+        vx, vy, x, y_pos = y
+        v = np.sqrt(vx**2 + vy**2)
+        drag_force = 0.5 * rho * Cd * A * v**2
+        ax = -drag_force * vx / (mass * v)
+        ay = -g - (drag_force * vy / (mass * v))
+        return [ax, ay, vx, vy]
+    
+    sol = solve_ivp(equations, [0, 10], [vx0, vy0, 0, 0], max_step=0.01, events=lambda t, y: y[3])
+    return sol.y[2][-1]  # Return final x-position (range)
 
+def plot_range_vs_angle(v0_values, drag=False):
+    """Plots range vs. angle for different initial speeds."""
+    angles = np.linspace(0, 90, 50)
+    plt.figure(figsize=(8, 5))
+    
+    for v0 in v0_values:
+        ranges = []
+        for theta in angles:
+            if drag:
+                range_ = projectile_motion_with_drag(v0, theta, mass=0.145, Cd=0.47, A=0.0014)
+            else:
+                range_ = projectile_motion_no_drag(v0, theta)
+            ranges.append(range_)
+        plt.plot(angles, ranges, label=f'v0 = {v0} m/s')
+    
+    plt.xlabel('Angle of Projection (degrees)')
+    plt.ylabel('Range (m)')
+    plt.title('Range vs. Angle of Projection')
+    plt.legend()
+    plt.grid()
+    plt.show()
+
+# Example usage:
+plot_range_vs_angle([10, 20, 30], drag=False)
+```
+
+link: [colab](https://colab.research.google.com/drive/1K0bk1_H0wlBIUVxtvneTUBV-p0d_W_Ti?usp=sharing)
+ 
