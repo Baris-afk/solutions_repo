@@ -253,35 +253,41 @@
 <h1 id="pythonmodels">Python/Models</h1>
 <p><img alt="alt text" src="../image.png"/></p>
 <p><img alt="alt text" src="../image-1.png"/></p>
-<p>```python import numpy as np
+<pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D</p>
-<h1 id="define-parameters">Define parameters</h1>
-<p>wavelength = 1.0  # Wavelength of the waves
+from mpl_toolkits.mplot3d import Axes3D
+
+# Define parameters
+wavelength = 1.0  # Wavelength of the waves
 k = 2 * np.pi / wavelength  # Wave number
 d = 5.0  # Distance between sources
-amplitude = 1.0  # Amplitude of waves</p>
-<h1 id="create-a-grid">Create a grid</h1>
-<p>x = np.linspace(-10, 10, 400)
+amplitude = 1.0  # Amplitude of waves
+
+# Create a grid
+x = np.linspace(-10, 10, 400)
 y = np.linspace(-10, 10, 400)
-X, Y = np.meshgrid(x, y)</p>
-<h1 id="calculate-distances-from-two-point-sources">Calculate distances from two point sources</h1>
-<p>r1 = np.sqrt((X - d/2)<strong>2 + Y</strong>2)
-r2 = np.sqrt((X + d/2)<strong>2 + Y</strong>2)</p>
-<h1 id="calculate-wave-interference-pattern">Calculate wave interference pattern</h1>
-<p>wave1 = amplitude * np.cos(k * r1)
+X, Y = np.meshgrid(x, y)
+
+# Calculate distances from two point sources
+r1 = np.sqrt((X - d/2)**2 + Y**2)
+r2 = np.sqrt((X + d/2)**2 + Y**2)
+
+# Calculate wave interference pattern
+wave1 = amplitude * np.cos(k * r1)
 wave2 = amplitude * np.cos(k * r2)
-interference = wave1 + wave2</p>
-<h1 id="2d-heatmap">2D Heatmap</h1>
-<p>plt.figure(figsize=(8, 6))
+interference = wave1 + wave2
+
+# 2D Heatmap
+plt.figure(figsize=(8, 6))
 plt.imshow(interference, extent=[-10, 10, -10, 10], origin='lower', cmap='jet', alpha=0.8)
 plt.colorbar(label="Wave Displacement")
 plt.title("2D Interference Pattern")
 plt.xlabel("X Position")
 plt.ylabel("Y Position")
-plt.show()</p>
-<h1 id="3d-surface-plot">3D Surface Plot</h1>
-<p>fig = plt.figure(figsize=(10, 7))
+plt.show()
+
+# 3D Surface Plot
+fig = plt.figure(figsize=(10, 7))
 ax = fig.add_subplot(111, projection='3d')
 ax.plot_surface(X, Y, interference, cmap='jet', edgecolor='none', alpha=0.8)
 ax.set_title("3D Surface Plot of Interference Pattern")
@@ -289,7 +295,7 @@ ax.set_xlabel("X Position")
 ax.set_ylabel("Y Position")
 ax.set_zlabel("Wave Displacement")
 plt.show()
-```</p>
+</code></pre>
 <p><a href="https://colab.research.google.com/drive/1zq2rWSl0EAovztR3_Qr1dIoJTZ0GwtFA?authuser=0">Colab</a></p>
 </div>
 </div><footer>
