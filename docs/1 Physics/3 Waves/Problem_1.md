@@ -10,7 +10,7 @@ $y$-axis). We derive the governing equations starting from Newton’s laws of mo
 ### **2. Equations of Motion**
 Newton’s second law states:
 
-$$ F = m a $$
+$$F= m a$$
 
 For projectile motion, the only force acting on the object (neglecting air resistance) is gravity:
 
