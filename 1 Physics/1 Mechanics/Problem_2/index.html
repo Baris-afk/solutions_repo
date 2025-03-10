@@ -190,13 +190,14 @@
 <div class="arithmatex">\[\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\sin\theta = A\cos(\omega t)\]</div>
 <p>where:</p>
 <ul>
-<li><span class="arithmatex">\(\theta\)</span> is the angular displacement,</li>
-<li><span class="arithmatex">\(b\)</span> is the damping coefficient,</li>
-<li><span class="arithmatex">\(g\)</span> is the acceleration due to gravity,</li>
-<li><span class="arithmatex">\(L\)</span> is the length of the pendulum,</li>
-<li><span class="arithmatex">\(A\)</span> is the amplitude of the external driving force,</li>
+<li><span class="arithmatex">\(\theta\)</span> is the angular displacement,  </li>
+<li><span class="arithmatex">\(b\)</span> is the damping coefficient,  </li>
+<li><span class="arithmatex">\(g\)</span> is the acceleration due to gravity,  </li>
+<li><span class="arithmatex">\(L\)</span> is the length of the pendulum,  </li>
+<li><span class="arithmatex">\(A\)</span> is the amplitude of the external driving force,  </li>
 <li><span class="arithmatex">\(\omega\)</span> is the driving frequency.</li>
 </ul>
+<hr/>
 <h3 id="2-approximate-solutions-for-small-angle-oscillations"><strong>2. Approximate Solutions for Small-Angle Oscillations</strong></h3>
 <p>For small oscillations (<span class="arithmatex">\(\theta \approx 0\)</span>), we use the small-angle approximation:</p>
 <div class="arithmatex">\[\sin\theta \approx \theta\]</div>
@@ -205,19 +206,22 @@
 <p>This is a linear nonhomogeneous differential equation, which has the general solution:</p>
 <div class="arithmatex">\[\theta(t) = \theta_h(t) + \theta_p(t)\]</div>
 <p>where:</p>
-<ul>
+<ol>
 <li><span class="arithmatex">\(\theta_h(t)\)</span> is the solution to the homogeneous equation:</li>
-</ul>
+</ol>
 <p><span class="arithmatex">\(<span class="arithmatex">\(\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = 0\)</span>\)</span></p>
 <p>which yields:</p>
 <p><span class="arithmatex">\(<span class="arithmatex">\(\theta_h(t) = e^{-\frac{b}{2}t} \left(C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t)\right)\)</span>\)</span></p>
 <p>where <span class="arithmatex">\(\omega_0 = \sqrt{\frac{g}{L} - \frac{b^2}{4}}\)</span>.</p>
-<ul>
+<ol>
 <li><span class="arithmatex">\(\theta_p(t)\)</span> is a particular solution due to the external forcing term:</li>
-</ul>
+</ol>
 <p><span class="arithmatex">\(<span class="arithmatex">\(\theta_p(t) = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b\omega)^2}} \cos(\omega t - \phi)\)</span>\)</span></p>
 <p>where the phase shift <span class="arithmatex">\(\phi\)</span> is given by:</p>
-<p><span class="arithmatex">\(<span class="arithmatex">\(\tan\phi = \frac{b\omega}{\omega_0^2 - \omega^2}\)</span>\)</span>.</p>
+<div class="arithmatex">\[
+\tan\phi = \frac{b \cdot \omega}{\omega_0^2 - \omega^2}
+\]</div>
+<hr/>
 <h3 id="3-resonance-conditions-and-energy-considerations"><strong>3. Resonance Conditions and Energy Considerations</strong></h3>
 <p>Resonance occurs when the driving frequency <span class="arithmatex">\(\omega\)</span> is close to the natural frequency of the system. The natural frequency (in the absence of damping) is given by:</p>
 <div class="arithmatex">\[\omega_0 = \sqrt{\frac{g}{L}}\]</div>
@@ -235,6 +239,7 @@
 <p>The total energy:</p>
 <div class="arithmatex">\[E = KE + PE\]</div>
 <p>Oscillates over time, with damping causing a gradual decay unless sustained by external forcing.</p>
+<hr/>
 <h3 id="4-conclusion"><strong>4. Conclusion</strong></h3>
 <p>The forced damped pendulum exhibits complex dynamics, ranging from periodic motion to chaotic behavior, depending on the values of <span class="arithmatex">\(b, A, \omega\)</span>. Further analysis will involve numerical simulations and graphical representations of phase space and resonance conditions.</p>
 </div>
