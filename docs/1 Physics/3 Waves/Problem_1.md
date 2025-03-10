@@ -60,7 +60,7 @@ Substituting \( v_x = v_0 \cos(\theta) \) and \( t_{flight} \):
 
 $$ R = v_0 \cos(\theta) \times \frac{2 v_0 \sin(\theta)}{g} $$
 
-Using the identity \( 2 \sin(\theta) \cos(\theta) = \sin(2\theta) \),
+Using the identity $2 \sin(\theta) \cos(\theta) = \sin(2\theta)$,
 
 $$ R = \frac{v_0^2 \sin(2\theta)}{g} $$
 
