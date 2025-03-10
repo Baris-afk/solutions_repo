@@ -1,5 +1,4 @@
 # Problem 1
----
 ## **Theoretical Foundation: Governing Equations of Projectile Motion**
 
 ### **1. Introduction**
