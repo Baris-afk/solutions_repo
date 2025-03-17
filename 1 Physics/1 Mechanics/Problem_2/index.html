@@ -188,7 +188,7 @@
 <h3 id="1-governing-differential-equation"><strong>1. Governing Differential Equation</strong></h3>
 <p>The motion of a forced damped pendulum is described by the second-order nonlinear differential equation:</p>
 <div class="arithmatex">\[\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\sin\theta = A\cos(\omega t)\]</div>
-<p>where:</p>
+<p>Where:</p>
 <ul>
 <li><span class="arithmatex">\(\theta\)</span> is the angular displacement,  </li>
 <li><span class="arithmatex">\(b\)</span> is the damping coefficient,  </li>
@@ -209,14 +209,14 @@
 <ol>
 <li><span class="arithmatex">\(\theta_h(t)\)</span> is the solution to the homogeneous equation:</li>
 </ol>
-<p><span class="arithmatex">\(<span class="arithmatex">\(\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = 0\)</span>\)</span></p>
+<div class="arithmatex">\[\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = 0\]</div>
 <p>which yields:</p>
-<p><span class="arithmatex">\(<span class="arithmatex">\(\theta_h(t) = e^{-\frac{b}{2}t} \left(C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t)\right)\)</span>\)</span></p>
+<div class="arithmatex">\[\theta_h(t) = e^{-\frac{b}{2}t} \left(C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t)\right)\]</div>
 <p>where <span class="arithmatex">\(\omega_0 = \sqrt{\frac{g}{L} - \frac{b^2}{4}}\)</span>.</p>
 <ol>
 <li><span class="arithmatex">\(\theta_p(t)\)</span> is a particular solution due to the external forcing term:</li>
 </ol>
-<p><span class="arithmatex">\(<span class="arithmatex">\(\theta_p(t) = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b\omega)^2}} \cos(\omega t - \phi)\)</span>\)</span></p>
+<div class="arithmatex">\[\theta_p(t) = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b\omega)^2}} \cos(\omega t - \phi)\]</div>
 <p>where the phase shift <span class="arithmatex">\(\phi\)</span> is given by:</p>
 <div class="arithmatex">\[
 \tan\phi = \frac{b \cdot \omega}{\omega_0^2 - \omega^2}
