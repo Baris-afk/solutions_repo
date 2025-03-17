@@ -75,7 +75,7 @@ At resonance, the amplitude of oscillations becomes large, leading to significan
 
 - **Potential Energy:**
 
-  $$PE = mgL(1 - \cos\theta)$$
+$$PE = mgL(1 - \cos\theta)$$
 
 The total energy:
 
