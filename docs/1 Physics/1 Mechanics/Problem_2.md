@@ -7,7 +7,7 @@ The motion of a forced damped pendulum is described by the second-order nonlinea
 
 $$\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\sin\theta = A\cos(\omega t)$$
 
-where:
+Where:
 
 - $\theta$ is the angular displacement,  
 - $b$ is the damping coefficient,  
@@ -36,17 +36,17 @@ where:
 
 1. $\theta_h(t)$ is the solution to the homogeneous equation:
 
-   $$\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = 0$$
+$$\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = 0$$
 
    which yields:
 
-   $$\theta_h(t) = e^{-\frac{b}{2}t} \left(C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t)\right)$$
+$$\theta_h(t) = e^{-\frac{b}{2}t} \left(C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t)\right)$$
 
-   where $\omega_0 = \sqrt{\frac{g}{L} - \frac{b^2}{4}}$.
+where $\omega_0 = \sqrt{\frac{g}{L} - \frac{b^2}{4}}$.
 
 2. $\theta_p(t)$ is a particular solution due to the external forcing term:
 
-   $$\theta_p(t) = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b\omega)^2}} \cos(\omega t - \phi)$$
+$$\theta_p(t) = \frac{A}{\sqrt{(\omega_0^2 - \omega^2)^2 + (b\omega)^2}} \cos(\omega t - \phi)$$
 
    where the phase shift $\phi$ is given by:
 
