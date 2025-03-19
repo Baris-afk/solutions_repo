@@ -201,8 +201,8 @@ This formula accounts for different impact points depending on terrain elevation
 
 In real-world applications, air resistance significantly alters projectile trajectories. The equation of motion considering drag force is:
 
-$$m\frac{d^2x}{dt^2}=-kv\frac{dx}{dt}$$
-$$m\frac{d^2y}{dt^2}=-mg-kv\frac{dy}{dt}$$
+$$m\frac{d^2x}{dt^2} = -kv\frac{dx}{dt}$$  
+$$m\frac{d^2y}{dt^2} = -mg - kv\frac{dy}{dt}$$
 
 where:
 
