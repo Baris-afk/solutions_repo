@@ -21,19 +21,32 @@ where $g$ is the acceleration due to gravity.
 
 Using kinematic equations:
 
-#### **2.1 Horizontal Motion**
-Since there is no horizontal acceleration,
 
-$$v_x=v_0\cos(\theta)$$
-
-$$x=v_0\cos(\theta)t$$
-
-#### **2.2 Vertical Motion**
+#### **2.1 Vertical Motion**
 Using the kinematic equations for constant acceleration,
 
 $$v_y=v_0\sin(\theta)-gt$$
 
 $$y=v_0\sin(\theta)t-\frac{1}{2}gt^2$$
+
+
+### 🔹 Governing Differential Equations
+
+#### Horizontal Motion
+
+- No horizontal acceleration (ignoring air resistance).
+- Velocity in $x$-direction remains constant:
+
+$$\frac{d^2x}{dt^2}=0$$
+
+- Integrating once:
+
+$$\frac{dx}{dt}=v_0\cos(\theta)$$
+
+- Integrating again:
+
+$$x(t)=v_0\cos(\theta)\cdot t$$
+
 
 ### **3. Time of Flight**
 The time of flight is found by solving for when the projectile returns to $y=0$:
@@ -219,6 +232,10 @@ Projectile motion is a versatile concept with applications across multiple disci
 ---
 
 # Python/Plot
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
 
 ![alt text](image.png)
 
