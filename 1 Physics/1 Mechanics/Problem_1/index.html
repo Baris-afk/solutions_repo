@@ -54,6 +54,8 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#2-equations-of-motion">2. Equations of Motion</a>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="#governing-differential-equations">🔹 Governing Differential Equations</a>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="#3-time-of-flight">3. Time of Flight</a>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#4-range-of-the-projectile">4. Range of the Projectile</a>
@@ -238,14 +240,25 @@
 <div class="arithmatex">\[a_x=0,\quad a_y=-g\]</div>
 <p>where <span class="arithmatex">\(g\)</span> is the acceleration due to gravity.</p>
 <p>Using kinematic equations:</p>
-<h4 id="21-horizontal-motion"><strong>2.1 Horizontal Motion</strong></h4>
-<p>Since there is no horizontal acceleration,</p>
-<div class="arithmatex">\[v_x=v_0\cos(\theta)\]</div>
-<div class="arithmatex">\[x=v_0\cos(\theta)t\]</div>
-<h4 id="22-vertical-motion"><strong>2.2 Vertical Motion</strong></h4>
+<h4 id="21-vertical-motion"><strong>2.1 Vertical Motion</strong></h4>
 <p>Using the kinematic equations for constant acceleration,</p>
 <div class="arithmatex">\[v_y=v_0\sin(\theta)-gt\]</div>
 <div class="arithmatex">\[y=v_0\sin(\theta)t-\frac{1}{2}gt^2\]</div>
+<h3 id="governing-differential-equations">🔹 Governing Differential Equations</h3>
+<h4 id="horizontal-motion">Horizontal Motion</h4>
+<ul>
+<li>No horizontal acceleration (ignoring air resistance).</li>
+<li>Velocity in <span class="arithmatex">\(x\)</span>-direction remains constant:</li>
+</ul>
+<div class="arithmatex">\[\frac{d^2x}{dt^2}=0\]</div>
+<ul>
+<li>Integrating once:</li>
+</ul>
+<div class="arithmatex">\[\frac{dx}{dt}=v_0\cos(\theta)\]</div>
+<ul>
+<li>Integrating again:</li>
+</ul>
+<div class="arithmatex">\[x(t)=v_0\cos(\theta)\cdot t\]</div>
 <h3 id="3-time-of-flight"><strong>3. Time of Flight</strong></h3>
 <p>The time of flight is found by solving for when the projectile returns to <span class="arithmatex">\(y=0\)</span>:</p>
 <div class="arithmatex">\[0=v_0\sin(\theta)t-\frac{1}{2}gt^2\]</div>
@@ -366,6 +379,8 @@ $$m\frac{d^2y}{dt^2} = -mg - kv\frac{dy}{dt}\]</div>
 <p>Projectile motion is a versatile concept with applications across multiple disciplines. By incorporating factors such as air resistance, uneven terrain, and varying gravitational fields, engineers and scientists refine models for real-world accuracy. Computational simulations further enhance predictive capabilities, making projectile motion a cornerstone of physics and engineering.</p>
 <hr/>
 <h1 id="pythonplot">Python/Plot</h1>
+<p><img alt="alt text" src="image-1.png"/></p>
+<p><img alt="alt text" src="image-2.png"/></p>
 <p><img alt="alt text" src="../image.png"/></p>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
