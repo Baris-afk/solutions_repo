@@ -201,14 +201,10 @@
 <p>The general solution to the linearized ODE consists of two parts:</p>
 <ol>
 <li>
-<p><strong>Homogeneous solution</strong> (related to natural damping):
-   $$
-   \theta_h(t) = C_1 e^{r_1 t} + C_2 e^{r_2 t}
-   $$
-   where <span class="arithmatex">\(<span class="arithmatex">\(r_1, r_2\)</span>\)</span> are roots of the characteristic equation:
-   $$
-   r^2 + b r + \frac{g}{L} = 0
-   $$</p>
+<p><strong>Homogeneous solution</strong> (related to natural damping):<br/>
+<span class="arithmatex">\(<span class="arithmatex">\(\theta_h(t)=C_1e^{r_1t}+C_2e^{r_2t}\)</span>\)</span><br/>
+where <span class="arithmatex">\(r_1,r_2\)</span> are roots of the characteristic equation:<br/>
+<span class="arithmatex">\(<span class="arithmatex">\(r^2+br+\frac{g}{L}=0\)</span>\)</span></p>
 </li>
 <li>
 <p><strong>Particular solution</strong> (related to the external forcing):
@@ -226,29 +222,29 @@ B = \frac{A}{\sqrt{\left(\frac{g}{L} - \omega^2\right)^2 + (b\omega)^2}}
 \]</div>
 <hr/>
 <h3 id="resonance-condition">🎯 Resonance Condition</h3>
-<p><strong>Resonance</strong> occurs when the driving frequency <span class="arithmatex">\(<span class="arithmatex">\(\omega\)</span>\)</span> approaches the natural frequency of the system:</p>
+<p><strong>Resonance</strong> occurs when the driving frequency <span class="arithmatex">\(\omega\)</span> approaches the natural frequency of the system:</p>
 <div class="arithmatex">\[
-\omega_0 = \sqrt{\frac{g}{L}}
+\omega_0=\sqrt{\frac{g}{L}}
 \]</div>
-<p>At resonance, the system absorbs energy most efficiently from the external force, and the amplitude <span class="arithmatex">\(<span class="arithmatex">\(B\)</span>\)</span> reaches a maximum:</p>
+<p>At resonance, the system absorbs energy most efficiently from the external force, and the amplitude <span class="arithmatex">\(B\)</span> reaches a maximum:</p>
 <ul>
 <li>
-<p>Without damping (<span class="arithmatex">\(<span class="arithmatex">\(b = 0\)</span>\)</span>):
-  $$
-  B \to \infty \quad \text{as} \quad \omega \to \omega_0
-  $$</p>
+<p>Without damping (<span class="arithmatex">\(b=0\)</span>):<br/>
+$$
+B\to\infty\quad\text{as}\quad\omega\to\omega_0
+$$</p>
 </li>
 <li>
-<p>With damping:
-  $$
-  B_{\text{max}} = \frac{A}{b \omega_0}
-  $$</p>
+<p>With damping:<br/>
+$$
+B_{\text{max}}=\frac{A}{b\omega_0}
+$$</p>
 </li>
 </ul>
-<p>This finite maximum occurs at a slightly shifted resonance frequency:
-  $$
-  \omega_{\text{res}} = \sqrt{\omega_0^2 - \frac{b^2}{2}}
-  $$</p>
+<p>This finite maximum occurs at a slightly shifted resonance frequency:<br/>
+$$
+\omega_{\text{res}}=\sqrt{\omega_0^2-\frac{b^2}{2}}
+$$</p>
 <hr/>
 <h3 id="energy-behavior-at-resonance">⚡ Energy Behavior at Resonance</h3>
 <p>The total mechanical energy of the pendulum is the sum of kinetic and potential energy:</p>
