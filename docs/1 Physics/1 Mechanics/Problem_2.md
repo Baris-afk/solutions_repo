@@ -48,19 +48,19 @@ where $r_1,r_2$ are roots of the characteristic equation:
 $$r^2+br+\frac{g}{L}=0$$
 
 
-2. **Particular solution** (related to the external forcing):
-   We assume a steady-state solution of the form:
-   $$
-   \theta_p(t) = B\cos(\omega t - \delta)
-   $$
-   where:
-The amplitude of the forced oscillation is denoted by $$B$$, and the phase lag due to damping is denoted by $$\delta$$.
-
-The amplitude of the steady-state response is given by:
-
+2. **Particular solution** (related to the external forcing):  
+We assume a steady-state solution of the form:  
 $$
-B = \frac{A}{\sqrt{\left(\frac{g}{L} - \omega^2\right)^2 + (b\omega)^2}}
+\theta_p(t)=B\cos(\omega t-\delta)
+$$  
+where:  
+The amplitude of the forced oscillation is denoted by $B$, and the phase lag due to damping is denoted by $\delta$.
+
+The amplitude of the steady-state response is given by:  
 $$
+B=\frac{A}{\sqrt{\left(\frac{g}{L}-\omega^2\right)^2+(b\omega)^2}}
+$$
+
 
 ---
 
