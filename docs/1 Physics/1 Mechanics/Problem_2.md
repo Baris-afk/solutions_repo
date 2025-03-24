@@ -42,14 +42,11 @@ $$\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = A\cos(\omeg
 
 The general solution to the linearized ODE consists of two parts:
 
-1. **Homogeneous solution** (related to natural damping):
-   $$
-   \theta_h(t) = C_1 e^{r_1 t} + C_2 e^{r_2 t}
-   $$
-   where $$r_1, r_2$$ are roots of the characteristic equation:
-   $$
-   r^2 + b r + \frac{g}{L} = 0
-   $$
+1. **Homogeneous solution** (related to natural damping):  
+$$\theta_h(t)=C_1e^{r_1t}+C_2e^{r_2t}$$  
+where $r_1,r_2$ are roots of the characteristic equation:  
+$$r^2+br+\frac{g}{L}=0$$
+
 
 2. **Particular solution** (related to the external forcing):
    We assume a steady-state solution of the form:
@@ -69,28 +66,28 @@ $$
 
 ### 🎯 Resonance Condition
 
-**Resonance** occurs when the driving frequency $$\omega$$ approaches the natural frequency of the system:
+**Resonance** occurs when the driving frequency $\omega$ approaches the natural frequency of the system:
 
 $$
-\omega_0 = \sqrt{\frac{g}{L}}
+\omega_0=\sqrt{\frac{g}{L}}
 $$
 
-At resonance, the system absorbs energy most efficiently from the external force, and the amplitude $$B$$ reaches a maximum:
+At resonance, the system absorbs energy most efficiently from the external force, and the amplitude $B$ reaches a maximum:
 
-- Without damping ($$b = 0$$):
-  $$
-  B \to \infty \quad \text{as} \quad \omega \to \omega_0
-  $$
+- Without damping ($b=0$):  
+$$
+B\to\infty\quad\text{as}\quad\omega\to\omega_0
+$$
 
-- With damping:
-  $$
-  B_{\text{max}} = \frac{A}{b \omega_0}
-  $$
+- With damping:  
+$$
+B_{\text{max}}=\frac{A}{b\omega_0}
+$$
 
-  This finite maximum occurs at a slightly shifted resonance frequency:
-  $$
-  \omega_{\text{res}} = \sqrt{\omega_0^2 - \frac{b^2}{2}}
-  $$
+This finite maximum occurs at a slightly shifted resonance frequency:  
+$$
+\omega_{\text{res}}=\sqrt{\omega_0^2-\frac{b^2}{2}}
+$$
 
 ---
 
