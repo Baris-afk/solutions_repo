@@ -17,7 +17,7 @@ $$
 
 Where:
 
--**$$\theta(t)$$**: Angular displacement as a function of time  
+- **$$\theta(t)$$**: Angular displacement as a function of time  
 -**$$b$$**: Damping coefficient  
 -**$$g$$**: Acceleration due to gravity  
 -**$$L$$**: Length of the pendulum  
