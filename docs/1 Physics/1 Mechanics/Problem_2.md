@@ -28,17 +28,13 @@ Where:
 
 ### 🔍 Small-Angle Approximation
 
-Under the **small-angle approximation**, where $$\theta \ll 1$$, we can linearize the sine function:
+Under the **small-angle approximation** (where $\theta \ll 1$), we can linearize the sine function as follows:
 
-$$
-\sin\theta \approx \theta
-$$
+$$\sin\theta \approx \theta$$
 
-This simplifies the governing equation to a **linear inhomogeneous ODE**:
+This simplification reduces the governing equation to a **linear inhomogeneous ordinary differential equation (ODE)**:
 
-$$
-\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = A\cos(\omega t)
-$$
+$$\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = A\cos(\omega t)$$
 
 ---
 
