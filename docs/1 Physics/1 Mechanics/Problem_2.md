@@ -17,12 +17,13 @@ $$
 
 Where:
 
-- **$$\theta(t)$$**: Angular displacement as a function of time  
--**$$b$$**: Damping coefficient  
--**$$g$$**: Acceleration due to gravity  
--**$$L$$**: Length of the pendulum  
--**$$A$$**: Amplitude of the external driving force  
--**$$\omega$$**: Angular frequency of the driving force  
+- **$\theta(t)$**: Angular displacement as a function of time  
+- **$b$**: Damping coefficient  
+- **$g$**: Acceleration due to gravity  
+- **$L$**: Length of the pendulum  
+- **$A$**: Amplitude of the external driving force  
+- **$\omega$**: Angular frequency of the driving force  
+he driving force  
 
 ---
 
@@ -111,10 +112,10 @@ $$
 
 ### ✅ Summary
 
-- The equation of motion combines restoring, damping, and external driving forces.
-- Linearization using $ \sin\theta \approx \theta $ simplifies the analysis for small oscillations.
-- Resonance amplifies oscillation amplitudes and affects energy flow.
-- Damping ensures bounded energy growth even at resonance.
+- The equation of motion combines restoring, damping, and external driving forces.  
+- Linearization using $\sin\theta \approx \theta$ simplifies the analysis for small oscillations.  
+- Resonance amplifies oscillation amplitudes and affects energy flow.  
+- Damping ensures bounded energy growth even at resonance.  
 
 ---
 
