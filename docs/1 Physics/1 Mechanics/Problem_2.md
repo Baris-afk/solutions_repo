@@ -43,10 +43,9 @@ $$\frac{d^2\theta}{dt^2} + b\frac{d\theta}{dt} + \frac{g}{L}\theta = A\cos(\omeg
 The general solution to the linearized ODE consists of two parts:
 
 1. **Homogeneous solution** (related to natural damping):  
-$$\theta_h(t)=C_1e^{r_1t}+C_2e^{r_2t}$$  
-where $r_1,r_2$ are roots of the characteristic equation:  
-$$r^2+br+\frac{g}{L}=0$$
-
+$$ \theta_h(t) = C_1e^{r_1t} + C_2e^{r_2t} $$  
+where $ r_1, r_2 $ are roots of the characteristic equation:  
+$$ r^2 + br + \frac{g}{L} = 0 $$
 
 2. **Particular solution** (related to the external forcing):  
 We assume a steady-state solution of the form:  
@@ -113,7 +112,7 @@ $$
 ### ✅ Summary
 
 - The equation of motion combines restoring, damping, and external driving forces.
-- Linearization using $$\sin\theta \approx \theta$$ simplifies the analysis for small oscillations.
+- Linearization using $ \sin\theta \approx \theta $ simplifies the analysis for small oscillations.
 - Resonance amplifies oscillation amplitudes and affects energy flow.
 - Damping ensures bounded energy growth even at resonance.
 
@@ -180,14 +179,14 @@ $$\omega_{\text{res}} = \sqrt{\omega_0^2 - \frac{b^2}{2}}$$
 
 ### 🔄 Transition Between Regular and Chaotic Motion
 
-As we vary the damping coefficient $b$, driving amplitude $A$, and driving frequency $\omega$, the system can exhibit different types of motion:
+As we vary the damping coefficient $ b $, driving amplitude $ A $, and driving frequency $ \omega $, the system can exhibit different types of motion:
 
-- **Regular Motion**: For certain values of $A$ and $\omega$, the pendulum exhibits periodic, stable oscillations. This occurs especially at resonance, where the system synchronizes with the external force.  
+- **Regular Motion**: For certain values of $ A $ and $ \omega $, the pendulum exhibits periodic, stable oscillations. This occurs especially at resonance, where the system synchronizes with the external force.  
 
   - **Stable periodic motion** can be described by a sinusoidal function:
-    $$\theta(t) = B\cos(\omega t - \delta)$$
+    $$ \theta(t) = B\cos(\omega t - \delta) $$
 
-- **Chaotic Motion**: As $A$ increases or $\omega$ deviates from resonance, the system can enter a **chaotic regime**, where the motion becomes irregular and sensitive to initial conditions.
+- **Chaotic Motion**: As $ A $ increases or $ \omega $ deviates from resonance, the system can enter a **chaotic regime**, where the motion becomes irregular and sensitive to initial conditions.
 
     - **Chaotic systems** exhibit sensitive dependence on initial conditions, meaning that even tiny differences in initial angles or velocities can lead to vastly different behaviors over time.
 
