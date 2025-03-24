@@ -74,20 +74,24 @@ $$
 
 At resonance, the system absorbs energy most efficiently from the external force, and the amplitude $B$ reaches a maximum:
 
-- Without damping ($b=0$):  
+- Without damping ($b=0$):
+  
 $$
 B\to\infty\quad\text{as}\quad\omega\to\omega_0
 $$
 
-- With damping:  
+- With damping:
+
 $$
 B_{\text{max}}=\frac{A}{b\omega_0}
 $$
 
-This finite maximum occurs at a slightly shifted resonance frequency:  
+This finite maximum occurs at a slightly shifted resonance frequency:
+
 $$
 \omega_{\text{res}}=\sqrt{\omega_0^2-\frac{b^2}{2}}
 $$
+
 
 ---
 
