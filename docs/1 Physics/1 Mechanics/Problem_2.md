@@ -441,7 +441,7 @@ Y = runge_kutta(chaotic, Y0, t)
 plot_phase(t, Y, "5) Chaotic / Resonant Pendulum 🔥", colors[4])
 ```
 
-[Colab Link](https://colab.research.google.com/#scrollTo=bakrFTyHjcVD)
+[Colab Link](https://colab.research.google.com/drive/17EZMO3VE6ER6PEDu7yiqXMpt4_k9X0o5?authuser=0)
 
 
 
