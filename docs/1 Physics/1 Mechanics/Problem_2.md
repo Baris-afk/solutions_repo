@@ -216,10 +216,6 @@ The **damping coefficient** $b$ determines the rate at which energy is dissipate
 
 ---
 
-
-![alt text](image-3.png)
----
-
 ### ✅ Summary
 
 - **Damping coefficient $b$** influences the rate at which the system loses energy, with higher values leading to faster dissipation and lower oscillation amplitudes.
@@ -337,69 +333,115 @@ In all these systems, the principles of forced oscillations, damping, and resona
 
 # Python/Plot
 
-![alt text](image-4.png)
+![alt text](image-5.png)
+---
+![alt text](image-6.png)
+---
+![alt text](image-7.png)
+---
+![alt text](image-8.png)
+---
+![alt text](image-9.png)
+
+
 ---
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Parameters
-gamma = 0.2  # Damping coefficient
-omega_0 = 1.0  # Natural frequency of the pendulum
-A = 1.0  # Amplitude of the driving force
-omega = 1.0  # Driving frequency
+# 🌈 Global Parameters
+dt = 0.01
+t_max = 40
+t = np.arange(0, t_max, dt)
+L = 1.0
+g = 9.81
 
-# Define the system of ODEs
-def pendulum_ODE(t, Y):
+# 🎨 Colors for each scenario
+colors = ['#ff6f61', '#6a5acd', '#20b2aa', '#ffa500', '#d7263d']
+
+# 🧠 Runge-Kutta Integrator
+def runge_kutta(f, Y0, t):
+    Y = np.zeros((len(t), 2))
+    Y[0] = Y0
+    for i in range(1, len(t)):
+        k1 = f(t[i-1], Y[i-1])
+        k2 = f(t[i-1] + dt/2, Y[i-1] + dt/2 * k1)
+        k3 = f(t[i-1] + dt/2, Y[i-1] + dt/2 * k2)
+        k4 = f(t[i-1] + dt, Y[i-1] + dt * k3)
+        Y[i] = Y[i-1] + dt/6 * (k1 + 2*k2 + 2*k3 + k4)
+    return Y
+
+# 📈 Plot Function
+def plot_phase(t, Y, title, color):
+    theta = (Y[:, 0] + np.pi) % (2*np.pi) - np.pi
+    theta_dot = Y[:, 1]
+
+    fig, axs = plt.subplots(1, 2, figsize=(13, 5))
+    fig.suptitle(title, fontsize=16, fontweight='bold', color=color)
+
+    axs[0].plot(t, theta, color=color, linewidth=1.8)
+    axs[0].set_title("Time Series", fontsize=12)
+    axs[0].set_xlabel("Time (s)")
+    axs[0].set_ylabel("θ (rad)")
+    axs[0].grid(True, linestyle='--', alpha=0.6)
+
+    axs[1].plot(theta, theta_dot, color=color, linewidth=1.5)
+    axs[1].set_title("Phase Portrait", fontsize=12)
+    axs[1].set_xlabel("θ (rad)")
+    axs[1].set_ylabel("dθ/dt (rad/s)")
+    axs[1].grid(True, linestyle='--', alpha=0.6)
+
+    plt.tight_layout()
+    plt.show()
+
+# 🎯 Scenarios
+omega_0 = np.sqrt(g / L)
+Y0 = np.array([0.2, 0.0])
+
+# 1️⃣ Simple Pendulum
+def simple(t, Y):
     theta, theta_dot = Y
-    dtheta_dt = theta_dot
-    dtheta_dot_dt = -gamma * theta_dot - omega_0**2 * np.sin(theta) + A * np.cos(omega * t)
-    return np.array([dtheta_dt, dtheta_dot_dt])
+    return np.array([theta_dot, -omega_0**2 * np.sin(theta)])
+Y = runge_kutta(simple, Y0, t)
+plot_phase(t, Y, "1) Simple Pendulum 🌕", colors[0])
 
-# Runge-Kutta 4th order method
-def runge_kutta(f, t0, tf, dt, Y0):
-    N = int((tf - t0) / dt) + 1
-    t_values = np.linspace(t0, tf, N)
-    Y_values = np.zeros((N, 2))
-    Y_values[0] = Y0
+# 2️⃣ Damped Pendulum
+gamma = 0.3
+def damped(t, Y):
+    theta, theta_dot = Y
+    return np.array([theta_dot, -gamma * theta_dot - omega_0**2 * np.sin(theta)])
+Y = runge_kutta(damped, Y0, t)
+plot_phase(t, Y, "2) Damped Pendulum 🌊", colors[1])
 
-    for i in range(1, N):
-        t = t_values[i-1]
-        Y = Y_values[i-1]
-        k1 = f(t, Y)
-        k2 = f(t + dt/2, Y + dt/2 * k1)
-        k3 = f(t + dt/2, Y + dt/2 * k2)
-        k4 = f(t + dt, Y + dt * k3)
-        Y_values[i] = Y_values[i-1] + dt/6 * (k1 + 2*k2 + 2*k3 + k4)
-    
-    return t_values, Y_values
+# 3️⃣ Forced (no damping)
+A = 1.0
+omega = 0.9
+def forced(t, Y):
+    theta, theta_dot = Y
+    return np.array([theta_dot, -omega_0**2 * np.sin(theta) + A * np.cos(omega * t)])
+Y = runge_kutta(forced, Y0, t)
+plot_phase(t, Y, "3) Forced Pendulum ⚡", colors[2])
 
-# Initial conditions
-theta0 = 0.2  # Initial angle (in radians)
-theta_dot0 = 0.0  # Initial angular velocity
-Y0 = np.array([theta0, theta_dot0])
+# 4️⃣ Forced + Damped
+def forced_damped(t, Y):
+    theta, theta_dot = Y
+    return np.array([theta_dot, -gamma * theta_dot - omega_0**2 * np.sin(theta) + A * np.cos(omega * t)])
+Y = runge_kutta(forced_damped, Y0, t)
+plot_phase(t, Y, "4) Forced Damped Pendulum 🎯", colors[3])
 
-# Time parameters
-t0 = 0  # Start time
-tf = 100  # End time
-dt = 0.01  # Time step
-
-# Simulate
-t_values, Y_values = runge_kutta(pendulum_ODE, t0, tf, dt, Y0)
-theta_values = Y_values[:, 0]
-
-# Plot the results
-plt.figure(figsize=(10, 6))
-plt.plot(t_values, theta_values)
-plt.xlabel('Time (s)')
-plt.ylabel('Angular Displacement (rad)')
-plt.title('Time Series of Angular Displacement (Forced Damped Pendulum)')
-plt.grid(True)
-plt.show()
+# 5️⃣ Chaotic / Resonant
+A = 1.5
+omega = 2.0
+gamma = 0.1
+def chaotic(t, Y):
+    theta, theta_dot = Y
+    return np.array([theta_dot, -gamma * theta_dot - omega_0**2 * np.sin(theta) + A * np.cos(omega * t)])
+Y = runge_kutta(chaotic, Y0, t)
+plot_phase(t, Y, "5) Chaotic / Resonant Pendulum 🔥", colors[4])
 ```
 
-[Colab Link](https://colab.research.google.com/drive/1BrIHRGKfSiBL7xrP_vWki1Ywlexa9IZD?authuser=0#scrollTo=eDVDcIAvdGen)
+[Colab Link](https://colab.research.google.com/#scrollTo=bakrFTyHjcVD)
 
 
 
