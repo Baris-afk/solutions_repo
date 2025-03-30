@@ -172,6 +172,405 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="derivation-of-the-relationship-between-orbital-period-and-orbital-radius">Derivation of the Relationship Between Orbital Period and Orbital Radius</h1>
+<h3 id="introduction">Introduction</h3>
+<p>The relationship between the orbital period (<span class="arithmatex">\(T\)</span>) and the orbital radius (<span class="arithmatex">\(r\)</span>) for circular orbits is a fundamental result in celestial mechanics, known as <strong>Kepler's Third Law</strong>. This law states that the square of the orbital period is proportional to the cube of the orbital radius. In this section, we will derive the mathematical expression for the orbital period in terms of the orbital radius.</p>
+<h3 id="step-by-step-derivation">Step-by-Step Derivation</h3>
+<ol>
+<li><strong>Gravitational Force and Centripetal Force</strong>
+   For an object in a circular orbit, the gravitational force provides the necessary centripetal force to keep the object in orbit. The gravitational force <span class="arithmatex">\(F_g\)</span> is given by:</li>
+</ol>
+<p><span class="arithmatex">\(<span class="arithmatex">\(F_g = \frac{G M m}{r^2}\)</span>\)</span></p>
+<p>where:
+   - <span class="arithmatex">\(G\)</span> is the gravitational constant,
+   - <span class="arithmatex">\(M\)</span> is the mass of the central object (e.g., the Sun or Earth),
+   - <span class="arithmatex">\(m\)</span> is the mass of the orbiting object,
+   - <span class="arithmatex">\(r\)</span> is the orbital radius (distance from the center of the central object).</p>
+<p>The centripetal force <span class="arithmatex">\(F_c\)</span> required to maintain the circular motion is:</p>
+<p><span class="arithmatex">\(<span class="arithmatex">\(F_c = \frac{m v^2}{r}\)</span>\)</span></p>
+<p>where <span class="arithmatex">\(v\)</span> is the orbital velocity of the object.</p>
+<ol>
+<li><strong>Equating Gravitational and Centripetal Forces</strong>
+   Since the gravitational force provides the centripetal force, we equate the two expressions:</li>
+</ol>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\frac{G M m}{r^2} = \frac{m v^2}{r}\)</span>\)</span></p>
+<p>Simplifying this equation by canceling out <span class="arithmatex">\(m\)</span> and one factor of <span class="arithmatex">\(r\)</span>, we get:</p>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\frac{G M}{r} = v^2\)</span>\)</span></p>
+<p>Therefore, the orbital velocity <span class="arithmatex">\(v\)</span> is given by:</p>
+<p><span class="arithmatex">\(<span class="arithmatex">\(v = \sqrt{\frac{G M}{r}}\)</span>\)</span></p>
+<ol>
+<li><strong>Relating Velocity to Orbital Period</strong>
+   The orbital period <span class="arithmatex">\(T\)</span> is the time it takes for the object to complete one full revolution around the central object. The distance traveled in one revolution is the circumference of the orbit, <span class="arithmatex">\(C = 2 \pi r\)</span>. The velocity <span class="arithmatex">\(v\)</span> is related to the period <span class="arithmatex">\(T\)</span> by the equation:</li>
+</ol>
+<p><span class="arithmatex">\(<span class="arithmatex">\(v = \frac{C}{T} = \frac{2 \pi r}{T}\)</span>\)</span></p>
+<p>Substituting the expression for <span class="arithmatex">\(v\)</span> from the previous step:</p>
+<p><span class="arithmatex">\(<span class="arithmatex">\(\frac{2 \pi r}{T} = \sqrt{\frac{G M}{r}}\)</span>\)</span></p>
+<ol>
+<li><strong>Solving for the Orbital Period <span class="arithmatex">\(T\)</span></strong>
+   Rearranging the equation to solve for <span class="arithmatex">\(T\)</span>, we get:</li>
+</ol>
+<p><span class="arithmatex">\(<span class="arithmatex">\(T = 2 \pi \sqrt{\frac{r^3}{G M}}\)</span>\)</span></p>
+<h3 id="final-expression">Final Expression</h3>
+<p>The orbital period <span class="arithmatex">\(T\)</span> is related to the orbital radius <span class="arithmatex">\(r\)</span> by the equation:</p>
+<div class="arithmatex">\[T^2 \propto r^3\]</div>
+<p>This shows that the square of the orbital period is directly proportional to the cube of the orbital radius, which is a direct statement of <strong>Kepler's Third Law</strong>.</p>
+<h3 id="keplers-third-law-and-its-implications">Kepler's Third Law and Its Implications</h3>
+<p>Kepler's Third Law, as derived above, states that for a circular orbit:</p>
+<div class="arithmatex">\[T^2 = \frac{4 \pi^2}{G M} r^3\]</div>
+<p>This relationship is crucial for determining the period of orbiting objects when the mass of the central body is known. It also implies that the orbital period increases as the orbital radius increases, which is evident in the orbits of planets in our Solar System.</p>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>The <strong>orbital period</strong> <span class="arithmatex">\(T\)</span> is related to the <strong>orbital radius</strong> <span class="arithmatex">\(r\)</span> by the equation <span class="arithmatex">\(T^2 \propto r^3\)</span>, which is a form of Kepler's Third Law.</li>
+<li>The equation derived is <span class="arithmatex">\(T = 2 \pi \sqrt{\frac{r^3}{G M}}\)</span>, which allows calculation of the orbital period given the radius and the mass of the central body.</li>
+</ul>
+<h1 id="discussion-on-the-implications-for-astronomy">Discussion on the Implications for Astronomy</h1>
+<h3 id="introduction_1">Introduction</h3>
+<p>Kepler's Third Law not only provides insight into the relationship between the orbital period and orbital radius but also has significant implications for the field of astronomy. This law plays a crucial role in calculating planetary masses, determining orbital distances, and understanding the dynamics of celestial bodies in our Solar System and beyond.</p>
+<h3 id="role-of-keplers-third-law-in-calculating-planetary-masses-and-distances">Role of Kepler's Third Law in Calculating Planetary Masses and Distances</h3>
+<ol>
+<li><strong>Calculating Planetary Masses</strong><br/>
+   Kepler's Third Law can be used to estimate the mass of a central object (such as a star or planet) based on the orbital characteristics of an object orbiting it. Given the orbital period (<span class="arithmatex">\(T\)</span>) and orbital radius (<span class="arithmatex">\(r\)</span>), we can calculate the mass <span class="arithmatex">\(M\)</span> of the central object using the rearranged form of Kepler's Third Law:</li>
+</ol>
+<p><span class="arithmatex">\(<span class="arithmatex">\(M=\frac{4\pi^2r^3}{GT^2}\)</span>\)</span></p>
+<ul>
+<li>
+<p><strong>Example 1: Estimating the Mass of the Sun</strong><br/>
+     By observing the orbital period of a planet (e.g., Earth) and its distance from the Sun, we can estimate the Sun's mass. Using Earth’s orbital period (<span class="arithmatex">\(T=365.25\)</span> days) and radius (<span class="arithmatex">\(r=1\)</span> AU), we can substitute these values into the formula above to calculate the Sun's mass.</p>
+</li>
+<li>
+<p><strong>Example 2: Estimating the Mass of Jupiter</strong><br/>
+     Similarly, the mass of Jupiter can be determined by observing the orbital period and radius of one of its moons or artificial satellites.</p>
+</li>
+<li>
+<p><strong>Calculating Orbital Distances</strong><br/>
+   Kepler's Third Law also allows astronomers to determine the orbital distance <span class="arithmatex">\(r\)</span> of an object when the orbital period <span class="arithmatex">\(T\)</span> is known. For example, by knowing the orbital period of a satellite or moon and the mass of the central body (such as a planet), we can use the rearranged equation to calculate the orbital radius:</p>
+</li>
+</ul>
+<p><span class="arithmatex">\(<span class="arithmatex">\(r=\left(\frac{GMT^2}{4\pi^2}\right)^{\frac{1}{3}}\)</span>\)</span></p>
+<ul>
+<li>
+<p><strong>Example: Determining the Distance of the Moon from Earth</strong><br/>
+     By measuring the orbital period of the Moon around Earth and knowing the mass of Earth, we can calculate the Moon's orbital distance using the formula above.</p>
+</li>
+<li>
+<p><strong>Extrapolating to Exoplanets</strong><br/>
+   Kepler's Third Law has been instrumental in the discovery of exoplanets, planets orbiting stars outside our Solar System. By observing the orbital periods and distances of exoplanets, we can estimate the masses of the stars they orbit. This allows for the classification of stars based on their masses and the characterization of planetary systems.</p>
+</li>
+<li>
+<p><strong>Example: Kepler Mission</strong><br/>
+     The Kepler Space Telescope used this principle to detect thousands of exoplanets by measuring their orbital periods and distances from their parent stars, leading to the discovery of many potentially habitable planets.</p>
+</li>
+</ul>
+<hr/>
+<h3 id="importance-of-keplers-law-for-understanding-celestial-mechanics">Importance of Kepler's Law for Understanding Celestial Mechanics</h3>
+<ol>
+<li><strong>Understanding Planetary Motions</strong> </li>
+<li>Kepler’s Laws, especially the Third Law, form the foundation for understanding the motions of planets and other celestial bodies. The relationship between orbital period and radius provides a tool for calculating and predicting the behavior of celestial objects.  </li>
+<li>
+<p>This understanding is essential not only for studying planetary systems but also for understanding the dynamics of binary star systems, moons, and satellites orbiting planets.</p>
+</li>
+<li>
+<p><strong>Orbit Determination for Space Missions</strong> </p>
+</li>
+<li>Kepler's Third Law is fundamental to space mission planning, including calculating the correct orbital paths for satellites, spacecraft, and probes. The equation provides the basis for calculating fuel requirements, mission durations, and rendezvous points for interplanetary missions.  </li>
+<li>
+<p>For example, calculating the orbit of a spacecraft to rendezvous with a planet or moon relies on the principles of orbital mechanics, of which Kepler's Laws are a key component.</p>
+</li>
+<li>
+<p><strong>Orbital Resonances and Gravitational Interactions</strong> </p>
+</li>
+<li>Kepler's Third Law helps explain the phenomenon of <strong>orbital resonances</strong>, where two orbiting bodies exert regular, periodic gravitational influences on each other. These resonances are important in understanding the dynamics of moons and planets within a system.  </li>
+<li>
+<p>An example of this is the resonance between Jupiter’s moons Io, Europa, and Ganymede, which leads to periodic tidal heating of the moons.</p>
+</li>
+<li>
+<p><strong>Gravitational Interactions Between Celestial Bodies</strong> </p>
+</li>
+<li>Understanding the relationship between orbital period and radius helps astronomers predict the gravitational interactions between objects. For example, the gravitational influence of one planet on another can alter their orbital characteristics over time.  </li>
+<li>This principle is also crucial in understanding phenomena like planetary migrations, where a planet’s orbit may change due to the gravitational pull of nearby objects.</li>
+</ol>
+<h3 id="summary-of-key-points">Summary of Key Points</h3>
+<ul>
+<li><strong>Kepler's Third Law</strong> plays a key role in calculating the <strong>mass</strong> of central objects and determining the <strong>orbital distance</strong> of orbiting objects.  </li>
+<li>The law is widely used to estimate the masses of stars, planets, and moons, as well as to calculate the orbital radii of objects in various celestial systems.  </li>
+<li>Kepler’s Laws are fundamental to our understanding of <strong>planetary motions</strong>, <strong>space mission planning</strong>, and the gravitational interactions between celestial bodies.  </li>
+<li>The law also provides insights into <strong>orbital resonances</strong> and the long-term dynamics of planetary and satellite systems.</li>
+</ul>
+<hr/>
+<h1 id="analysis-of-real-world-examples">Analysis of Real-World Examples</h1>
+<h3 id="introduction_2">Introduction</h3>
+<p>Kepler's Third Law provides a fundamental tool for understanding the orbital characteristics of various celestial bodies. In this section, we will analyze the orbits of the Moon around Earth and the orbits of planets in the Solar System. We will also discuss how the relationship between orbital period and radius applies to different celestial bodies.</p>
+<h3 id="analysis-of-the-moons-orbit-around-earth">Analysis of the Moon's Orbit Around Earth</h3>
+<ol>
+<li><strong>Orbital Parameters of the Moon</strong><br/>
+   The Moon's orbit around Earth is almost circular with the following parameters:</li>
+<li>Orbital period (<span class="arithmatex">\(T\)</span>): 27.3 days</li>
+<li>
+<p>Orbital radius (<span class="arithmatex">\(r\)</span>): 384,400 km (distance from the center of the Earth to the center of the Moon)</p>
+</li>
+<li>
+<p><strong>Application of Kepler's Third Law</strong><br/>
+   Using Kepler's Third Law, we can estimate the mass of Earth based on the Moon's orbit. The formula we use is:</p>
+</li>
+</ol>
+<p><span class="arithmatex">\(<span class="arithmatex">\(T^2=\frac{4\pi^2r^3}{GM}\)</span>\)</span></p>
+<p>Rearranging to solve for Earth's mass (<span class="arithmatex">\(M\)</span>):</p>
+<p><span class="arithmatex">\(<span class="arithmatex">\(M=\frac{4\pi^2r^3}{GT^2}\)</span>\)</span></p>
+<p>Substituting the known values:
+   - <span class="arithmatex">\(r=384,400\)</span> km <span class="arithmatex">\(=3.844\times10^8\)</span> m
+   - <span class="arithmatex">\(T=27.3\)</span> days <span class="arithmatex">\(=2.358\times10^6\)</span> s
+   - <span class="arithmatex">\(G=6.674\times10^{-11}\)</span> m³/kg/s²</p>
+<p>We can compute Earth's mass using this equation.</p>
+<ol>
+<li><strong>Implications</strong> </li>
+<li>The Moon’s orbital period and radius allow astronomers to calculate the mass of the Earth with high precision.</li>
+<li>This relationship is critical for understanding tidal interactions and other dynamical effects between the Earth and the Moon.</li>
+</ol>
+<h3 id="examination-of-the-orbits-of-planets-in-the-solar-system">Examination of the Orbits of Planets in the Solar System</h3>
+<ol>
+<li>
+<p><strong>Orbital Parameters of Planets</strong><br/>
+   The orbits of planets in the Solar System are elliptical, but for simplicity, we can approximate them as circular for most practical purposes. Below are some key orbital parameters:</p>
+</li>
+<li>
+<p><strong>Earth:</strong></p>
+<ul>
+<li>Orbital period (<span class="arithmatex">\(T\)</span>): 365.25 days</li>
+<li>Orbital radius (<span class="arithmatex">\(r\)</span>): 1 AU = <span class="arithmatex">\(1.496\times10^{11}\)</span> m</li>
+</ul>
+</li>
+<li>
+<p><strong>Mars:</strong></p>
+<ul>
+<li>Orbital period (<span class="arithmatex">\(T\)</span>): 687 days</li>
+<li>Orbital radius (<span class="arithmatex">\(r\)</span>): 1.524 AU = <span class="arithmatex">\(2.279\times10^{11}\)</span> m</li>
+</ul>
+</li>
+<li>
+<p><strong>Jupiter:</strong></p>
+<ul>
+<li>Orbital period (<span class="arithmatex">\(T\)</span>): 11.86 years</li>
+<li>Orbital radius (<span class="arithmatex">\(r\)</span>): 5.203 AU = <span class="arithmatex">\(7.783\times10^{11}\)</span> m</li>
+</ul>
+</li>
+<li>
+<p><strong>Kepler's Third Law for Planetary Orbits</strong><br/>
+   We can apply Kepler's Third Law to calculate the masses of the Sun using the orbital data of planets. For example, using Earth’s orbital data, we can estimate the mass of the Sun. The formula is:</p>
+</li>
+</ol>
+<p><span class="arithmatex">\(<span class="arithmatex">\(T^2=\frac{4\pi^2r^3}{GM_{\text{sun}}}\)</span>\)</span></p>
+<p>Rearranging to solve for <span class="arithmatex">\(M_{\text{sun}}\)</span>:</p>
+<p><span class="arithmatex">\(<span class="arithmatex">\(M_{\text{sun}}=\frac{4\pi^2r^3}{GT^2}\)</span>\)</span></p>
+<p>Substituting known values for Earth:
+   - <span class="arithmatex">\(r=1\)</span> AU = <span class="arithmatex">\(1.496\times10^{11}\)</span> m
+   - <span class="arithmatex">\(T=365.25\)</span> days = <span class="arithmatex">\(3.156\times10^7\)</span> s</p>
+<p>The mass of the Sun can be calculated using this equation.</p>
+<ol>
+<li><strong>Comparing Planetary Orbits</strong> </li>
+<li>From Kepler’s Third Law, it is evident that planets with larger orbital radii have longer orbital periods. For example, <strong>Mars</strong> has a longer period than <strong>Earth</strong> because its orbital radius is greater.</li>
+<li>
+<p><strong>Jupiter</strong>, being further from the Sun, has a significantly longer orbital period, which is nearly 12 years.</p>
+</li>
+<li>
+<p><strong>Implications</strong> </p>
+</li>
+<li>By observing the orbital periods and radii of planets, we can calculate the mass of the Sun with remarkable precision.</li>
+<li>The relationship also helps in understanding the differences in orbital dynamics, such as why outer planets take longer to orbit the Sun than inner planets.</li>
+</ol>
+<h3 id="application-of-keplers-third-law-to-other-celestial-bodies">Application of Kepler's Third Law to Other Celestial Bodies</h3>
+<ol>
+<li><strong>Satellites and Moons</strong> </li>
+<li>Kepler's Third Law is widely applied to artificial satellites orbiting Earth or other celestial bodies. For example, by knowing the orbital period and radius of a satellite, we can calculate the mass of the planet or moon it orbits.</li>
+<li>
+<p><strong>Example: International Space Station (ISS)</strong><br/>
+     The ISS orbits Earth with a period of about 90 minutes and an average orbital radius of approximately 400 km from the Earth's surface. By applying Kepler's Third Law, we can estimate the Earth's mass.</p>
+</li>
+<li>
+<p><strong>Exoplanets and Exostellar Systems</strong> </p>
+</li>
+<li>Kepler’s Third Law has been crucial in the discovery and study of <strong>exoplanets</strong>—planets orbiting stars outside the Solar System. By measuring the orbital periods and distances of exoplanets, astronomers can calculate the masses of the parent stars.</li>
+<li>
+<p><strong>Example: Kepler-22b</strong><br/>
+     Using the orbital data of <strong>Kepler-22b</strong>, an exoplanet discovered by NASA’s Kepler mission, scientists can estimate the mass of the star it orbits and the planet’s orbital characteristics.</p>
+</li>
+<li>
+<p><strong>Comets and Asteroids</strong> </p>
+</li>
+<li>The orbits of <strong>comets</strong> and <strong>asteroids</strong> can also be described using Kepler's Third Law. For example, the <strong>orbital period</strong> of Halley's Comet is about 76 years, and by applying the law, we can predict when it will return to the inner Solar System.</li>
+<li>Similarly, asteroid belts and their orbital characteristics can be studied to understand their interaction with planets and the formation of the Solar System.</li>
+</ol>
+<h3 id="summary_1">Summary</h3>
+<ul>
+<li><strong>The Moon's orbit</strong> around Earth allows us to calculate the mass of Earth and study tidal interactions.  </li>
+<li><strong>Planetary orbits</strong> in the Solar System follow Kepler's Third Law, with planets farther from the Sun having longer orbital periods.  </li>
+<li><strong>Kepler's Third Law</strong> applies to artificial satellites, exoplanets, moons, and other celestial bodies, providing a universal framework for understanding orbital dynamics.</li>
+</ul>
+<hr/>
+<h1 id="extended-discussion-on-elliptical-orbits">Extended Discussion on Elliptical Orbits</h1>
+<p>Kepler's Laws provide a fundamental framework for understanding planetary motion. While we have mainly discussed circular orbits, Kepler's First Law states that planets move in <strong>elliptical orbits</strong> with the Sun at one focus, not in perfect circles. Let’s explore how Kepler’s Third Law extends to elliptical orbits and the differences between circular and elliptical orbits.</p>
+<h2 id="1-keplers-third-law-for-elliptical-orbits">1. Kepler’s Third Law for Elliptical Orbits</h2>
+<p>Kepler's Third Law can still be applied to elliptical orbits, but with a slight modification. For <strong>elliptical orbits</strong>, the law states:</p>
+<div class="arithmatex">\[
+T^2=\frac{4\pi^2a^3}{GM}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(T\)</span> is the orbital period,
+- <span class="arithmatex">\(a\)</span> is the semi-major axis of the ellipse (the longest radius),
+- <span class="arithmatex">\(M\)</span> is the mass of the central body,
+- <span class="arithmatex">\(G\)</span> is the gravitational constant.</p>
+<p>This equation tells us that the square of the orbital period is still proportional to the cube of the <strong>semi-major axis</strong> (<span class="arithmatex">\(a\)</span>) of the elliptical orbit, rather than the orbital radius (<span class="arithmatex">\(r\)</span>) as in the case of circular orbits.</p>
+<h2 id="2-difference-between-circular-and-elliptical-orbits">2. Difference Between Circular and Elliptical Orbits</h2>
+<p>While both circular and elliptical orbits adhere to Kepler’s Third Law, there are key differences between the two:</p>
+<ul>
+<li><strong>Circular Orbits</strong>:<br/>
+  In circular orbits, the orbital radius is constant and equal to the <strong>semi-major axis</strong>. The object’s distance from the central body does not change during the orbit. The orbital period is determined solely by the radius (or semi-major axis).</li>
+</ul>
+<p>For circular orbits, the relationship is straightforward:
+  $$
+  T^2\propto r^3
+  $$</p>
+<ul>
+<li><strong>Elliptical Orbits</strong>:<br/>
+  In elliptical orbits, the object moves closer and farther from the central body throughout its orbit. The distance varies, and thus the orbital speed also changes. The central body is located at one of the two foci of the ellipse, and the object’s distance from the focus is not constant.</li>
+</ul>
+<p>Despite the varying distance, the orbital period is still determined by the <strong>semi-major axis</strong> (<span class="arithmatex">\(a\)</span>), not by the instantaneous distance of the orbiting body. This means that the orbital period remains the same even though the object’s speed changes throughout its elliptical orbit. The orbit is longer when the object is farther from the central body (at aphelion) and shorter when it’s closer (at perihelion).</p>
+<h2 id="3-orbital-speed-in-elliptical-orbits">3. Orbital Speed in Elliptical Orbits</h2>
+<p>Unlike in circular orbits where the object’s speed is constant, <strong>orbital speed</strong> in elliptical orbits varies depending on the object’s distance from the central body. The object moves fastest when it is closest to the focus (at perihelion) and slowest when it is farthest from the focus (at aphelion). This behavior is explained by <strong>Kepler’s Second Law</strong>, which states:</p>
+<ul>
+<li><strong>Kepler’s Second Law</strong>:<br/>
+  A line joining a planet and the Sun sweeps out equal areas during equal intervals of time. This means that when a planet is closer to the Sun, it moves faster to sweep out the same area.</li>
+</ul>
+<h2 id="4-visualizing-elliptical-orbits">4. Visualizing Elliptical Orbits</h2>
+<p>To better understand elliptical orbits, let’s discuss the main characteristics:
+- <strong>Semi-major axis (<span class="arithmatex">\(a\)</span>)</strong>: The longest axis of the ellipse, running from one end (aphelion) to the other (perihelion).
+- <strong>Eccentricity (<span class="arithmatex">\(e\)</span>)</strong>: A measure of how “stretched out” the ellipse is. An eccentricity of 0 corresponds to a perfect circle, while an eccentricity close to 1 indicates a very elongated ellipse.</p>
+<p>For an elliptical orbit, we can express the relationship between the perihelion (<span class="arithmatex">\(r_p\)</span>) and aphelion (<span class="arithmatex">\(r_a\)</span>) as:
+$$
+r_p = a(1 - e)
+$$
+$$
+r_a = a(1 + e)
+$$
+where <span class="arithmatex">\(e\)</span> is the <strong>eccentricity</strong> of the ellipse.</p>
+<h2 id="5-orbital-period-and-elliptical-orbits">5. Orbital Period and Elliptical Orbits</h2>
+<p>In elliptical orbits, even though the distance from the central body varies, the orbital period still depends only on the <strong>semi-major axis</strong> (<span class="arithmatex">\(a\)</span>). This is the key takeaway from Kepler’s Third Law for elliptical orbits: the <strong>semi-major axis</strong> is the defining parameter for the orbital period, just as the orbital radius determines the period in a circular orbit.</p>
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+<li>
+<p><strong>Circular Orbits</strong>: The orbital period depends directly on the orbital radius, and the relationship is simple: <span class="arithmatex">\(T^2\propto r^3\)</span>.</p>
+</li>
+<li>
+<p><strong>Elliptical Orbits</strong>: The orbital period depends on the <strong>semi-major axis</strong> (<span class="arithmatex">\(a\)</span>) of the ellipse, and the relationship remains: <span class="arithmatex">\(T^2\propto a^3\)</span>. Despite the varying distance, the period is determined by the semi-major axis and remains the same for any elliptical orbit with the same semi-major axis.</p>
+</li>
+</ul>
+<h2 id="differences-between-circular-and-elliptical-orbits">Differences Between Circular and Elliptical Orbits</h2>
+<table>
+<thead>
+<tr>
+<th>Characteristic</th>
+<th>Circular Orbits</th>
+<th>Elliptical Orbits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Shape</strong></td>
+<td>Perfect circle</td>
+<td>Ellipse (stretched circle)</td>
+</tr>
+<tr>
+<td><strong>Orbital Radius</strong></td>
+<td>Constant</td>
+<td>Varies (closest at perihelion, farthest at aphelion)</td>
+</tr>
+<tr>
+<td><strong>Orbital Speed</strong></td>
+<td>Constant</td>
+<td>Varies (fastest at perihelion, slowest at aphelion)</td>
+</tr>
+<tr>
+<td><strong>Orbit Period</strong></td>
+<td>Depends on radius</td>
+<td>Depends on semi-major axis (same as for circular orbits with same semi-major axis)</td>
+</tr>
+</tbody>
+</table>
+<p>Kepler's Third Law applies to both, but the shape and speed variation in elliptical orbits make them more complex, requiring a more thorough understanding of orbital mechanics. However, the fundamental relationship that <span class="arithmatex">\(T^2\propto a^3\)</span> holds true for both circular and elliptical orbits.</p>
+<hr/>
+<h1 id="pythonplot">Python/Plot</h1>
+<p><img alt="alt text" src="../image.png"/></p>
+<hr/>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<hr/>
+<p><img alt="alt text" src="../image-2.png"/></p>
+<pre><code class="language-python"> import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G = 6.67430e-11  # Gravitational constant in m^3 kg^-1 s^-2
+M_sun = 1.989e30  # Mass of the Sun in kg
+M_earth = 5.972e24  # Mass of Earth in kg
+
+# Function to calculate orbital period
+def orbital_period(radius, mass):
+    return 2 * np.pi * np.sqrt(radius**3 / (G * mass))
+
+# Plotting Circular Orbits
+def plot_orbit(radius, mass, central_body):
+    # Time for one full orbit
+    T = orbital_period(radius, mass)
+
+    # Number of points for plotting the orbit
+    num_points = 1000
+    theta = np.linspace(0, 2*np.pi, num_points)  # Angle for parametric plot
+
+    # Parametric equations for circular orbit
+    x = radius * np.cos(theta)  # x-coordinates
+    y = radius * np.sin(theta)  # y-coordinates
+
+    # Plot the orbit
+    plt.figure(figsize=(8, 8))
+    plt.plot(x, y, label=f'{central_body} Orbit (Radius = {radius/1e6:.2f} km)', color='b')
+    plt.scatter(0, 0, color='r', label=f'{central_body} Position', s=200)  # Central body at origin
+    plt.xlim(-radius*1.1, radius*1.1)
+    plt.ylim(-radius*1.1, radius*1.1)
+    plt.gca().set_aspect('equal', adjustable='box')
+    plt.xlabel('x (m)', fontsize=12)
+    plt.ylabel('y (m)', fontsize=12)
+    plt.title(f'Orbital Path of a Body around {central_body}', fontsize=14)
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+# Plotting the relationship between orbital period and radius (log-log scale)
+def plot_period_radius():
+    # Radii for various celestial bodies (in meters)
+    radii = np.array([1.496e11, 7.783e11, 1.524e11, 5.203e11])  # 1 AU, Jupiter, Mars, Saturn in meters
+    masses = np.array([M_sun, M_sun, M_sun, M_sun])  # Mass of Sun (for all planets)
+
+    # Calculate orbital periods for the given radii
+    periods = np.array([orbital_period(r, m) for r, m in zip(radii, masses)])
+
+    # Log-Log plot of orbital period vs. orbital radius
+    plt.figure(figsize=(8, 6))
+    plt.loglog(radii, periods, 'bo-', label="Orbital Period vs. Radius", markersize=8)
+
+    # Adding labels and title
+    plt.xlabel('Orbital Radius (m)', fontsize=12)
+    plt.ylabel('Orbital Period (s)', fontsize=12)
+    plt.title('Log-Log Plot: Orbital Period vs. Orbital Radius', fontsize=14)
+    plt.grid(True, which='both', linestyle='--', linewidth=0.5)
+    plt.legend(fontsize=12)
+    plt.tight_layout()
+    plt.show()
+
+# Example: Plot the orbit of Earth around the Sun
+plot_orbit(1.496e11, M_sun, "Sun")
+
+# Example: Plot the relationship between orbital period and radius (log-log)
+plot_period_radius()
+</code></pre>
+<p><a href="https://colab.research.google.com/drive/122pc_OFXzgVKgNtfWSa5msNpUsuvOO8W?authuser=0">Colab</a></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
