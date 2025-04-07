@@ -162,7 +162,7 @@ $$M = \frac{4 \pi^2 r^3}{G T^2}$$
    - $r = 384,400$ km $= 3.844 \times 10^8$ m
 
    - $T = 27.3$ days $= 2.358 \times 10^6$ s
-   
+
    - $G = 6.674 \times 10^{-11}$ m³/kg/s²
 
    We can compute Earth's mass using this equation.
@@ -192,7 +192,10 @@ $$M = \frac{4 \pi^2 r^3}{G T^2}$$
 2. **Kepler's Third Law for Planetary Orbits**  
    We can apply Kepler's Third Law to calculate the masses of the Sun using the orbital data of planets. For example, using Earth’s orbital data, we can estimate the mass of the Sun. The formula is:
 
- $$T^2 = \frac{4 \pi^2 r^3}{G M_{\text{sun}}}$$
+$$
+T^2 = \frac{4 \pi^2 r^3}{G M_{\text{sun}}}
+$$
+
 
 Rearranging to solve for $M_{\text{sun}}$:
 
@@ -274,6 +277,7 @@ While both circular and elliptical orbits adhere to Kepler’s Third Law, there 
   **semi-major axis**. The object’s distance from the central body does not change during the orbit. The orbital period is determined solely by the radius (or semi-major axis).
   
   For circular orbits, the relationship is straightforward:
+  
   $$T^2\propto r^3$$
 
 - **Elliptical Orbits**:  
