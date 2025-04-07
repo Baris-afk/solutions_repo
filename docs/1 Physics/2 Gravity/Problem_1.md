@@ -152,7 +152,7 @@ Kepler's Third Law provides a fundamental tool for understanding the orbital cha
 2. **Application of Kepler's Third Law**  
    Using Kepler's Third Law, we can estimate the mass of Earth based on the Moon's orbit. The formula we use is:
 
-   $$T^2 = \frac{4 \pi^2 r^3}{G M}$$
+$$T^2 = \frac{4 \pi^2 r^3}{G M}$$
 
    Rearranging to solve for Earth's mass ($M$):
 
@@ -160,7 +160,9 @@ $$M = \frac{4 \pi^2 r^3}{G T^2}$$
 
    Substituting the known values:
    - $r = 384,400$ km $= 3.844 \times 10^8$ m
+
    - $T = 27.3$ days $= 2.358 \times 10^6$ s
+   
    - $G = 6.674 \times 10^{-11}$ m³/kg/s²
 
    We can compute Earth's mass using this equation.
@@ -326,74 +328,61 @@ Kepler's Third Law applies to both, but the shape and speed variation in ellipti
  ---
  ![alt text](image-1.png)
  ---
- ![alt text](image-2.png)
+ ![alt text](image-15.png)
 
 ```python
  import numpy as np
 import matplotlib.pyplot as plt
 
-# Constants
-G = 6.67430e-11  # Gravitational constant in m^3 kg^-1 s^-2
-M_sun = 1.989e30  # Mass of the Sun in kg
-M_earth = 5.972e24  # Mass of Earth in kg
+# Orbital data: Semi-major axis (r) in AU, Orbital period (T) in Earth years
+solar_system_data = {
+    "Mercury": {"r": 0.39, "T": 0.24},
+    "Venus": {"r": 0.72, "T": 0.62},
+    "Earth": {"r": 1.00, "T": 1.00},
+    "Mars": {"r": 1.52, "T": 1.88},
+    "Jupiter": {"r": 5.20, "T": 11.86},
+    "Saturn": {"r": 9.58, "T": 29.46},
+    "Uranus": {"r": 19.18, "T": 84.01},
+    "Neptune": {"r": 30.07, "T": 164.8}
+}
 
-# Function to calculate orbital period
-def orbital_period(radius, mass):
-    return 2 * np.pi * np.sqrt(radius**3 / (G * mass))
+# Prepare data
+r_cubed = []
+T_squared = []
+planet_names = []
 
-# Plotting Circular Orbits
-def plot_orbit(radius, mass, central_body):
-    # Time for one full orbit
-    T = orbital_period(radius, mass)
-    
-    # Number of points for plotting the orbit
-    num_points = 1000
-    theta = np.linspace(0, 2*np.pi, num_points)  # Angle for parametric plot
-    
-    # Parametric equations for circular orbit
-    x = radius * np.cos(theta)  # x-coordinates
-    y = radius * np.sin(theta)  # y-coordinates
-    
-    # Plot the orbit
-    plt.figure(figsize=(8, 8))
-    plt.plot(x, y, label=f'{central_body} Orbit (Radius = {radius/1e6:.2f} km)', color='b')
-    plt.scatter(0, 0, color='r', label=f'{central_body} Position', s=200)  # Central body at origin
-    plt.xlim(-radius*1.1, radius*1.1)
-    plt.ylim(-radius*1.1, radius*1.1)
-    plt.gca().set_aspect('equal', adjustable='box')
-    plt.xlabel('x (m)', fontsize=12)
-    plt.ylabel('y (m)', fontsize=12)
-    plt.title(f'Orbital Path of a Body around {central_body}', fontsize=14)
-    plt.legend()
-    plt.grid(True)
-    plt.show()
+for planet, values in solar_system_data.items():
+    r = values["r"]
+    T = values["T"]
+    r_cubed.append(r**3)
+    T_squared.append(T**2)
+    planet_names.append(planet)
 
-# Plotting the relationship between orbital period and radius (log-log scale)
-def plot_period_radius():
-    # Radii for various celestial bodies (in meters)
-    radii = np.array([1.496e11, 7.783e11, 1.524e11, 5.203e11])  # 1 AU, Jupiter, Mars, Saturn in meters
-    masses = np.array([M_sun, M_sun, M_sun, M_sun])  # Mass of Sun (for all planets)
+# Sorting data by r_cubed for consistent plotting
+sorted_data = sorted(zip(r_cubed, T_squared, planet_names))
+r_cubed, T_squared, planet_names = zip(*sorted_data)
 
-    # Calculate orbital periods for the given radii
-    periods = np.array([orbital_period(r, m) for r, m in zip(radii, masses)])
+# Plotting with log-log scale
+plt.figure(figsize=(10, 7))
+plt.plot(r_cubed, T_squared, '-o', color='royalblue', linewidth=2, markersize=8)
+plt.xscale('log')
+plt.yscale('log')
 
-    # Log-Log plot of orbital period vs. orbital radius
-    plt.figure(figsize=(8, 6))
-    plt.loglog(radii, periods, 'bo-', label="Orbital Period vs. Radius", markersize=8)
-    
-    # Adding labels and title
-    plt.xlabel('Orbital Radius (m)', fontsize=12)
-    plt.ylabel('Orbital Period (s)', fontsize=12)
-    plt.title('Log-Log Plot: Orbital Period vs. Orbital Radius', fontsize=14)
-    plt.grid(True, which='both', linestyle='--', linewidth=0.5)
-    plt.legend(fontsize=12)
-    plt.tight_layout()
-    plt.show()
+# Annotate
+for i in range(len(planet_names)):
+    plt.annotate(planet_names[i],
+                 (r_cubed[i], T_squared[i]),
+                 textcoords="offset points",
+                 xytext=(6, 4),
+                 fontsize=10,
+                 weight='bold')
 
-# Example: Plot the orbit of Earth around the Sun
-plot_orbit(1.496e11, M_sun, "Sun")
-
-# Example: Plot the relationship between orbital period and radius (log-log)
-plot_period_radius()
+# Axis labels and title
+plt.title("Kepler's Third Law: $T^2$ vs $r^3$ (Log-Log Scale)", fontsize=14, weight='bold')
+plt.xlabel("$r^3$ (AU³)", fontsize=12)
+plt.ylabel("$T^2$ (years²)", fontsize=12)
+plt.grid(True, which='both', linestyle='--', alpha=0.6)
+plt.tight_layout()
+plt.show()
 ```
 [Colab](https://colab.research.google.com/drive/122pc_OFXzgVKgNtfWSa5msNpUsuvOO8W?authuser=0)
