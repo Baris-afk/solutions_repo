@@ -5,19 +5,28 @@
 ### Newton’s Law of Gravitation
 
 - Newton's Law of Universal Gravitation states that any two masses in the universe attract each other with a force given by:
-  $$F=G\frac{m_1m_2}{r^2}$$
+
+$$F=G\frac{m_1m_2}{r^2}$$
+
   where:
-  - $F$ is the gravitational force,
-  - $G$ is the gravitational constant ($6.674\times10^{-11}$ m²/kg²),
-  - $m_1,m_2$ are the masses of the two objects,
-  - $r$ is the distance between the objects.
+- $F$ is the gravitational force,
+
+- $G$ is the gravitational constant ($6.674\times10^{-11}$ m²/kg²)
+
+- $m_1,m_2$ are the masses of the two objects,
+
+- $r$ is the distance between the objects.
 
 - For a payload near Earth, the force simplifies to:
-  $$F=G\frac{M_Em}{r^2}$$
+
+ $$F=G\frac{M_Em}{r^2}$$
+
   where $M_E$ is Earth's mass and $r$ is the distance from Earth's center.
 
 - The acceleration due to gravity is:
-  $$g=\frac{GM_E}{r^2}$$
+
+$$g=\frac{GM_E}{r^2}$$
+
   which varies with altitude.
 
 ### Kepler’s Laws of Planetary Motion
@@ -27,26 +36,35 @@
 2. **Second Law (Equal Areas in Equal Time)**: The line joining a planet and the Sun sweeps equal areas in equal time. This implies that an object moves faster when closer to Earth.
 
 3. **Third Law (Orbital Period Relation)**: The square of a planet’s orbital period is proportional to the cube of the semi-major axis:
-   $$T^2\propto a^3$$
-   This helps in predicting orbital parameters.
+
+$$T^2\propto a^3$$
+
+ This helps in predicting orbital parameters.
 
 ### Classification of Possible Trajectories
 
 - The motion of a payload depends on its total energy:
-  $$E=\frac{1}{2}mv^2-\frac{GM_Em}{r}$$
-  - If $E<0$ → **Elliptical orbit** (Bound motion)
-  - If $E=0$ → **Parabolic trajectory** (Escape condition)
-  - If $E>0$ → **Hyperbolic trajectory** (Unbound motion)
+
+$$E=\frac{1}{2}mv^2-\frac{GM_Em}{r}$$
+
+ - If $E<0$ → **Elliptical orbit** (Bound motion)
+
+- If $E=0$ → **Parabolic trajectory** (Escape condition)
+
+- If $E>0$ → **Hyperbolic trajectory** (Unbound motion)
 
 - The escape velocity is given by:
-  $$v_{esc}=\sqrt{\frac{2GM_E}{r}}$$
+
+$$v_{esc}=\sqrt{\frac{2GM_E}{r}}$$
 
 ### Conditions for Orbital Insertion, Reentry, or Escape
 
 - **Orbital Insertion**:
-  - Requires achieving a velocity that results in a stable bound orbit.
-  - For a circular orbit at altitude $h$:
-    $$v_{orbit}=\sqrt{\frac{GM_E}{R_E+h}}$$
+- Requires achieving a velocity that results in a stable bound orbit.
+
+- For a circular orbit at altitude $h$:
+
+$$v_{orbit}=\sqrt{\frac{GM_E}{R_E+h}}$$
   
 - **Reentry Conditions**:
   - A payload must reduce velocity to enter the atmosphere.
@@ -64,39 +82,60 @@ This theoretical background lays the foundation for numerical simulations of pay
 ### Equations of Motion for a Payload under Earth's Gravity
 
 - The motion of a payload is governed by Newton’s Second Law:
-  $$F=ma$$
+
+$$F=ma$$
+
   Since the only force acting is gravity:
-  $$m\frac{d^2\mathbf{r}}{dt^2}=-G\frac{M_Em}{r^2}\hat{r}$$
+
+$$m\frac{d^2\mathbf{r}}{dt^2}=-G\frac{M_Em}{r^2}\hat{r}$$
+
   Simplifying:
-  $$\frac{d^2\mathbf{r}}{dt^2}=-G\frac{M_E}{r^2}\hat{r}$$
+
+$$\frac{d^2\mathbf{r}}{dt^2}=-G\frac{M_E}{r^2}\hat{r}$$
 
 - In Cartesian coordinates:
-  $$\frac{d^2x}{dt^2}=-G\frac{M_E}{r^3}x$$
-  $$\frac{d^2y}{dt^2}=-G\frac{M_E}{r^3}y$$
-  $$\frac{d^2z}{dt^2}=-G\frac{M_E}{r^3}z$$
-  where $r=\sqrt{x^2+y^2+z^2}$.
+
+$$\frac{d^2x}{dt^2}=-G\frac{M_E}{r^3}x$$
+
+$$\frac{d^2y}{dt^2}=-G\frac{M_E}{r^3}y$$
+
+$$\frac{d^2z}{dt^2}=-G\frac{M_E}{r^3}z$$
+
+where $r=\sqrt{x^2+y^2+z^2}$.
 
 ### Consideration of Initial Velocity, Altitude, and Direction
 
 - Initial position:
-  $$\mathbf{r_0}=(x_0,y_0,z_0)$$
+
+$$\mathbf{r_0}=(x_0,y_0,z_0)$$
+
 - Initial velocity:
-  $$\mathbf{v_0}=(v_{x0},v_{y0},v_{z0})$$
+
+$$\mathbf{v_0}=(v_{x0},v_{y0},v_{z0})$$
+
 - The trajectory depends on:
+
   - Magnitude and direction of $\mathbf{v_0}$.
+
   - The altitude ($h$) from the Earth's surface: 
-    $$r_0=R_E+h$$
+
+$$r_0=R_E+h$$
 
 ### Criteria for Different Trajectories
 
 - The total specific energy determines the trajectory:
-  $$E=\frac{1}{2}v^2-\frac{GM_E}{r}$$
+$$E=\frac{1}{2}v^2-\frac{GM_E}{r}$$
+
   - If $E<0$: **Elliptical orbit** (Bound motion)
+
   - If $E=0$: **Parabolic trajectory** (Escape condition)
+
   - If $E>0$: **Hyperbolic trajectory** (Unbound motion)
 
 - Escape velocity condition:
-  $$v_0\geq\sqrt{\frac{2GM_E}{r_0}}$$
+
+$$v_0\geq\sqrt{\frac{2GM_E}{r_0}}$$
+
   ensures that the payload escapes Earth's gravitational influence.
 
 This mathematical formulation establishes the foundation for numerical simulations of payload motion.
@@ -311,7 +350,9 @@ The study of payload trajectories is essential for various space missions, parti
 
   Where:
   - $G$ is the gravitational constant,
+
   - $M_E$ is Earth's mass,
+  
   - $r$ is the orbital radius (distance from Earth's center).
 
 The altitude at which the payload is released, and its initial velocity, are critical for the success of satellite deployment. If the velocity is too low, the satellite will fall back to Earth. If the velocity is too high, the satellite may escape Earth's gravity.
