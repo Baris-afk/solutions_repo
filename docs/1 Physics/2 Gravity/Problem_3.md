@@ -283,7 +283,8 @@ In addition to the plots above, other analyses could include:
 These visualizations help to better understand the motion of the payload under the influence of gravity. By examining the time evolution of position and velocity, phase space diagrams, and orbit visualizations, we can gain insights into the nature of the trajectory, whether elliptical, hyperbolic, or parabolic.
 
 ## Visuals
-
+![alt text](image-16.png)
+---
 ![alt text](image-10.png)
 ---
 ![alt text](image-11.png)
