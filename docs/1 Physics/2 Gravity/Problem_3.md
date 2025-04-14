@@ -290,11 +290,7 @@ These visualizations help to better understand the motion of the payload under t
 ![alt text](image-11.png)
 ---
 ![alt text](image-12.png)
----
-![alt text](image-13.png)
----
-![alt text](image-14.png)
----
+
 [Colab](https://colab.research.google.com/drive/1RTVVoLZHUBs3BtCoveYtLcJ_06_lbm6Z?authuser=0)
 ---
 
