@@ -19,7 +19,7 @@ $$F=G\frac{m_1m_2}{r^2}$$
 
 - For a payload near Earth, the force simplifies to:
 
- $$F=G\frac{M_Em}{r^2}$$
+$$F=G\frac{M_Em}{r^2}$$
 
   where $M_E$ is Earth's mass and $r$ is the distance from Earth's center.
 
@@ -47,7 +47,7 @@ $$T^2\propto a^3$$
 
 $$E=\frac{1}{2}mv^2-\frac{GM_Em}{r}$$
 
- - If $E<0$ → **Elliptical orbit** (Bound motion)
+- If $E<0$ → **Elliptical orbit** (Bound motion)
 
 - If $E=0$ → **Parabolic trajectory** (Escape condition)
 
@@ -126,11 +126,11 @@ $$r_0=R_E+h$$
 - The total specific energy determines the trajectory:
 $$E=\frac{1}{2}v^2-\frac{GM_E}{r}$$
 
-  - If $E<0$: **Elliptical orbit** (Bound motion)
+- If $E<0$: **Elliptical orbit** (Bound motion)
 
-  - If $E=0$: **Parabolic trajectory** (Escape condition)
+- If $E=0$: **Parabolic trajectory** (Escape condition)
 
-  - If $E>0$: **Hyperbolic trajectory** (Unbound motion)
+- If $E>0$: **Hyperbolic trajectory** (Unbound motion)
 
 - Escape velocity condition:
 
@@ -215,8 +215,7 @@ $$
 
 The following Python code can be used to solve these equations using the Runge-Kutta method:
 
-![alt text](image-9.png)
-
+![alt text](image-19.png)
 
 ```python
 import numpy as np
@@ -228,32 +227,33 @@ M_E = 5.972e24   # Earth's mass (kg)
 R_E = 6371000    # Earth's radius (m)
 
 # Initial conditions
-r0 = np.array([R_E + 100000, 0, 0])  # Initial position (100 km above Earth's surface)
-v0 = np.array([0, 7800, 0])  # Initial velocity (7.8 km/s is near orbital velocity)
+r0 = np.array([R_E + 100000, 0, 0])  # 100 km above Earth's surface
+v0 = np.array([0, 7800, 0])          # orbital velocity in m/s
 
 # Time parameters
-t_max = 5000  # Shorter time for visualization (s)
-dt = 1        # Time step (s)
+t_max = 5000  # total simulation time in seconds
+dt = 1        # time step in seconds
 
-# Runge-Kutta method
+# Runge-Kutta integrator
 def runge_kutta_step(r, v, dt):
     r_mag = np.linalg.norm(r)
-    if r_mag < R_E:  # Prevent division by zero or below surface-level issues
+    if r_mag < R_E:
         raise ValueError("Object has collided with Earth!")
-    a = -G * M_E * r / r_mag**3  # Gravitational acceleration
+    
+    a = -G * M_E * r / r_mag**3
     k1v, k1r = dt * a, dt * v
-    r_mid, v_mid = r + 0.5 * k1r, v + 0.5 * k1v
-    r_mag_mid = np.linalg.norm(r_mid)
-    a_mid = -G * M_E * r_mid / r_mag_mid**3
-    k2v, k2r = dt * a_mid, dt * v_mid
-    r_mid2, v_mid2 = r + 0.5 * k2r, v + 0.5 * k2v
-    r_mag_mid2 = np.linalg.norm(r_mid2)
-    a_mid2 = -G * M_E * r_mid2 / r_mag_mid2**3
-    k3v, k3r = dt * a_mid2, dt * v_mid2
-    r_end, v_end = r + k3r, v + k3v
-    r_mag_end = np.linalg.norm(r_end)
-    a_end = -G * M_E * r_end / r_mag_end**3
-    k4v, k4r = dt * a_end, dt * v_end
+    r2, v2 = r + 0.5 * k1r, v + 0.5 * k1v
+
+    a2 = -G * M_E * r2 / np.linalg.norm(r2)**3
+    k2v, k2r = dt * a2, dt * v2
+    r3, v3 = r + 0.5 * k2r, v + 0.5 * k2v
+
+    a3 = -G * M_E * r3 / np.linalg.norm(r3)**3
+    k3v, k3r = dt * a3, dt * v3
+    r4, v4 = r + k3r, v + k3v
+
+    a4 = -G * M_E * r4 / np.linalg.norm(r4)**3
+    k4v, k4r = dt * a4, dt * v4
 
     v_next = v + (k1v + 2 * k2v + 2 * k3v + k4v) / 6
     r_next = r + (k1r + 2 * k2r + 2 * k3r + k4r) / 6
@@ -271,19 +271,22 @@ for t in np.arange(0, t_max, dt):
         print(e)
         break
 
-# Convert positions to numpy array for plotting
 positions = np.array(positions)
 
-# Plotting the trajectory
-plt.figure(figsize=(8, 8))
-plt.plot(positions[:, 0], positions[:, 1], label="Trajectory")
-plt.scatter(0, 0, color='red', label='Earth')
-plt.title('Trajectory of the Payload')
-plt.xlabel('X position (m)')
-plt.ylabel('Y position (m)')
-plt.axis('equal')  # Ensure equal scaling for proper trajectory visualization
-plt.legend()
-plt.grid(True)
+# Plotting
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.plot(positions[:, 0], positions[:, 1], label="Trajectory", color='blue')
+
+# Draw Earth as a red circle
+earth = plt.Circle((0, 0), R_E, color='red', label='Earth', alpha=0.6)
+ax.add_patch(earth)
+
+ax.set_title('Trajectory of the Payload')
+ax.set_xlabel('X position (m)')
+ax.set_ylabel('Y position (m)')
+ax.set_aspect('equal')
+ax.legend()
+ax.grid(True)
 plt.show()
 ```
 ---
@@ -322,15 +325,12 @@ In addition to the plots above, other analyses could include:
 These visualizations help to better understand the motion of the payload under the influence of gravity. By examining the time evolution of position and velocity, phase space diagrams, and orbit visualizations, we can gain insights into the nature of the trajectory, whether elliptical, hyperbolic, or parabolic.
 
 ## Visuals
-![alt text](image-17.png)
+![alt text](image-18.png)
 ---
-![alt text](image-10.png)
+![alt text](Case3.png)
 ---
-![alt text](image-11.png)
----
-![alt text](image-12.png)
+![alt text](Case4.png)
 
-[Colab](https://colab.research.google.com/drive/1RTVVoLZHUBs3BtCoveYtLcJ_06_lbm6Z?authuser=0)
 ---
 
 ## Real-World Applications
@@ -352,7 +352,7 @@ The study of payload trajectories is essential for various space missions, parti
   - $G$ is the gravitational constant,
 
   - $M_E$ is Earth's mass,
-  
+
   - $r$ is the orbital radius (distance from Earth's center).
 
 The altitude at which the payload is released, and its initial velocity, are critical for the success of satellite deployment. If the velocity is too low, the satellite will fall back to Earth. If the velocity is too high, the satellite may escape Earth's gravity.
