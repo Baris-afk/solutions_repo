@@ -124,6 +124,7 @@ $$r_0=R_E+h$$
 ### Criteria for Different Trajectories
 
 - The total specific energy determines the trajectory:
+
 $$E=\frac{1}{2}v^2-\frac{GM_E}{r}$$
 
 - If $E<0$: **Elliptical orbit** (Bound motion)
