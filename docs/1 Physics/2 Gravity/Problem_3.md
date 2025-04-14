@@ -373,9 +373,13 @@ $$
 
 Where:
 - $v_{esc}$ is the escape velocity,
+
 - $G$ is the gravitational constant,
+
 - $M_E$ is Earth's mass,
+
 - $r$ is the distance from Earth's center.
+
 
 For Earth, the escape velocity at the surface is approximately 11.2 km/s. This is the minimum speed an object must have to escape Earth's gravitational pull without further propulsion.
 
