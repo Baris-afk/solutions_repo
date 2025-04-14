@@ -253,26 +253,32 @@
 <h2 id="theoretical-foundation">Theoretical Foundation</h2>
 <h3 id="newtons-law-of-gravitation">Newton’s Law of Gravitation</h3>
 <ul>
-<li>Newton's Law of Universal Gravitation states that any two masses in the universe attract each other with a force given by:
-  <span class="arithmatex">\(<span class="arithmatex">\(F=G\frac{m_1m_2}{r^2}\)</span>\)</span>
-  where:</li>
-<li><span class="arithmatex">\(F\)</span> is the gravitational force,</li>
-<li><span class="arithmatex">\(G\)</span> is the gravitational constant (<span class="arithmatex">\(6.674\times10^{-11}\)</span> m²/kg²),</li>
-<li><span class="arithmatex">\(m_1,m_2\)</span> are the masses of the two objects,</li>
+<li>Newton's Law of Universal Gravitation states that any two masses in the universe attract each other with a force given by:</li>
+</ul>
+<div class="arithmatex">\[F=G\frac{m_1m_2}{r^2}\]</div>
+<p>where:
+- <span class="arithmatex">\(F\)</span> is the gravitational force,</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(G\)</span> is the gravitational constant (<span class="arithmatex">\(6.674\times10^{-11}\)</span> m²/kg²)</p>
+</li>
+<li>
+<p><span class="arithmatex">\(m_1,m_2\)</span> are the masses of the two objects,</p>
+</li>
 <li>
 <p><span class="arithmatex">\(r\)</span> is the distance between the objects.</p>
 </li>
 <li>
-<p>For a payload near Earth, the force simplifies to:
-  <span class="arithmatex">\(<span class="arithmatex">\(F=G\frac{M_Em}{r^2}\)</span>\)</span>
-  where <span class="arithmatex">\(M_E\)</span> is Earth's mass and <span class="arithmatex">\(r\)</span> is the distance from Earth's center.</p>
-</li>
-<li>
-<p>The acceleration due to gravity is:
-  <span class="arithmatex">\(<span class="arithmatex">\(g=\frac{GM_E}{r^2}\)</span>\)</span>
-  which varies with altitude.</p>
+<p>For a payload near Earth, the force simplifies to:</p>
 </li>
 </ul>
+<p><span class="arithmatex">\(<span class="arithmatex">\(F=G\frac{M_Em}{r^2}\)</span>\)</span></p>
+<p>where <span class="arithmatex">\(M_E\)</span> is Earth's mass and <span class="arithmatex">\(r\)</span> is the distance from Earth's center.</p>
+<ul>
+<li>The acceleration due to gravity is:</li>
+</ul>
+<div class="arithmatex">\[g=\frac{GM_E}{r^2}\]</div>
+<p>which varies with altitude.</p>
 <h3 id="keplers-laws-of-planetary-motion">Kepler’s Laws of Planetary Motion</h3>
 <ol>
 <li>
@@ -282,36 +288,44 @@
 <p><strong>Second Law (Equal Areas in Equal Time)</strong>: The line joining a planet and the Sun sweeps equal areas in equal time. This implies that an object moves faster when closer to Earth.</p>
 </li>
 <li>
-<p><strong>Third Law (Orbital Period Relation)</strong>: The square of a planet’s orbital period is proportional to the cube of the semi-major axis:
-   <span class="arithmatex">\(<span class="arithmatex">\(T^2\propto a^3\)</span>\)</span>
-   This helps in predicting orbital parameters.</p>
+<p><strong>Third Law (Orbital Period Relation)</strong>: The square of a planet’s orbital period is proportional to the cube of the semi-major axis:</p>
 </li>
 </ol>
+<div class="arithmatex">\[T^2\propto a^3\]</div>
+<p>This helps in predicting orbital parameters.</p>
 <h3 id="classification-of-possible-trajectories">Classification of Possible Trajectories</h3>
 <ul>
-<li>The motion of a payload depends on its total energy:
-  <span class="arithmatex">\(<span class="arithmatex">\(E=\frac{1}{2}mv^2-\frac{GM_Em}{r}\)</span>\)</span></li>
-<li>If <span class="arithmatex">\(E&lt;0\)</span> → <strong>Elliptical orbit</strong> (Bound motion)</li>
-<li>If <span class="arithmatex">\(E=0\)</span> → <strong>Parabolic trajectory</strong> (Escape condition)</li>
+<li>The motion of a payload depends on its total energy:</li>
+</ul>
+<div class="arithmatex">\[E=\frac{1}{2}mv^2-\frac{GM_Em}{r}\]</div>
+<ul>
+<li>
+<p>If <span class="arithmatex">\(E&lt;0\)</span> → <strong>Elliptical orbit</strong> (Bound motion)</p>
+</li>
+<li>
+<p>If <span class="arithmatex">\(E=0\)</span> → <strong>Parabolic trajectory</strong> (Escape condition)</p>
+</li>
 <li>
 <p>If <span class="arithmatex">\(E&gt;0\)</span> → <strong>Hyperbolic trajectory</strong> (Unbound motion)</p>
 </li>
 <li>
-<p>The escape velocity is given by:
-  <span class="arithmatex">\(<span class="arithmatex">\(v_{esc}=\sqrt{\frac{2GM_E}{r}}\)</span>\)</span></p>
+<p>The escape velocity is given by:</p>
 </li>
 </ul>
+<div class="arithmatex">\[v_{esc}=\sqrt{\frac{2GM_E}{r}}\]</div>
 <h3 id="conditions-for-orbital-insertion-reentry-or-escape">Conditions for Orbital Insertion, Reentry, or Escape</h3>
 <ul>
 <li><strong>Orbital Insertion</strong>:</li>
-<li>Requires achieving a velocity that results in a stable bound orbit.</li>
 <li>
-<p>For a circular orbit at altitude <span class="arithmatex">\(h\)</span>:
-    <span class="arithmatex">\(<span class="arithmatex">\(v_{orbit}=\sqrt{\frac{GM_E}{R_E+h}}\)</span>\)</span></p>
+<p>Requires achieving a velocity that results in a stable bound orbit.</p>
 </li>
 <li>
-<p><strong>Reentry Conditions</strong>:</p>
+<p>For a circular orbit at altitude <span class="arithmatex">\(h\)</span>:</p>
 </li>
+</ul>
+<div class="arithmatex">\[v_{orbit}=\sqrt{\frac{GM_E}{R_E+h}}\]</div>
+<ul>
+<li><strong>Reentry Conditions</strong>:</li>
 <li>A payload must reduce velocity to enter the atmosphere.</li>
 <li>
 <p>Atmospheric drag plays a key role in slowing it down.</p>
@@ -325,48 +339,62 @@
 <h2 id="mathematical-formulation">Mathematical Formulation</h2>
 <h3 id="equations-of-motion-for-a-payload-under-earths-gravity">Equations of Motion for a Payload under Earth's Gravity</h3>
 <ul>
-<li>
-<p>The motion of a payload is governed by Newton’s Second Law:
-  <span class="arithmatex">\(<span class="arithmatex">\(F=ma\)</span>\)</span>
-  Since the only force acting is gravity:
-  <span class="arithmatex">\(<span class="arithmatex">\(m\frac{d^2\mathbf{r}}{dt^2}=-G\frac{M_Em}{r^2}\hat{r}\)</span>\)</span>
-  Simplifying:
-  <span class="arithmatex">\(<span class="arithmatex">\(\frac{d^2\mathbf{r}}{dt^2}=-G\frac{M_E}{r^2}\hat{r}\)</span>\)</span></p>
-</li>
-<li>
-<p>In Cartesian coordinates:
-  <span class="arithmatex">\(<span class="arithmatex">\(\frac{d^2x}{dt^2}=-G\frac{M_E}{r^3}x\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\frac{d^2y}{dt^2}=-G\frac{M_E}{r^3}y\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\frac{d^2z}{dt^2}=-G\frac{M_E}{r^3}z\)</span>\)</span>
-  where <span class="arithmatex">\(r=\sqrt{x^2+y^2+z^2}\)</span>.</p>
-</li>
+<li>The motion of a payload is governed by Newton’s Second Law:</li>
 </ul>
+<div class="arithmatex">\[F=ma\]</div>
+<p>Since the only force acting is gravity:</p>
+<div class="arithmatex">\[m\frac{d^2\mathbf{r}}{dt^2}=-G\frac{M_Em}{r^2}\hat{r}\]</div>
+<p>Simplifying:</p>
+<div class="arithmatex">\[\frac{d^2\mathbf{r}}{dt^2}=-G\frac{M_E}{r^2}\hat{r}\]</div>
+<ul>
+<li>In Cartesian coordinates:</li>
+</ul>
+<div class="arithmatex">\[\frac{d^2x}{dt^2}=-G\frac{M_E}{r^3}x\]</div>
+<div class="arithmatex">\[\frac{d^2y}{dt^2}=-G\frac{M_E}{r^3}y\]</div>
+<div class="arithmatex">\[\frac{d^2z}{dt^2}=-G\frac{M_E}{r^3}z\]</div>
+<p>where <span class="arithmatex">\(r=\sqrt{x^2+y^2+z^2}\)</span>.</p>
 <h3 id="consideration-of-initial-velocity-altitude-and-direction">Consideration of Initial Velocity, Altitude, and Direction</h3>
 <ul>
-<li>Initial position:
-  <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{r_0}=(x_0,y_0,z_0)\)</span>\)</span></li>
-<li>Initial velocity:
-  <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{v_0}=(v_{x0},v_{y0},v_{z0})\)</span>\)</span></li>
-<li>The trajectory depends on:</li>
-<li>Magnitude and direction of <span class="arithmatex">\(\mathbf{v_0}\)</span>.</li>
-<li>The altitude (<span class="arithmatex">\(h\)</span>) from the Earth's surface: 
-    <span class="arithmatex">\(<span class="arithmatex">\(r_0=R_E+h\)</span>\)</span></li>
+<li>Initial position:</li>
 </ul>
+<div class="arithmatex">\[\mathbf{r_0}=(x_0,y_0,z_0)\]</div>
+<ul>
+<li>Initial velocity:</li>
+</ul>
+<div class="arithmatex">\[\mathbf{v_0}=(v_{x0},v_{y0},v_{z0})\]</div>
+<ul>
+<li>
+<p>The trajectory depends on:</p>
+</li>
+<li>
+<p>Magnitude and direction of <span class="arithmatex">\(\mathbf{v_0}\)</span>.</p>
+</li>
+<li>
+<p>The altitude (<span class="arithmatex">\(h\)</span>) from the Earth's surface: </p>
+</li>
+</ul>
+<div class="arithmatex">\[r_0=R_E+h\]</div>
 <h3 id="criteria-for-different-trajectories">Criteria for Different Trajectories</h3>
 <ul>
-<li>The total specific energy determines the trajectory:
-  <span class="arithmatex">\(<span class="arithmatex">\(E=\frac{1}{2}v^2-\frac{GM_E}{r}\)</span>\)</span></li>
-<li>If <span class="arithmatex">\(E&lt;0\)</span>: <strong>Elliptical orbit</strong> (Bound motion)</li>
-<li>If <span class="arithmatex">\(E=0\)</span>: <strong>Parabolic trajectory</strong> (Escape condition)</li>
+<li>
+<p>The total specific energy determines the trajectory:
+<span class="arithmatex">\(<span class="arithmatex">\(E=\frac{1}{2}v^2-\frac{GM_E}{r}\)</span>\)</span></p>
+</li>
+<li>
+<p>If <span class="arithmatex">\(E&lt;0\)</span>: <strong>Elliptical orbit</strong> (Bound motion)</p>
+</li>
+<li>
+<p>If <span class="arithmatex">\(E=0\)</span>: <strong>Parabolic trajectory</strong> (Escape condition)</p>
+</li>
 <li>
 <p>If <span class="arithmatex">\(E&gt;0\)</span>: <strong>Hyperbolic trajectory</strong> (Unbound motion)</p>
 </li>
 <li>
-<p>Escape velocity condition:
-  <span class="arithmatex">\(<span class="arithmatex">\(v_0\geq\sqrt{\frac{2GM_E}{r_0}}\)</span>\)</span>
-  ensures that the payload escapes Earth's gravitational influence.</p>
+<p>Escape velocity condition:</p>
 </li>
 </ul>
+<div class="arithmatex">\[v_0\geq\sqrt{\frac{2GM_E}{r_0}}\]</div>
+<p>ensures that the payload escapes Earth's gravitational influence.</p>
 <h2 id="this-mathematical-formulation-establishes-the-foundation-for-numerical-simulations-of-payload-motion">This mathematical formulation establishes the foundation for numerical simulations of payload motion.</h2>
 <h2 id="numerical-simulation">Numerical Simulation</h2>
 <h3 id="implement-a-python-script-to-solve-the-equations-of-motion">Implement a Python Script to Solve the Equations of Motion</h3>
@@ -530,9 +558,15 @@ plt.show()
   v = \sqrt{\frac{GM_E}{r}}
   $$</p>
 <p>Where:
-  - <span class="arithmatex">\(G\)</span> is the gravitational constant,
-  - <span class="arithmatex">\(M_E\)</span> is Earth's mass,
-  - <span class="arithmatex">\(r\)</span> is the orbital radius (distance from Earth's center).</p>
+  - <span class="arithmatex">\(G\)</span> is the gravitational constant,</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(M_E\)</span> is Earth's mass,</p>
+</li>
+<li>
+<p><span class="arithmatex">\(r\)</span> is the orbital radius (distance from Earth's center).</p>
+</li>
+</ul>
 <p>The altitude at which the payload is released, and its initial velocity, are critical for the success of satellite deployment. If the velocity is too low, the satellite will fall back to Earth. If the velocity is too high, the satellite may escape Earth's gravity.</p>
 <h3 id="reentry-strategies">Reentry Strategies</h3>
 <p>Reentry into Earth's atmosphere requires precise control of the payload's trajectory to ensure it slows down enough to avoid burning up due to friction. The conditions for reentry are influenced by:</p>
