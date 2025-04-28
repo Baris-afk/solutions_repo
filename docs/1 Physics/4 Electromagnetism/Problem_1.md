@@ -315,7 +315,8 @@ $$
 ---
 ![alt text](image-4.png)
 ---
-
+[Colab](https://colab.research.google.com/drive/1Xnx234PaTJyRz1-9pXUjjc02NOv90hW4?authuser=0)
+---
 ## 🧮 Calculating Larmor Radius and Drift Velocity
 
 ```python
