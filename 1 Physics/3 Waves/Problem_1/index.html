@@ -181,15 +181,31 @@
 <p>For a polygon centered at the origin, the coordinates of the <span class="arithmatex">\(i\)</span>-th vertex are given by:</p>
 <div class="arithmatex">\[x_i=R\cos\left(\frac{2\pi i}{N}\right),\quad y_i=R\sin\left(\frac{2\pi i}{N}\right),\quad i=0,1,2,\dots,N-1\]</div>
 <p>where:
-- <span class="arithmatex">\(R\)</span> is the circumradius of the polygon,
-- <span class="arithmatex">\(N\)</span> is the number of sides (hence, the number of sources),
-- <span class="arithmatex">\(i\)</span> indexes the vertices counterclockwise starting from an initial reference point.</p>
+- <span class="arithmatex">\(R\)</span> is the circumradius of the polygon,</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(N\)</span> is the number of sides (hence, the number of sources),</p>
+</li>
+<li>
+<p><span class="arithmatex">\(i\)</span> indexes the vertices counterclockwise starting from an initial reference point.</p>
+</li>
+</ul>
 <h3 id="choosing-the-regular-polygon"><strong>Choosing the Regular Polygon</strong></h3>
-<p>The choice of <span class="arithmatex">\(N\)</span> influences the symmetry of the interference pattern. Common selections include:
-- <strong>Equilateral Triangle (<span class="arithmatex">\(N=3\)</span>)</strong>: Yields a threefold symmetric interference pattern.
-- <strong>Square (<span class="arithmatex">\(N=4\)</span>)</strong>: Produces a fourfold symmetric pattern with central and diagonal wave reinforcements.
-- <strong>Pentagon (<span class="arithmatex">\(N=5\)</span>)</strong>: Generates more complex wave interactions with fivefold rotational symmetry.
-- <strong>Hexagon (<span class="arithmatex">\(N=6\)</span>)</strong>: Approximates circular symmetry while retaining noticeable interference fringes.</p>
+<p>The choice of <span class="arithmatex">\(N\)</span> influences the symmetry of the interference pattern. Common selections include:</p>
+<ul>
+<li>
+<p><strong>Equilateral Triangle (<span class="arithmatex">\(N=3\)</span>)</strong>: Yields a threefold symmetric interference pattern.</p>
+</li>
+<li>
+<p><strong>Square (<span class="arithmatex">\(N=4\)</span>)</strong>: Produces a fourfold symmetric pattern with central and diagonal wave reinforcements.</p>
+</li>
+<li>
+<p><strong>Pentagon (<span class="arithmatex">\(N=5\)</span>)</strong>: Generates more complex wave interactions with fivefold rotational symmetry.</p>
+</li>
+<li>
+<p><strong>Hexagon (<span class="arithmatex">\(N=6\)</span>)</strong>: Approximates circular symmetry while retaining noticeable interference fringes.</p>
+</li>
+</ul>
 <hr/>
 <h2 id="2-positioning-the-sources"><strong>2. Positioning the Sources</strong></h2>
 <h3 id="determining-the-coordinates-of-the-polygonal-vertices"><strong>Determining the Coordinates of the Polygonal Vertices</strong></h3>
@@ -199,24 +215,46 @@
 <p>Each vertex serves as a point source emitting circular waves with identical amplitude and frequency. The total wave field results from the superposition of these waves.</p>
 <p>Each wave propagates outward from its source with a displacement function:</p>
 <div class="arithmatex">\[\eta_i(x,y,t)=\frac{A}{r_i}\cos\left(kr_i-\omega t+\phi_i\right)\]</div>
-<p>where:
-- <span class="arithmatex">\(r_i=\sqrt{(x-x_i)^2+(y-y_i)^2}\)</span> is the radial distance to the observation point.</p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(r_i=\sqrt{(x-x_i)^2+(y-y_i)^2}\)</span> is the radial distance to the observation point.</li>
+</ul>
 <hr/>
 <h2 id="3-defining-the-wave-equations"><strong>3. Defining the Wave Equations</strong></h2>
 <h3 id="mathematical-representation-of-wave-motion"><strong>Mathematical Representation of Wave Motion</strong></h3>
 <p>Each wave emitted from a point source follows the equation:</p>
 <div class="arithmatex">\[\eta_i(x,y,t)=\frac{A}{r_i}\cos\left(kr_i-\omega t+\phi_i\right)\]</div>
-<p>where:
-- <span class="arithmatex">\(A\)</span> is the amplitude,
-- <span class="arithmatex">\(k=\frac{2\pi}{\lambda}\)</span> is the wave number,
-- <span class="arithmatex">\(\omega=2\pi f\)</span> is the angular frequency,
-- <span class="arithmatex">\(\phi_i\)</span> is the phase,
-- <span class="arithmatex">\(r_i\)</span> is the radial distance from the <span class="arithmatex">\(i\)</span>-th source.</p>
+<p>where:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(A\)</span> is the amplitude,</p>
+</li>
+<li>
+<p><span class="arithmatex">\(k=\frac{2\pi}{\lambda}\)</span> is the wave number,</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\omega=2\pi f\)</span> is the angular frequency,</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\phi_i\)</span> is the phase,</p>
+</li>
+<li>
+<p><span class="arithmatex">\(r_i\)</span> is the radial distance from the <span class="arithmatex">\(i\)</span>-th source.</p>
+</li>
+</ul>
 <h3 id="uniformity-assumptions"><strong>Uniformity Assumptions</strong></h3>
-<p>To maintain coherence in interference analysis, we assume:
-- All waves have <strong>the same amplitude</strong>, i.e., <span class="arithmatex">\(A\)</span> is constant.
-- All waves have <strong>the same wavelength</strong> <span class="arithmatex">\(\lambda\)</span> and frequency <span class="arithmatex">\(f\)</span>.
-- Initial phase differences between sources remain fixed.</p>
+<p>To maintain coherence in interference analysis, we assume:</p>
+<ul>
+<li>
+<p>All waves have <strong>the same amplitude</strong>, i.e., <span class="arithmatex">\(A\)</span> is constant.</p>
+</li>
+<li>
+<p>All waves have <strong>the same wavelength</strong> <span class="arithmatex">\(\lambda\)</span> and frequency <span class="arithmatex">\(f\)</span>.</p>
+</li>
+<li>
+<p>Initial phase differences between sources remain fixed.</p>
+</li>
+</ul>
 <hr/>
 <h2 id="4-applying-the-superposition-principle"><strong>4. Applying the Superposition Principle</strong></h2>
 <h3 id="summation-of-wave-displacements"><strong>Summation of Wave Displacements</strong></h3>
@@ -225,11 +263,13 @@
 <p>This summation captures constructive and destructive interference effects.</p>
 <h3 id="constructive-and-destructive-interference-conditions"><strong>Constructive and Destructive Interference Conditions</strong></h3>
 <ul>
-<li><strong>Constructive interference:</strong> Occurs when phase differences satisfy:
-  <span class="arithmatex">\(<span class="arithmatex">\(kr_i-\omega t+\phi_i=2m\pi,\quad m\in\mathbb{Z}\)</span>\)</span></li>
-<li><strong>Destructive interference:</strong> Occurs when phase differences satisfy:
-  <span class="arithmatex">\(<span class="arithmatex">\(kr_i-\omega t+\phi_i=(2m+1)\pi,\quad m\in\mathbb{Z}\)</span>\)</span></li>
+<li><strong>Constructive interference:</strong> Occurs when phase differences satisfy:</li>
 </ul>
+<div class="arithmatex">\[kr_i-\omega t+\phi_i=2m\pi,\quad m\in\mathbb{Z}\]</div>
+<ul>
+<li><strong>Destructive interference:</strong> Occurs when phase differences satisfy:</li>
+</ul>
+<div class="arithmatex">\[kr_i-\omega t+\phi_i=(2m+1)\pi,\quad m\in\mathbb{Z}\]</div>
 <hr/>
 <h2 id="5-analyzing-the-interference-patterns"><strong>5. Analyzing the Interference Patterns</strong></h2>
 <h3 id="identifying-interference-zones"><strong>Identifying Interference Zones</strong></h3>
