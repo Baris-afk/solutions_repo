@@ -307,6 +307,10 @@ $$
 \mathbf{v}_d=\frac{\mathbf{E}\times\mathbf{B}}{B^2}
 $$
 ---
+![alt text](particle_trajectory.gif)
+---
+![alt text](image-5.png)
+---
 ![alt text](image-3.png)
 ---
 ![alt text](image-4.png)
