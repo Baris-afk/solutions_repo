@@ -113,53 +113,87 @@ A Python script implementing the above equations will:
 The next step is to implement and analyze these interference patterns computationally.
 
 # Python/Models
-![alt text](image.png)
 
-![alt text](image-1.png)
+![alt text](image-3.png)
+--
+![alt text](image-4.png)
+--
+![alt text](image-5.png)
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-# Define parameters
-wavelength = 1.0  # Wavelength of the waves
-k = 2 * np.pi / wavelength  # Wave number
-d = 5.0  # Distance between sources
-amplitude = 1.0  # Amplitude of waves
-
-# Create a grid
-x = np.linspace(-10, 10, 400)
-y = np.linspace(-10, 10, 400)
+# Define the grid
+x = np.linspace(-10, 10, 500)
+y = np.linspace(-10, 10, 500)
 X, Y = np.meshgrid(x, y)
 
-# Calculate distances from two point sources
-r1 = np.sqrt((X - d/2)**2 + Y**2)
-r2 = np.sqrt((X + d/2)**2 + Y**2)
+# Define wave parameters
+wavelength = 2  # Wavelength
+k = 2 * np.pi / wavelength  # Wave number
+omega = 2 * np.pi / 5       # Angular frequency
+t = 0  # Static time for snapshot (can be animated)
 
-# Calculate wave interference pattern
-wave1 = amplitude * np.cos(k * r1)
-wave2 = amplitude * np.cos(k * r2)
-interference = wave1 + wave2
+# Function to create a wave from a single source
+def single_wave(X, Y, source):
+    r = np.sqrt((X - source[0])**2 + (Y - source[1])**2)
+    return np.sin(k * r - omega * t)
 
-# 2D Heatmap
-plt.figure(figsize=(8, 6))
-plt.imshow(interference, extent=[-10, 10, -10, 10], origin='lower', cmap='jet', alpha=0.8)
-plt.colorbar(label="Wave Displacement")
-plt.title("2D Interference Pattern")
-plt.xlabel("X Position")
-plt.ylabel("Y Position")
-plt.show()
+# Function to sum multiple waves from different sources
+def multiple_waves(X, Y, sources):
+    Z = np.zeros_like(X)
+    for source in sources:
+        Z += single_wave(X, Y, source)
+    return Z
 
-# 3D Surface Plot
-fig = plt.figure(figsize=(10, 7))
-ax = fig.add_subplot(111, projection='3d')
-ax.plot_surface(X, Y, interference, cmap='jet', edgecolor='none', alpha=0.8)
-ax.set_title("3D Surface Plot of Interference Pattern")
-ax.set_xlabel("X Position")
-ax.set_ylabel("Y Position")
-ax.set_zlabel("Wave Displacement")
-plt.show()
+# ------------------------
+# Sources definitions
+# ------------------------
+sources_1 = [(0, 0)]
+
+distance = 5
+sources_4 = [(-distance, -distance), (-distance, distance), (distance, -distance), (distance, distance)]
+
+radius = 5
+angles = np.linspace(0, 2 * np.pi, 6)[:-1]
+sources_5 = [(radius * np.cos(a), radius * np.sin(a)) for a in angles]
+
+# ------------------------
+# Plotting Function
+# ------------------------
+def plot_wave(Z, title):
+    fig, axs = plt.subplots(1, 2, figsize=(18, 8))  # BIGGER SIZE
+
+    # Heatmap
+    im = axs[0].imshow(Z, extent=[-10, 10, -10, 10], origin='lower', cmap='viridis')
+    axs[0].set_title(f"{title} - Heatmap", fontsize=18)
+    axs[0].set_xlabel('X axis', fontsize=14)
+    axs[0].set_ylabel('Y axis', fontsize=14)
+    plt.colorbar(im, ax=axs[0])
+
+    # 3D Surface
+    ax = fig.add_subplot(1, 2, 2, projection='3d')
+    ax.plot_surface(X, Y, Z, cmap='viridis', edgecolor='none')
+    ax.set_title(f"{title} - 3D Surface", fontsize=18)
+    ax.set_xlabel('X axis', fontsize=14)
+    ax.set_ylabel('Y axis', fontsize=14)
+    ax.set_zlabel('Amplitude', fontsize=14)
+
+    plt.tight_layout()
+    plt.show()
+
+# ------------------------
+# Calculate and plot all
+# ------------------------
+Z1 = multiple_waves(X, Y, sources_1)
+Z4 = multiple_waves(X, Y, sources_4)
+Z5 = multiple_waves(X, Y, sources_5)
+
+plot_wave(Z1, "Single Source")
+plot_wave(Z4, "Four Sources (Square)")
+plot_wave(Z5, "Five Sources (Pentagon)")
 ```
 
-[Colab](https://colab.research.google.com/drive/1zq2rWSl0EAovztR3_Qr1dIoJTZ0GwtFA?authuser=0)
+[Colab](https://colab.research.google.com/drive/1YPBldViR_osH96y4q1Ahz_C78cQr7B_F?authuser=0)
