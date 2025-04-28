@@ -194,8 +194,8 @@ print(f"Laplacian Resistance A–D: {r_eq_lap:.4f} Ω")
 
 | Method         | Complexity | Best Use Case                        |
 | -------------- | ---------- | ------------------------------------ |
-| Simplification | \$O(E)\$   | Tree-like or easily reducible graphs |
-| Laplacian      | \$O(N^3)\$ | Arbitrary/complex graphs with loops  |
+| Simplification | $O(E)$   | Tree-like or easily reducible graphs |
+| Laplacian      | $O(N^3)$ | Arbitrary/complex graphs with loops  |
 
 - Use simplification first for performance.
 - Use Laplacian only if no more reduction is possible.
