@@ -15,14 +15,21 @@ $$x_i=R\cos\left(\frac{2\pi i}{N}\right),\quad y_i=R\sin\left(\frac{2\pi i}{N}\r
 
 where:
 - $R$ is the circumradius of the polygon,
+
 - $N$ is the number of sides (hence, the number of sources),
+
 - $i$ indexes the vertices counterclockwise starting from an initial reference point.
 
 ### **Choosing the Regular Polygon**
+
 The choice of $N$ influences the symmetry of the interference pattern. Common selections include:
+
 - **Equilateral Triangle ($N=3$)**: Yields a threefold symmetric interference pattern.
+
 - **Square ($N=4$)**: Produces a fourfold symmetric pattern with central and diagonal wave reinforcements.
+
 - **Pentagon ($N=5$)**: Generates more complex wave interactions with fivefold rotational symmetry.
+
 - **Hexagon ($N=6$)**: Approximates circular symmetry while retaining noticeable interference fringes.
 
 ---
@@ -42,6 +49,7 @@ Each wave propagates outward from its source with a displacement function:
 $$\eta_i(x,y,t)=\frac{A}{r_i}\cos\left(kr_i-\omega t+\phi_i\right)$$
 
 where:
+
 - $r_i=\sqrt{(x-x_i)^2+(y-y_i)^2}$ is the radial distance to the observation point.
 
 ---
@@ -54,16 +62,24 @@ Each wave emitted from a point source follows the equation:
 $$\eta_i(x,y,t)=\frac{A}{r_i}\cos\left(kr_i-\omega t+\phi_i\right)$$
 
 where:
+
 - $A$ is the amplitude,
+
 - $k=\frac{2\pi}{\lambda}$ is the wave number,
+
 - $\omega=2\pi f$ is the angular frequency,
+
 - $\phi_i$ is the phase,
+
 - $r_i$ is the radial distance from the $i$-th source.
 
 ### **Uniformity Assumptions**
 To maintain coherence in interference analysis, we assume:
+
 - All waves have **the same amplitude**, i.e., $A$ is constant.
+
 - All waves have **the same wavelength** $\lambda$ and frequency $f$.
+
 - Initial phase differences between sources remain fixed.
 
 ---
@@ -71,6 +87,7 @@ To maintain coherence in interference analysis, we assume:
 ## **4. Applying the Superposition Principle**
 
 ### **Summation of Wave Displacements**
+
 According to the principle of superposition, the resultant displacement at any point on the water surface is the sum of individual wave contributions:
 
 $$\eta_{\text{sum}}(x,y,t)=\sum_{i=1}^{N}\eta_i(x,y,t)$$
@@ -78,10 +95,14 @@ $$\eta_{\text{sum}}(x,y,t)=\sum_{i=1}^{N}\eta_i(x,y,t)$$
 This summation captures constructive and destructive interference effects.
 
 ### **Constructive and Destructive Interference Conditions**
+
 - **Constructive interference:** Occurs when phase differences satisfy:
-  $$kr_i-\omega t+\phi_i=2m\pi,\quad m\in\mathbb{Z}$$
+
+$$kr_i-\omega t+\phi_i=2m\pi,\quad m\in\mathbb{Z}$$
+
 - **Destructive interference:** Occurs when phase differences satisfy:
-  $$kr_i-\omega t+\phi_i=(2m+1)\pi,\quad m\in\mathbb{Z}$$
+
+$$kr_i-\omega t+\phi_i=(2m+1)\pi,\quad m\in\mathbb{Z}$$
 
 ---
 
