@@ -110,6 +110,8 @@ For each scenario:
 ![alt text](image.png)
 ---
 ![alt text](image-1.png)
+---
+![alt text](image-3.png)
 
 ---
 - ✅ 2D and 3D plots of trajectories
@@ -303,6 +305,63 @@ ax.set_title('Color Gradient Trajectory of Charged Particle', weight='bold')
 ax.axis('equal')
 ax.legend()
 plt.colorbar(lc, ax=ax, label='Time (s)')
+plt.tight_layout()
+plt.show()
+```
+---
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+from mpl_toolkits.mplot3d import Axes3D
+
+# Constants
+q = 1.0  # Charge
+m = 1.0  # Mass
+
+# Electric and magnetic fields
+E = np.array([1.0, 0.0, 0.0])  # Electric field (V/m)
+B = np.array([0.0, 0.0, 1.0])  # Magnetic field (T)
+
+# Initial conditions
+v0 = np.array([0.0, 1.0, 0.0])  # Initial velocity (m/s)
+r0 = np.array([0.0, 0.0, 0.0])  # Initial position (m)
+
+# Lorentz force
+def lorentz(t, y):
+    r = y[:3]
+    v = y[3:]
+    drdt = v
+    dvdt = (q / m) * (E + np.cross(v, B))
+    return np.concatenate((drdt, dvdt))
+
+# Time span
+t_span = (0, 20)
+t_eval = np.linspace(t_span[0], t_span[1], 1000)
+y0 = np.concatenate((r0, v0))
+
+# Solve ODE
+solution = solve_ivp(lorentz, t_span, y0, t_eval=t_eval)
+r = solution.y[:3]
+
+# Plotting
+fig = plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(111, projection='3d', facecolor='black')
+
+# Drift motion (orange line)
+ax.plot3D(r[0], r[1], r[2], color='orange', lw=2, label='Drift Motion')
+
+# Style
+ax.set_facecolor('black')
+ax.grid(True, color='gray', linestyle='--', linewidth=0.5)
+
+ax.set_title("Drift Motion in E and B Fields", fontsize=14, color='white', weight='bold')
+ax.set_xlabel("x (m)", color='white')
+ax.set_ylabel("y (m)", color='white')
+ax.set_zlabel("z (m)", color='white')
+ax.tick_params(colors='white')
+ax.legend(facecolor='black', edgecolor='white', labelcolor='white')
+
 plt.tight_layout()
 plt.show()
 ```
