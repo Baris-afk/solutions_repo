@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Simulating the Lorentz Force on a Charged Particle - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Simulating the Lorentz Force on a Charged Particle";
         var mkdocs_page_input_path = "1 Physics/4 Electromagnetism/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -70,11 +70,35 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">4 Electromagnetism</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Simulating the Lorentz Force on a Charged Particle</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#real-world-systems-where-the-lorentz-force-is-crucial">🔹 Real-World Systems Where the Lorentz Force Is Crucial</a>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">📌 Introduction</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#role-of-mathbfe-and-mathbfb-fields">🔹 Role of \(\\mathbf{E}\) and \(\\mathbf{B}\) Fields</a>
+<li class="toctree-l3"><a class="reference internal" href="#physical-parameters">⚙️ Physical Parameters</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#equations-of-motion">📐 Equations of Motion</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#scenarios-and-trajectories">🔭 Scenarios and Trajectories</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-circular-motion">1️⃣ Circular Motion</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-helical-spiral-motion">2️⃣ Helical (Spiral) Motion</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#3-crossed-fields-drift">3️⃣ Crossed Fields Drift</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#visualizations">🎨 Visualizations</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#for-each-scenario">For each scenario:</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_1"></a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_2"></a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#observations">🧠 Observations</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#code-implementation">🧰 Code Implementation</a>
 </li>
 </ul>
 </li>
@@ -167,7 +191,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">4 Electromagnetism</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Simulating the Lorentz Force on a Charged Particle</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -175,309 +199,281 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h2 id="1-exploration-of-applications">1. Exploration of Applications</h2>
-<h3 id="real-world-systems-where-the-lorentz-force-is-crucial">🔹 Real-World Systems Where the Lorentz Force Is Crucial</h3>
+<h1 id="simulating-the-lorentz-force-on-a-charged-particle"><strong>Simulating the Lorentz Force on a Charged Particle</strong></h1>
+<h2 id="introduction">📌 Introduction</h2>
+<p>The motion of a charged particle in electric and magnetic fields is governed by the <strong>Lorentz Force</strong>:</p>
+<div class="arithmatex">\[
+\mathbf{F} = q(\mathbf{E} + \mathbf{v} \times \mathbf{B})
+\]</div>
+<p>This principle underpins key technologies such as:</p>
 <ul>
-<li>
-<p><strong>Particle Accelerators</strong><br/>
-  Charged particles are accelerated and steered using electric and magnetic fields.</p>
-</li>
-<li>
-<p><strong>Mass Spectrometers</strong><br/>
-  The mass-to-charge ratio of ions is measured based on their deflection under magnetic fields.</p>
-</li>
-<li>
-<p><strong>Plasma Confinement Devices (e.g., Tokamaks)</strong><br/>
-  Magnetic fields confine high-temperature plasma to prevent contact with material walls.</p>
-</li>
-<li>
-<p><strong>Astrophysical Phenomena</strong><br/>
-  Cosmic rays, solar winds, and planetary magnetospheres are governed by Lorentz force interactions.</p>
-</li>
-<li>
-<p><strong>Cathode Ray Tubes (CRTs)</strong><br/>
-  Electrons are steered onto screens by electric and magnetic fields.</p>
-</li>
+<li>Cyclotrons</li>
+<li>Mass spectrometers</li>
+<li>Magnetic traps</li>
+<li>Plasma confinement in fusion reactors</li>
 </ul>
 <hr/>
-<h3 id="role-of-mathbfe-and-mathbfb-fields">🔹 Role of <span class="arithmatex">\(\\mathbf{E}\)</span> and <span class="arithmatex">\(\\mathbf{B}\)</span> Fields</h3>
-<p>The <strong>Lorentz force</strong> acting on a particle of charge <span class="arithmatex">\(q\)</span> moving with velocity <span class="arithmatex">\(\\mathbf{v}\)</span> is given by:</p>
-<div class="arithmatex">\[\\mathbf{F}=q\\mathbf{E}+q\\mathbf{v}\\times\\mathbf{B}\]</div>
+<h2 id="physical-parameters">⚙️ Physical Parameters</h2>
+<p>To generate meaningful macroscopic simulations, we use:</p>
 <ul>
-<li>
-<p><strong>Electric Field <span class="arithmatex">\(\\mathbf{E}\)</span>:</strong></p>
-</li>
-<li>
-<p>Exerts a force in the direction of <span class="arithmatex">\(\\mathbf{E}\)</span>.</p>
-</li>
-<li>
-<p>Causes linear acceleration of the particle.</p>
-</li>
-<li>
-<p><strong>Magnetic Field <span class="arithmatex">\(\\mathbf{B}\)</span>:</strong></p>
-</li>
-<li>
-<p>Exerts a force perpendicular to both <span class="arithmatex">\(\\mathbf{v}\)</span> and <span class="arithmatex">\(\\mathbf{B}\)</span>.</p>
-</li>
-<li>
-<p>Causes circular or helical motion without changing particle speed.</p>
-</li>
+<li>Charge: <span class="arithmatex">\(q = 1\, \mathrm{C}\)</span></li>
+<li>Mass: <span class="arithmatex">\(m = 0.001\, \mathrm{kg}\)</span> (i.e. <span class="arithmatex">\(1\, \mathrm{g}\)</span>)</li>
+<li>Time interval: suitable range for visible motion (e.g., <span class="arithmatex">\(10^{-3}\, \mathrm{s}\)</span>)</li>
+<li>Vector fields:</li>
+<li>Electric field <span class="arithmatex">\(\mathbf{E}\)</span></li>
+<li>Magnetic field <span class="arithmatex">\(\mathbf{B}\)</span></li>
+<li>Initial velocity <span class="arithmatex">\(\mathbf{v}_0\)</span></li>
 </ul>
 <hr/>
-<h2 id="2-simulating-particle-motion">2. Simulating Particle Motion</h2>
-<p>We simulate the motion of a charged particle under different electric and magnetic field configurations.</p>
+<h2 id="equations-of-motion">📐 Equations of Motion</h2>
+<p>We solve the following system of ODEs numerically:</p>
+<p>Let <span class="arithmatex">\(\mathbf{r}\)</span> be position, <span class="arithmatex">\(\mathbf{v}\)</span> be velocity:</p>
+<div class="arithmatex">\[
+\frac{d\mathbf{r}}{dt} = \mathbf{v}
+\]</div>
+<div class="arithmatex">\[
+\frac{d\mathbf{v}}{dt} = \frac{q}{m} \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right)
+\]</div>
+<p>We integrate this using Python's <code>solve_ivp()</code> method.</p>
 <hr/>
-<h3 id="common-setup">🔹 Common Setup</h3>
+<h2 id="scenarios-and-trajectories">🔭 Scenarios and Trajectories</h2>
+<p>We simulate three representative cases:</p>
+<h3 id="1-circular-motion">1️⃣ Circular Motion</h3>
+<ul>
+<li>Fields:</li>
+<li><span class="arithmatex">\(\mathbf{E} = \mathbf{0}\)</span></li>
+<li><span class="arithmatex">\(\mathbf{B} = (0, 0, 1)\, \mathrm{T}\)</span></li>
+<li>Initial velocity: perpendicular to <span class="arithmatex">\(\mathbf{B}\)</span></li>
+</ul>
+<p>Expected behavior:
+- Uniform circular motion in the <span class="arithmatex">\(xy\)</span>-plane
+- Radius: <strong>Larmor radius</strong></p>
+<div class="arithmatex">\[
+R = \frac{mv}{qB}
+\]</div>
+<hr/>
+<h3 id="2-helical-spiral-motion">2️⃣ Helical (Spiral) Motion</h3>
+<ul>
+<li>Fields:</li>
+<li><span class="arithmatex">\(\mathbf{E} = \mathbf{0}\)</span></li>
+<li><span class="arithmatex">\(\mathbf{B} = (0, 0, 1)\, \mathrm{T}\)</span></li>
+<li>Initial velocity: not fully perpendicular (has <span class="arithmatex">\(z\)</span>-component)</li>
+</ul>
+<p>Expected behavior:
+- Helical motion spiraling along <span class="arithmatex">\(\mathbf{B}\)</span>-field
+- Constant axial drift along <span class="arithmatex">\(z\)</span></p>
+<hr/>
+<h3 id="3-crossed-fields-drift">3️⃣ Crossed Fields Drift</h3>
+<ul>
+<li>Fields:</li>
+<li><span class="arithmatex">\(\mathbf{E} = (10, 0, 0)\, \mathrm{V/m}\)</span></li>
+<li><span class="arithmatex">\(\mathbf{B} = (0, 0, 1)\, \mathrm{T}\)</span></li>
+<li>Initial velocity: arbitrary</li>
+</ul>
+<p>Expected behavior:
+- Drift velocity:</p>
+<div class="arithmatex">\[
+\mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2}
+\]</div>
+<ul>
+<li>Trajectory shows sideways drift and possible curvature</li>
+</ul>
+<hr/>
+<h2 id="visualizations">🎨 Visualizations</h2>
+<h2 id="for-each-scenario">For each scenario:</h2>
+<h2 id="_1"><img alt="alt text" src="../charged_particle_motion.gif"/></h2>
+<h2 id="_2"><img alt="alt text" src="../image.png"/></h2>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<hr/>
+<ul>
+<li>✅ 2D and 3D plots of trajectories</li>
+<li>✅ Animation (GIF)</li>
+<li>✅ Highlights:</li>
+<li>Larmor radius</li>
+<li>Direction of drift</li>
+<li>Spiral axis</li>
+<li>✅ Color-coded motion paths with labeled axes and time markers</li>
+</ul>
+<hr/>
+<h2 id="observations">🧠 Observations</h2>
+<ul>
+<li>The magnetic field introduces circular or spiral constraints</li>
+<li>Electric field induces linear acceleration or drift</li>
+<li>Field configurations can be designed to trap or accelerate particles</li>
+</ul>
+<hr/>
+<h2 id="code-implementation">🧰 Code Implementation</h2>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.animation import FuncAnimation, PillowWriter
+from scipy.integrate import solve_ivp
+from IPython.display import Image, display
 
-# Physical constants and initial conditions
-q = 1.6e-19  # Charge (C)
-m = 9.11e-31 # Mass (kg)
-dt = 1e-11   # Time step (s)
-steps = 10000 # Number of steps
+# Constants
+q = 1.0  # Charge (C)
+m = 1.0  # Mass (kg)
+E = np.array([0.0, 0.0, 1.0])  # Electric field (V/m)
+B = np.array([0.0, 0.0, 1.0])  # Magnetic field (T)
 
 # Initial conditions
-r0 = np.array([0.0, 0.0, 0.0])   # Initial position (m)
-v0 = np.array([1e6, 0.0, 0.0])   # Initial velocity (m/s)
+v0 = np.array([1.0, 0.0, 0.0])
+r0 = np.array([0.0, 0.0, 0.0])
+y0 = np.concatenate((r0, v0))
 
-# Fields
-E = np.array([0.0, 0.0, 0.0])    # Electric field (V/m)
-B = np.array([0.0, 0.0, 1.0])    # Magnetic field (T)
+# Lorentz force function
+def lorentz(t, y):
+    r = y[:3]
+    v = y[3:]
+    dvdt = (q / m) * (E + np.cross(v, B))
+    return np.concatenate((v, dvdt))
+
+# Time settings
+t_span = (0, 10)
+t_eval = np.linspace(t_span[0], t_span[1], 500)
+sol = solve_ivp(lorentz, t_span, y0, t_eval=t_eval)
+
+x, y, z = sol.y[0], sol.y[1], sol.y[2]
+
+# Set up the figure
+fig, ax = plt.subplots(figsize=(6, 6))
+ax.set_xlim(np.min(x)*1.1, np.max(x)*1.1)
+ax.set_ylim(np.min(y)*1.1, np.max(y)*1.1)
+ax.set_xlabel("x (m)")
+ax.set_ylabel("y (m)")
+ax.set_title("Charged Particle Motion in 2D (x-y plane)")
+ax.grid(True)
+
+line, = ax.plot([], [], lw=2, color='dodgerblue')
+point, = ax.plot([], [], 'ro')
+
+# Init function
+def init():
+    line.set_data([], [])
+    point.set_data([], [])
+    return line, point
+
+# Update function
+def update(i):
+    if i &lt; len(x):  # Ensure index is valid
+        line.set_data(x[:i+1], y[:i+1])
+        point.set_data([x[i]], [y[i]])  # Use lists to ensure sequence
+        return line, point
+    return line, point
+
+# Create animation
+ani = FuncAnimation(fig, update, frames=len(x), init_func=init, blit=False, interval=20)
+
+# Save to GIF with explicit writer settings
+gif_path = "charged_particle_motion.gif"
+writer = PillowWriter(fps=30)
+ani.save(gif_path, writer=writer, dpi=100)
+plt.close()
+
+# Display the GIF in Colab
+display(Image(filename=gif_path))
 </code></pre>
 <hr/>
-<h2 id="2-scenarios">2. Scenarios</h2>
-<h3 id="21-uniform-magnetic-field-mathbfbneq0-mathbfe0">2.1 Uniform Magnetic Field <span class="arithmatex">\(\\mathbf{B}\\neq0\)</span>, <span class="arithmatex">\(\\mathbf{E}=0\)</span></h3>
-<p>Under a uniform magnetic field, the particle exhibits <strong>circular</strong> or <strong>helical</strong> motion.</p>
-<pre><code class="language-python"># Fields
-E = np.array([0.0, 0.0, 0.0])
-B = np.array([0.0, 0.0, 1.0])
-
-trajectory = simulate_lorentz(E, B)
-
-# Visualization
-fig = plt.figure(figsize=(8, 6))
-ax = fig.add_subplot(111)
-ax.plot(trajectory[:,0], trajectory[:,1])
-ax.set_xlabel('x (m)')
-ax.set_ylabel('y (m)')
-ax.set_title('Particle Trajectory in Uniform Magnetic Field')
-plt.grid()
-plt.show()
-</code></pre>
-<hr/>
-<h3 id="22-combined-uniform-electric-and-magnetic-fields">2.2 Combined Uniform Electric and Magnetic Fields,</h3>
-<p><span class="arithmatex">\(\\mathbf{E}\\neq0\)</span>, <span class="arithmatex">\(\\mathbf{B}\\neq0\)</span></p>
-<p>Both electric and magnetic fields are present, resulting in more <strong>complex motion</strong>.</p>
-<pre><code class="language-python"># Fields
-E = np.array([1e3, 0.0, 0.0])
-B = np.array([0.0, 0.0, 1.0])
-
-trajectory = simulate_lorentz(E, B)
-
-# Visualization
-fig = plt.figure(figsize=(8, 6))
-ax = fig.add_subplot(111)
-ax.plot(trajectory[:,0], trajectory[:,1])
-ax.set_xlabel('x (m)')
-ax.set_ylabel('y (m)')
-ax.set_title('Particle Trajectory in Combined E and B Fields')
-plt.grid()
-plt.show()
-</code></pre>
-<hr/>
-<h3 id="23-crossed-electric-and-magnetic-fields-mathbfeperpmathbfb">2.3 Crossed Electric and Magnetic Fields <span class="arithmatex">\(\\mathbf{E}\\perp\\mathbf{B}\)</span></h3>
-<p>When <span class="arithmatex">\(\\mathbf{E}\)</span> is <strong>perpendicular</strong> to <span class="arithmatex">\(\\mathbf{B}\)</span>, the particle experiences <strong>drift motion</strong> with drift velocity:</p>
-<div class="arithmatex">\[\\mathbf{v}_d = \\frac{\\mathbf{E} \\times \\mathbf{B}}{B^2}\]</div>
-<pre><code class="language-python"># Fields
-E = np.array([0.0, 1e3, 0.0])
-B = np.array([0.0, 0.0, 1.0])
-
-trajectory = simulate_lorentz(E, B)
-
-# Visualization
-fig = plt.figure(figsize=(8, 6))
-ax = fig.add_subplot(111)
-ax.plot(trajectory[:,0], trajectory[:,1])
-ax.set_xlabel('x (m)')
-ax.set_ylabel('y (m)')
-ax.set_title('Particle Trajectory in Crossed E and B Fields')
-plt.grid()
-plt.show()
-</code></pre>
-<hr/>
-<h2 id="_1"><img alt="alt text" src="../image.png"/></h2>
-<h1 id="electromagnetism-lorentz-force-simulation">📚 Electromagnetism: Lorentz Force Simulation</h1>
-<h2 id="3-parameter-exploration">3. Parameter Exploration</h2>
-<p>We now proceed to systematically <strong>explore how different parameters</strong> affect the trajectory of a charged particle under the influence of electric and magnetic fields.</p>
-<h3 id="parameters-to-vary">🔧 Parameters to Vary</h3>
-<ul>
-<li><strong>Electric field strength</strong>: <span class="arithmatex">\(E\)</span> (units: V/m)</li>
-<li><strong>Magnetic field strength</strong>: <span class="arithmatex">\(B\)</span> (units: T)</li>
-<li><strong>Initial velocity of the particle</strong>: <span class="arithmatex">\(\mathbf{v}\)</span> (units: m/s)</li>
-<li><strong>Charge of the particle</strong>: <span class="arithmatex">\(q\)</span> (units: C)</li>
-<li><strong>Mass of the particle</strong>: <span class="arithmatex">\(m\)</span> (units: kg)</li>
-</ul>
-<h3 id="lorentz-force-equation">⚡ Lorentz Force Equation</h3>
-<p>The motion is governed by the <strong>Lorentz Force</strong>:</p>
-<div class="arithmatex">\[
-\mathbf{F}=q(\mathbf{E}+\mathbf{v}\times\mathbf{B})
-\]</div>
-<p>Applying <strong>Newton's Second Law</strong>:</p>
-<div class="arithmatex">\[
-m\frac{d\mathbf{v}}{dt}=q(\mathbf{E}+\mathbf{v}\times\mathbf{B})
-\]</div>
-<p>Thus, the system of differential equations becomes:</p>
-<div class="arithmatex">\[
-\frac{d\mathbf{v}}{dt}=\frac{q}{m}(\mathbf{E}+\mathbf{v}\times\mathbf{B})
-\]</div>
-<div class="arithmatex">\[
-\frac{d\mathbf{r}}{dt}=\mathbf{v}
-\]</div>
-<p>where <span class="arithmatex">\(\mathbf{r}\)</span> is the position vector.</p>
-<hr/>
-<h2 id="python-implementation-for-parameter-exploration">🧪 Python Implementation for Parameter Exploration</h2>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 
-# Set plot style
-plt.style.use('seaborn-v0_8-whitegrid')  # Use 'whitegrid' for clearer background grids
-plt.rcParams.update({
-    "text.usetex": False,
-    "font.family": "serif",
-    "axes.labelsize": 14,
-    "axes.titlesize": 18,
-    "legend.fontsize": 12,
-    "figure.figsize": (10, 7),
-    "grid.alpha": 0.7,       # More visible grid lines
-    "grid.linestyle": "--",  # Dashed lines
-    "grid.linewidth": 0.8    # Slightly thicker grid lines
-})
-
 # Constants
-q = 1.6e-19      # Charge (Coulombs)
-m = 9.11e-31     # Mass (kg)
+q = 1.0
+m = 1.0
+E = np.array([0.0, 0.0, 1.0])
+B = np.array([0.0, 0.0, 1.0])
 
-# Fields
-E = np.array([0, 0, 0])    # Electric Field (V/m)
-B = np.array([0, 0, 1])    # Magnetic Field (T)
+# Initial conditions
+v0 = np.array([1.0, 0.0, 0.0])
+r0 = np.array([0.0, 0.0, 0.0])
+y0 = np.concatenate((r0, v0))
 
-# Initial Conditions
-v0 = np.array([1e6, 0, 0])  # Initial velocity (m/s)
-r0 = np.array([0, 0, 0])    # Initial position (m)
-
-# Lorentz Force Differential Equations
-def lorentz_force(t, y):
+# Lorentz force function
+def lorentz(t, y):
     r = y[:3]
     v = y[3:]
-    drdt = v
-    dvdt = (q/m)*(E + np.cross(v, B))
-    return np.concatenate((drdt, dvdt))
+    dvdt = (q / m) * (E + np.cross(v, B))
+    return np.concatenate((v, dvdt))
 
-# Solve the system
-t_span = (0, 1e-7)
+# Solve system
+t_span = (0, 10)
+t_eval = np.linspace(*t_span, 1000)
+sol = solve_ivp(lorentz, t_span, y0, t_eval=t_eval)
+x, y, z = sol.y[0], sol.y[1], sol.y[2]
+t = sol.t
+
+# 3D Plot
+fig = plt.figure(figsize=(10, 7))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(x, y, z, lw=2.5, c='gray', alpha=0.3)
+
+scatter = ax.scatter(x, y, z, c=t, cmap='viridis', s=2)
+ax.scatter(x[0], y[0], z[0], color='lime', label='Start', s=60)
+ax.scatter(x[-1], y[-1], z[-1], color='red', label='End', s=60)
+
+ax.set_xlabel('x (m)')
+ax.set_ylabel('y (m)')
+ax.set_zlabel('z (m)')
+ax.set_title('3D Trajectory of a Charged Particle\nin Electric &amp; Magnetic Fields', weight='bold', fontsize=14)
+ax.legend()
+fig.colorbar(scatter, ax=ax, label='Time (s)', shrink=0.6, pad=0.1)
+plt.tight_layout()
+plt.show()
+</code></pre>
+<hr/>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+from matplotlib.collections import LineCollection
+
+# Constants
+q = 1.0
+m = 1.0
+E = np.array([0.0, 0.0, 0.0])
+B = np.array([0.0, 0.0, 1.0])
+
+# Initial conditions
+v0 = np.array([1.0, 0.0, 0.0])
+r0 = np.array([0.0, 0.0, 0.0])
 y0 = np.concatenate((r0, v0))
-t_eval = np.linspace(t_span[0], t_span[1], 1000)
 
-solution = solve_ivp(lorentz_force, t_span, y0, t_eval=t_eval)
-r_sol = solution.y[:3]
+# Lorentz force function
+def lorentz(t, y):
+    r = y[:3]
+    v = y[3:]
+    dvdt = (q / m) * (E + np.cross(v, B))
+    return np.concatenate((v, dvdt))
 
-# 2D Trajectory Plot
-fig2d, ax2d = plt.subplots()
+# Time array
+t_span = (0, 10)
+t_eval = np.linspace(*t_span, 500)
+sol = solve_ivp(lorentz, t_span, y0, t_eval=t_eval)
+x, y = sol.y[0], sol.y[1]
 
-color_cycle = plt.cm.viridis(np.linspace(0, 1, len(r_sol[0])))
+# Build color gradient segments
+points = np.array([x, y]).T.reshape(-1, 1, 2)
+segments = np.concatenate([points[:-1], points[1:]], axis=1)
+norm = plt.Normalize(t_eval.min(), t_eval.max())
+lc = LineCollection(segments, cmap='plasma', norm=norm)
+lc.set_array(t_eval)
+lc.set_linewidth(2.5)
 
-for i in range(1, len(r_sol[0])):
-    ax2d.plot(r_sol[0][i-1:i+1], r_sol[1][i-1:i+1], color=color_cycle[i])
-
-ax2d.set_xlabel('x (m)')
-ax2d.set_ylabel('y (m)')
-ax2d.set_title('2D Trajectory of a Charged Particle', fontsize=18, weight='bold')
-ax2d.grid(True, which='both')  # Grid is now properly visible
-ax2d.set_aspect('equal')
-
-# Highlight the starting point
-ax2d.plot(r_sol[0][0], r_sol[1][0], 'ro', label='Start')
-ax2d.legend()
-
-plt.show()
-
-# 3D Trajectory Plot
-fig3d = plt.figure()
-ax3d = fig3d.add_subplot(111, projection='3d')
-
-for i in range(1, len(r_sol[0])):
-    ax3d.plot(r_sol[0][i-1:i+1], r_sol[1][i-1:i+1], r_sol[2][i-1:i+1], color=color_cycle[i])
-
-ax3d.set_xlabel('x (m)')
-ax3d.set_ylabel('y (m)')
-ax3d.set_zlabel('z (m)')
-ax3d.set_title('3D Trajectory of a Charged Particle', fontsize=18, weight='bold')
-
-ax3d.grid(True)  # 3D plot also has grid visible
-ax3d.view_init(elev=30, azim=120)
-ax3d.scatter(r_sol[0][0], r_sol[1][0], r_sol[2][0], color='red', s=50, label='Start')
-ax3d.legend()
-
+# Plot
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.add_collection(lc)
+ax.scatter(x[0], y[0], color='lime', label='Start', zorder=5)
+ax.scatter(x[-1], y[-1], color='red', label='End', zorder=5)
+ax.set_xlabel('x (m)')
+ax.set_ylabel('y (m)')
+ax.set_title('Color Gradient Trajectory of Charged Particle', weight='bold')
+ax.axis('equal')
+ax.legend()
+plt.colorbar(lc, ax=ax, label='Time (s)')
+plt.tight_layout()
 plt.show()
 </code></pre>
-<hr/>
-<h2 id="4-visualization">4. Visualization</h2>
-<h3 id="goals">🎯 Goals</h3>
-<ul>
-<li><strong>Plot and label:</strong></li>
-<li>2D trajectories (e.g., <span class="arithmatex">\(x\)</span> vs <span class="arithmatex">\(y\)</span>)</li>
-<li>
-<p>3D trajectories (e.g., <span class="arithmatex">\(x\)</span> vs <span class="arithmatex">\(y\)</span> vs <span class="arithmatex">\(z\)</span>)</p>
-</li>
-<li>
-<p><strong>Highlight key physical phenomena:</strong></p>
-</li>
-<li><strong>Larmor Radius</strong> (<span class="arithmatex">\(r_L\)</span>)</li>
-<li>Given by:
-$$
-r_L=\frac{mv_\perp}{qB}
-$$</li>
-</ul>
-<p>where <span class="arithmatex">\(v_\perp\)</span> is the component of velocity perpendicular to <span class="arithmatex">\(\mathbf{B}\)</span>.</p>
-<ul>
-<li>
-<p><strong>Drift velocity</strong> (<span class="arithmatex">\(\mathbf{v}_d\)</span>)</p>
-</li>
-<li>
-<p>In crossed <span class="arithmatex">\(\mathbf{E}\)</span> and <span class="arithmatex">\(\mathbf{B}\)</span> fields:</p>
-</li>
-</ul>
-<div class="arithmatex">\[
-\mathbf{v}_d=\frac{\mathbf{E}\times\mathbf{B}}{B^2}
-\]</div>
-<hr/>
-<h2 id="_2"><img alt="alt text" src="../particle_trajectory.gif"/></h2>
-<h2 id="_3"><img alt="alt text" src="../image-5.png"/></h2>
-<h2 id="_4"><img alt="alt text" src="../image-3.png"/></h2>
-<h2 id="_5"><img alt="alt text" src="../image-4.png"/></h2>
-<h2 id="colab"><a href="https://colab.research.google.com/drive/1Xnx234PaTJyRz1-9pXUjjc02NOv90hW4?authuser=0">Colab</a></h2>
-<h2 id="calculating-larmor-radius-and-drift-velocity">🧮 Calculating Larmor Radius and Drift Velocity</h2>
-<pre><code class="language-python"># Larmor Radius Calculation
-v_perp = np.linalg.norm(np.cross(v0, B) / np.linalg.norm(B))
-r_L = m * v_perp / (q * np.linalg.norm(B))
-print(f"Larmor Radius: {r_L:.2e} m")
-
-# Drift Velocity Calculation
-if np.linalg.norm(E) != 0:
-    v_drift = np.cross(E, B) / np.linalg.norm(B)**2
-    print(f"Drift Velocity: {v_drift} m/s")
-else:
-    print("No drift (E=0)")
-</code></pre>
-<hr/>
-<h1 id="summary">✅ Summary</h1>
-<p>By varying parameters such as <span class="arithmatex">\(E\)</span>, <span class="arithmatex">\(B\)</span>, <span class="arithmatex">\(\mathbf{v}\)</span>, <span class="arithmatex">\(q\)</span>, and <span class="arithmatex">\(m\)</span>, and analyzing their effects through 2D and 3D visualizations, we gain a deep understanding of the complex dynamics induced by the Lorentz force.</p>
-<p>The phenomena of <strong>circular orbits</strong>, <strong>helical trajectories</strong>, and <strong>electric-magnetic drift</strong> are effectively captured through our simulations!</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
