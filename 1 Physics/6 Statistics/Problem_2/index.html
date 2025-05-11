@@ -172,6 +172,688 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h1 id="estimating-pi-using-monte-carlo-simulation">Estimating <span class="arithmatex">\(\pi\)</span> Using Monte Carlo Simulation</h1>
+<h2 id="1-theoretical-foundation">1. Theoretical Foundation</h2>
+<p>Monte Carlo methods use randomness to approximate mathematical quantities. In this case, we estimate the value of <span class="arithmatex">\(\pi\)</span> by simulating the ratio of points that fall inside a unit circle to the total number of points within a bounding square.</p>
+<h3 id="concept">Concept:</h3>
+<ul>
+<li>Consider a <strong>unit circle</strong> (radius = 1) centered at the origin.</li>
+<li>Enclose the circle in a <strong>square</strong> that spans from <span class="arithmatex">\(-1\)</span> to <span class="arithmatex">\(1\)</span> on both the <span class="arithmatex">\(x\)</span>- and <span class="arithmatex">\(y\)</span>-axes.</li>
+<li>Randomly generate points <span class="arithmatex">\((x, y)\)</span> uniformly within the square.</li>
+<li>A point lies <strong>inside the circle</strong> if it satisfies:</li>
+</ul>
+<div class="arithmatex">\[x^2 + y^2 \leq 1\]</div>
+<ul>
+<li>The area of the square is:</li>
+</ul>
+<div class="arithmatex">\[A_{\text{square}} = (2 \times 1)^2 = 4\]</div>
+<ul>
+<li>The area of the circle is:</li>
+</ul>
+<div class="arithmatex">\[A_{\text{circle}} = \pi \cdot r^2 = \pi\]</div>
+<ul>
+<li>The <strong>ratio</strong> of the circle’s area to the square’s area is:</li>
+</ul>
+<div class="arithmatex">\[\frac{A_{\text{circle}}}{A_{\text{square}}} = \frac{\pi}{4}\]</div>
+<ul>
+<li>Hence, if we throw <span class="arithmatex">\(N\)</span> random points, and <span class="arithmatex">\(M\)</span> of them fall inside the circle, then:</li>
+</ul>
+<div class="arithmatex">\[\frac{M}{N} \approx \frac{\pi}{4} \Rightarrow \pi \approx 4 \cdot \frac{M}{N}\]</div>
+<hr/>
+<h2 id="2-simulation">2. Simulation</h2>
+<p>We now implement a simple Monte Carlo simulation in Python to estimate <span class="arithmatex">\(\pi\)</span> using the above principle.</p>
+<h3 id="steps">Steps:</h3>
+<ul>
+<li>Generate <span class="arithmatex">\(N\)</span> random points <span class="arithmatex">\((x, y)\)</span> where <span class="arithmatex">\(x, y \in [-1, 1]\)</span></li>
+<li>Count the number of points <span class="arithmatex">\(M\)</span> for which <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span></li>
+<li>Estimate <span class="arithmatex">\(\pi\)</span> using the formula:</li>
+</ul>
+<div class="arithmatex">\[\pi \approx 4 \cdot \frac{M}{N}\]</div>
+<hr/>
+<p><img alt="alt text" src="../monte_carlo_pi_estimation_final.gif"/></p>
+<hr/>
+<p><img alt="alt text" src="../image-3.png"/></p>
+<hr/>
+<h2 id="3-visualization">3. Visualization</h2>
+<p><img alt="alt text" src="../image-4.png"/></p>
+<hr/>
+<p>Visualizing the simulation helps to intuitively understand how Monte Carlo methods work in approximating π.</p>
+<h3 id="steps_1">Steps:</h3>
+<ul>
+<li>
+<p>Each generated point <span class="arithmatex">\((x, y)\)</span> lies inside a square defined by <span class="arithmatex">\([-1, 1] \times [-1, 1]\)</span>.</p>
+</li>
+<li>
+<p>A point lies <strong>inside the circle</strong> if:</p>
+</li>
+</ul>
+<div class="arithmatex">\[x^2 + y^2 \leq 1\]</div>
+<ul>
+<li>In the plot:</li>
+<li>
+<p>Use one color (e.g., <strong>blue</strong>) for points <strong>inside</strong> the circle.</p>
+</li>
+<li>
+<p>Use another color (e.g., <strong>red</strong>) for points <strong>outside</strong> the circle.</p>
+</li>
+<li>
+<p>Overlay a dashed boundary representing the <strong>unit circle</strong> for reference.</p>
+</li>
+</ul>
+<h3 id="benefits">Benefits:</h3>
+<ul>
+<li>This scatter plot visually confirms that the density of points inside the circle reflects the area ratio <span class="arithmatex">\(\frac{\pi}{4}\)</span>.</li>
+<li>As more points are added, the filled area more closely approximates the circle.</li>
+</ul>
+<hr/>
+<h2 id="4-analysis">4. Analysis</h2>
+<p>To understand the effectiveness of the Monte Carlo method, we analyze how the π estimate changes as the number of points increases.</p>
+<h3 id="experimental-setup">Experimental Setup:</h3>
+<ul>
+<li>
+<p>Run the simulation multiple times with increasing values of <span class="arithmatex">\(N\)</span> (e.g., <span class="arithmatex">\(10^2\)</span>, <span class="arithmatex">\(10^3\)</span>, <span class="arithmatex">\(10^4\)</span>, <span class="arithmatex">\(10^5\)</span>, <span class="arithmatex">\(10^6\)</span>).</p>
+</li>
+<li>
+<p>For each <span class="arithmatex">\(N\)</span>:</p>
+</li>
+<li>
+<p>Estimate π using:</p>
+</li>
+</ul>
+<div class="arithmatex">\[\pi \approx 4 \cdot \frac{M}{N}\]</div>
+<p>where:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(M\)</span> is the number of points satisfying <span class="arithmatex">\(x^2 + y^2 \leq 1\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(N\)</span> is the total number of points</p>
+</li>
+<li>
+<p>Store each π estimate and compare it to the actual value of <span class="arithmatex">\(\pi \approx 3.1415926535\)</span>.</p>
+</li>
+</ul>
+<h3 id="convergence">Convergence:</h3>
+<ul>
+<li>
+<p><strong>Plot a graph</strong> of estimated π vs. number of points on a log scale.</p>
+</li>
+<li>
+<p>Observe how the error decreases as <span class="arithmatex">\(N\)</span> increases.</p>
+</li>
+</ul>
+<div class="arithmatex">\[\text{Error} = \left| \pi_{\text{estimate}} - \pi \right|\]</div>
+<ul>
+<li>
+<p>The convergence is probabilistic:</p>
+</li>
+<li>
+<p>The <strong>law of large numbers</strong> ensures that as <span class="arithmatex">\(N \to \infty\)</span>, the estimate converges to the true value of π.</p>
+</li>
+<li>
+<p>The <strong>standard deviation</strong> of the estimate decreases proportionally to <span class="arithmatex">\(\frac{1}{\sqrt{N}}\)</span>.</p>
+</li>
+</ul>
+<h3 id="computational-considerations">Computational Considerations:</h3>
+<ul>
+<li>
+<p>Monte Carlo methods are simple to implement but can require a large number of samples for high precision.</p>
+</li>
+<li>
+<p>Execution time grows linearly with <span class="arithmatex">\(N\)</span>, so optimization or parallelization may be needed for very large simulations.</p>
+</li>
+</ul>
+<hr/>
+<blockquote>
+<p>📈 Monte Carlo π estimation beautifully illustrates the trade-off between <strong>accuracy</strong>, <strong>sample size</strong>, and <strong>computational cost</strong>.</p>
+</blockquote>
+<hr/>
+<h1 id="part-2-estimating-pi-using-buffons-needle">Part 2: Estimating <span class="arithmatex">\(\pi\)</span> Using Buffon’s Needle</h1>
+<h2 id="1-theoretical-foundation_1">1. Theoretical Foundation</h2>
+<p>The <strong>Buffon’s Needle</strong> experiment is one of the oldest Monte Carlo methods and a classical problem in geometric probability. It provides a probabilistic way to estimate the value of <span class="arithmatex">\(\pi\)</span>.</p>
+<h3 id="problem-setup">Problem Setup:</h3>
+<ul>
+<li>Imagine a floor marked with <strong>parallel lines</strong> that are equally spaced by a distance <span class="arithmatex">\(d\)</span>.</li>
+<li>A needle of length <span class="arithmatex">\(\ell\)</span> <span class="arithmatex">\((\ell \leq d)\)</span> is randomly dropped onto the floor.</li>
+<li>The probability that the needle <strong>crosses one of the lines</strong> depends on both its length and the spacing between lines.</li>
+</ul>
+<h3 id="conditions">Conditions:</h3>
+<ul>
+<li>The position of the needle's <strong>center</strong> is uniformly distributed between the lines.</li>
+<li>The needle’s <strong>angle</strong> with respect to the parallel lines is uniformly distributed between <span class="arithmatex">\(0\)</span> and <span class="arithmatex">\(\frac{\pi}{2}\)</span>.</li>
+</ul>
+<h3 id="derivation">Derivation:</h3>
+<p>Let:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\ell\)</span> = length of the needle</p>
+</li>
+<li>
+<p><span class="arithmatex">\(d\)</span> = distance between the lines</p>
+</li>
+<li>
+<p><span class="arithmatex">\(T\)</span> = number of needle throws</p>
+</li>
+<li>
+<p><span class="arithmatex">\(C\)</span> = number of times the needle crosses a line</p>
+</li>
+</ul>
+<p>Then, the expected <strong>probability of a crossing</strong> is:</p>
+<div class="arithmatex">\[
+P = \frac{2\ell}{d\pi}
+\]</div>
+<p>Rearranging this formula to solve for <span class="arithmatex">\(\pi\)</span> gives us an estimate:</p>
+<div class="arithmatex">\[
+\pi \approx \frac{2 \cdot \ell \cdot T}{d \cdot C}
+\]</div>
+<hr/>
+<h2 id="2-simulation_1">2. Simulation</h2>
+<p><img alt="alt text" src="../buffon_creative_simulation.gif"/></p>
+<hr/>
+<p>We simulate the dropping of needles on a floor to estimate <span class="arithmatex">\(\pi\)</span> using the above formula.</p>
+<h3 id="simulation-steps">Simulation Steps:</h3>
+<ul>
+<li>
+<p>Define values for:</p>
+</li>
+<li>
+<p>Needle length <span class="arithmatex">\(\ell\)</span></p>
+</li>
+<li>
+<p>Line spacing <span class="arithmatex">\(d\)</span> <span class="arithmatex">\((\ell \leq d)\)</span></p>
+</li>
+<li>
+<p>Number of throws <span class="arithmatex">\(T\)</span></p>
+</li>
+<li>
+<p>For each throw:</p>
+</li>
+<li>
+<p>Randomly generate:</p>
+</li>
+<li>
+<p>A <strong>distance</strong> <span class="arithmatex">\(y\)</span> from the needle’s center to the nearest line (uniformly in <span class="arithmatex">\([0, d/2]\)</span>)</p>
+</li>
+<li>
+<p>An <strong>angle</strong> <span class="arithmatex">\(\theta\)</span> between the needle and the lines (uniformly in <span class="arithmatex">\([0, \pi/2]\)</span>)</p>
+</li>
+<li>
+<p>The needle <strong>crosses a line</strong> if:</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+y \leq \frac{\ell}{2} \cdot \sin(\theta)
+\]</div>
+<ul>
+<li>
+<p>Count the number of <strong>crossings</strong> <span class="arithmatex">\(C\)</span>.</p>
+</li>
+<li>
+<p>Estimate <span class="arithmatex">\(\pi\)</span> as:</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+\pi \approx \frac{2 \cdot \ell \cdot T}{d \cdot C}
+\]</div>
+<h3 id="notes">Notes:</h3>
+<ul>
+<li>This method relies on geometric probability and converges slowly compared to circle-based Monte Carlo simulations.</li>
+<li>The <strong>accuracy</strong> improves with a larger number of needle throws <span class="arithmatex">\(T\)</span>.</li>
+<li>Ensure <span class="arithmatex">\(\ell \leq d\)</span> to satisfy classical Buffon’s Needle constraints.</li>
+</ul>
+<hr/>
+<blockquote>
+<p>🧪 Buffon’s Needle is a beautiful example of how geometry and probability can be combined to approximate mathematical constants like <span class="arithmatex">\(\pi\)</span>.</p>
+</blockquote>
+<hr/>
+<h2 id="3-visualization_1">3. Visualization</h2>
+<p><img alt="alt text" src="../image-5.png"/></p>
+<hr/>
+<p>To visually demonstrate the geometric basis of Buffon’s Needle experiment, we plot the needle positions over a floor of equally spaced parallel lines.</p>
+<h3 id="visual-elements">Visual Elements:</h3>
+<ul>
+<li>
+<p>The floor consists of <strong>horizontal parallel lines</strong> spaced at distance <span class="arithmatex">\(d\)</span> apart.</p>
+</li>
+<li>
+<p>Each <strong>needle</strong> of length <span class="arithmatex">\(\ell\)</span> is randomly dropped:</p>
+</li>
+<li>
+<p>A center position <span class="arithmatex">\((x, y)\)</span> is chosen uniformly at random.</p>
+</li>
+<li>
+<p>An angle <span class="arithmatex">\(\theta\)</span> is selected uniformly from <span class="arithmatex">\([0, \pi]\)</span>.</p>
+</li>
+<li>
+<p>Each needle is represented as a line segment.</p>
+</li>
+<li>
+<p>If the needle <strong>crosses a line</strong>, it is shown in <strong>red</strong>.</p>
+</li>
+<li>
+<p>If the needle does <strong>not cross a line</strong>, it is shown in <strong>green or blue</strong>.</p>
+</li>
+</ul>
+<h3 id="mathematical-condition-for-a-crossing">Mathematical Condition for a Crossing:</h3>
+<p>Let:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(y\)</span> = vertical distance from the center of the needle to the nearest line.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\theta\)</span> = angle the needle makes with the horizontal axis.</p>
+</li>
+</ul>
+<p>Then the needle crosses a line <strong>if and only if</strong>:</p>
+<div class="arithmatex">\[
+y \leq \frac{\ell}{2} \cdot \sin(\theta)
+\]</div>
+<p>This condition is derived from projecting half the length of the needle vertically onto the axis perpendicular to the lines.</p>
+<hr/>
+<h2 id="4-analysis_1">4. Analysis</h2>
+<p>To analyze the performance and convergence of Buffon's Needle method, we vary the number of needle drops <span class="arithmatex">\(N\)</span> and observe how the estimated value of <span class="arithmatex">\(\pi\)</span> evolves.</p>
+<h3 id="experimental-procedure">Experimental Procedure:</h3>
+<ul>
+<li>Fix:</li>
+<li>
+<p>Needle length <span class="arithmatex">\(\ell\)</span> (e.g., 1)</p>
+</li>
+<li>
+<p>Line spacing <span class="arithmatex">\(d\)</span> (e.g., 2, such that <span class="arithmatex">\(\ell \leq d\)</span>)</p>
+</li>
+<li>
+<p>For increasing values of <span class="arithmatex">\(N\)</span> (e.g., <span class="arithmatex">\(10^2\)</span>, <span class="arithmatex">\(10^3\)</span>, <span class="arithmatex">\(10^4\)</span>, ..., <span class="arithmatex">\(10^6\)</span>):</p>
+</li>
+<li>
+<p>Perform <span class="arithmatex">\(N\)</span> random needle drops.</p>
+</li>
+<li>
+<p>Count the number of <strong>crossings</strong> <span class="arithmatex">\(C\)</span>.</p>
+</li>
+<li>
+<p>Estimate π using:</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+\pi \approx \frac{2 \cdot \ell \cdot N}{d \cdot C}
+\]</div>
+<ul>
+<li>
+<p>Record and plot:</p>
+</li>
+<li>
+<p>Estimated values of π.</p>
+</li>
+<li>
+<p>Absolute errors: <span class="arithmatex">\(|\pi_{\text{estimate}} - \pi_{\text{actual}}|\)</span>.</p>
+</li>
+</ul>
+<h3 id="convergence-behavior">Convergence Behavior:</h3>
+<ul>
+<li>The error generally decreases as <span class="arithmatex">\(N\)</span> increases, following a convergence trend similar to:</li>
+</ul>
+<div class="arithmatex">\[
+\text{Error} \propto \frac{1}{\sqrt{N}}
+\]</div>
+<ul>
+<li>However, this method has <strong>slower convergence</strong> and <strong>higher variance</strong> compared to the <strong>circle-based Monte Carlo method</strong>.</li>
+</ul>
+<h3 id="comparison-with-circle-based-monte-carlo">Comparison with Circle-Based Monte Carlo:</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Strengths</th>
+<th>Weaknesses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Circle Method</td>
+<td>Faster convergence, simpler math</td>
+<td>Requires point-in-circle check</td>
+</tr>
+<tr>
+<td>Buffon’s Needle</td>
+<td>Geometric elegance, historical</td>
+<td>Slower convergence, angle math</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="visual-simulations-and-convergence-plots-of-buffons-needle-highlight-the-probabilistic-elegance-of-this-method-while-also-illustrating-its-limitations-in-terms-of-efficiency-compared-to-other-monte-carlo-techniques">&gt; 🎯 Visual simulations and convergence plots of Buffon’s Needle highlight the probabilistic elegance of this method, while also illustrating its limitations in terms of efficiency compared to other Monte Carlo techniques.</h2>
+<h2 id="python-codes">Python Codes</h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+def estimate_pi(num_points=10000, show_plot=True, save_plot=False, filename="pi_estimate_plot.png"):
+    """
+    Estimate the value of π using Monte Carlo simulation.
+
+    Parameters:
+        num_points (int): Number of random points to generate.
+        show_plot (bool): Whether to display a scatter plot.
+        save_plot (bool): Whether to save the plot as an image file.
+        filename (str): Filename for saving the plot.
+
+    Returns:
+        float: Estimated value of π.
+    """
+    # Generate random (x, y) coordinates in the square [-1, 1] x [-1, 1]
+    x = np.random.uniform(-1, 1, num_points)
+    y = np.random.uniform(-1, 1, num_points)
+
+    # Boolean mask for points inside the unit circle
+    inside_circle = x**2 + y**2 &lt;= 1
+    count_inside = np.sum(inside_circle)
+
+    # Monte Carlo estimation of π
+    pi_estimate = 4 * count_inside / num_points
+
+    # Plotting
+    if show_plot:
+        plt.figure(figsize=(6, 6))
+        plt.scatter(x[inside_circle], y[inside_circle], color='dodgerblue', s=1, label='Inside Circle')
+        plt.scatter(x[~inside_circle], y[~inside_circle], color='tomato', s=1, label='Outside Circle')
+
+        # Draw a unit circle for reference
+        circle = plt.Circle((0, 0), 1, color='black', fill=False, linestyle='--', linewidth=2)
+        plt.gca().add_patch(circle)
+        plt.gca().set_aspect('equal')
+        plt.title(f'π Estimation with {num_points:,} Points\nEstimated π ≈ {pi_estimate:.6f}')
+        plt.xlabel('x')
+        plt.ylabel('y')
+        plt.grid(True)
+        plt.legend(loc='upper right')
+
+        if save_plot:
+            plt.savefig(filename, dpi=300)
+        plt.show()
+
+    return pi_estimate
+
+# Example run
+estimate_pi(num_points=100000)
+</code></pre>
+<hr/>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+def monte_carlo_pi_convergence(sample_sizes=None):
+    """
+    Estimates π using Monte Carlo method for increasing sample sizes and
+    plots the convergence of π estimates and the corresponding absolute error.
+
+    Parameters:
+        sample_sizes (list): A list of integers specifying number of points for simulation.
+    """
+    if sample_sizes is None:
+        sample_sizes = [10**2, 10**3, 10**4, 10**5, 10**6]
+
+    pi_actual = np.pi
+    pi_estimates = []
+    errors = []
+
+    # Run simulations for each sample size
+    for N in sample_sizes:
+        x = np.random.uniform(-1, 1, N)
+        y = np.random.uniform(-1, 1, N)
+        inside_circle = x**2 + y**2 &lt;= 1
+        estimate = 4 * np.sum(inside_circle) / N
+        pi_estimates.append(estimate)
+        errors.append(abs(estimate - pi_actual))
+
+    # Set up the figure
+    plt.figure(figsize=(14, 6))
+
+    # Plot 1: Estimated π vs Number of Points
+    plt.subplot(1, 2, 1)
+    plt.plot(sample_sizes, pi_estimates, 'o--', color='dodgerblue', label='Estimated π')
+    plt.axhline(pi_actual, color='green', linestyle='-', linewidth=1.5, label='Actual π')
+    plt.xscale('log')
+    plt.xlabel('Number of Points (log scale)', fontsize=12)
+    plt.ylabel('Estimated π', fontsize=12)
+    plt.title('Monte Carlo Estimation of π', fontsize=14)
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.6)
+
+    # Plot 2: Absolute Error vs Number of Points
+    plt.subplot(1, 2, 2)
+    plt.plot(sample_sizes, errors, 'o--', color='crimson')
+    plt.xscale('log')
+    plt.yscale('log')
+    plt.xlabel('Number of Points (log scale)', fontsize=12)
+    plt.ylabel('Absolute Error (log scale)', fontsize=12)
+    plt.title('Convergence of Estimation Error', fontsize=14)
+    plt.grid(True, linestyle='--', alpha=0.6)
+
+    plt.tight_layout()
+    plt.show()
+
+# Run the function
+monte_carlo_pi_convergence()
+</code></pre>
+<hr/>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+# Parameters
+needle_length = 1.0
+line_spacing = 2.0
+num_needles = 100
+line_count = 5
+
+# Generate random positions and angles
+centers_x = np.random.uniform(0, line_spacing * (line_count - 1), num_needles)
+centers_y = np.random.uniform(0, line_spacing * line_count, num_needles)
+angles = np.random.uniform(0, np.pi, num_needles)
+
+# Set up the figure
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.set_xlim(0, line_spacing * (line_count - 1))
+ax.set_ylim(0, line_spacing * line_count)
+ax.set_title("🎯 Buffon's Needle Simulation", fontsize=16, weight='bold')
+ax.set_xlabel("x-position")
+ax.set_ylabel("y-position")
+
+# Draw floor lines
+for i in range(line_count + 1):
+    ax.axhline(y=i * line_spacing, color='gray', linestyle='--', linewidth=1)
+
+needle_lines = []
+
+def init():
+    return []
+
+def update(frame):
+    if frame &lt; len(needle_lines):
+        needle_lines[frame].remove()
+
+    x0 = centers_x[frame]
+    y0 = centers_y[frame]
+    theta = angles[frame]
+
+    dx = (needle_length / 2) * np.cos(theta)
+    dy = (needle_length / 2) * np.sin(theta)
+
+    x_start = x0 - dx
+    y_start = y0 - dy
+    x_end = x0 + dx
+    y_end = y0 + dy
+
+    crosses = int(np.floor(y_start / line_spacing) != np.floor(y_end / line_spacing))
+    color = '#D7263D' if crosses else '#1B998B'
+
+    line, = ax.plot([x_start, x_end], [y_start, y_end], color=color, linewidth=2, alpha=0.9)
+    if crosses:
+        ax.plot([x0], [y0], marker='o', color=color, markersize=5)
+    needle_lines.append(line)
+    return [line]
+
+ani = animation.FuncAnimation(fig, update, frames=num_needles, init_func=init, blit=True, interval=120, repeat=False)
+
+# Save and display the GIF
+ani.save("buffon_creative_simulation.gif", writer='pillow', fps=10)
+from IPython.display import Image
+Image(filename="buffon_creative_simulation.gif")
+</code></pre>
+<hr/>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Actual value of π
+pi_actual = np.pi
+
+# Simulation parameters
+needle_length = 1.0
+line_spacing = 2.0
+sample_sizes = [10**2, 10**3, 10**4, 10**5, 10**6]
+
+# Storage for estimates and errors
+buffon_estimates = []
+buffon_errors = []
+
+circle_estimates = []
+circle_errors = []
+
+# Run both simulations for each sample size
+for N in sample_sizes:
+    # --- Buffon's Needle ---
+    y = np.random.uniform(0, line_spacing / 2, N)
+    theta = np.random.uniform(0, np.pi / 2, N)
+    crosses = y &lt;= (needle_length / 2) * np.sin(theta)
+    crossings = np.sum(crosses)
+
+    if crossings == 0:
+        buffon_estimate = np.nan  # avoid division by zero
+    else:
+        buffon_estimate = (2 * needle_length * N) / (line_spacing * crossings)
+
+    buffon_estimates.append(buffon_estimate)
+    buffon_errors.append(abs(buffon_estimate - pi_actual) if crossings &gt; 0 else np.nan)
+
+    # --- Monte Carlo Circle ---
+    x = np.random.uniform(-1, 1, N)
+    y = np.random.uniform(-1, 1, N)
+    inside = x**2 + y**2 &lt;= 1
+    circle_estimate = 4 * np.sum(inside) / N
+    circle_estimates.append(circle_estimate)
+    circle_errors.append(abs(circle_estimate - pi_actual))
+
+# --- Plotting ---
+
+fig, axs = plt.subplots(2, 2, figsize=(14, 10))
+
+# 1. π Estimates
+axs[0, 0].plot(sample_sizes, buffon_estimates, 'o--', label="Buffon's Needle", color='red')
+axs[0, 0].plot(sample_sizes, circle_estimates, 's--', label='Monte Carlo (Circle)', color='blue')
+axs[0, 0].axhline(pi_actual, color='green', linestyle='-', linewidth=1.5, label='Actual π')
+axs[0, 0].set_xscale('log')
+axs[0, 0].set_title('Estimated π vs. Sample Size')
+axs[0, 0].set_xlabel('Number of Points (log scale)')
+axs[0, 0].set_ylabel('Estimated π')
+axs[0, 0].legend()
+axs[0, 0].grid(True)
+
+# 2. Absolute Errors
+axs[0, 1].plot(sample_sizes, buffon_errors, 'o--', label="Buffon's Needle", color='red')
+axs[0, 1].plot(sample_sizes, circle_errors, 's--', label='Monte Carlo (Circle)', color='blue')
+axs[0, 1].set_xscale('log')
+axs[0, 1].set_yscale('log')
+axs[0, 1].set_title('Absolute Error vs. Sample Size')
+axs[0, 1].set_xlabel('Number of Points (log scale)')
+axs[0, 1].set_ylabel('Absolute Error (log-log scale)')
+axs[0, 1].legend()
+axs[0, 1].grid(True)
+
+# 3. Buffon's Needle Estimates
+axs[1, 0].plot(sample_sizes, buffon_estimates, 'o-', color='red')
+axs[1, 0].axhline(pi_actual, color='green', linestyle='--')
+axs[1, 0].set_xscale('log')
+axs[1, 0].set_title("Buffon's Needle π Estimate")
+axs[1, 0].set_xlabel('Sample Size (log scale)')
+axs[1, 0].set_ylabel('π Estimate')
+axs[1, 0].grid(True)
+
+# 4. Circle Method Estimates
+axs[1, 1].plot(sample_sizes, circle_estimates, 'o-', color='blue')
+axs[1, 1].axhline(pi_actual, color='green', linestyle='--')
+axs[1, 1].set_xscale('log')
+axs[1, 1].set_title("Monte Carlo Circle π Estimate")
+axs[1, 1].set_xlabel('Sample Size (log scale)')
+axs[1, 1].set_ylabel('π Estimate')
+axs[1, 1].grid(True)
+
+plt.tight_layout()
+plt.show()
+</code></pre>
+<hr/>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+# Settings
+frame_points = 500
+total_frames = 100
+total_points = frame_points * total_frames
+
+np.random.seed(42)
+x = np.random.uniform(-1, 1, total_points)
+y = np.random.uniform(-1, 1, total_points)
+
+# Set up the plot
+fig, ax = plt.subplots(figsize=(6, 6))
+ax.set_xlim(-1, 1)
+ax.set_ylim(-1.2, 1.2)
+ax.set_aspect('equal')
+ax.set_title("Monte Carlo Simulation: Estimating π", fontsize=14, weight='bold')
+ax.set_xlabel("x-axis")
+ax.set_ylabel("y-axis")
+
+# Draw circle outline
+circle = plt.Circle((0, 0), 1, color='black', fill=False, linestyle='--', linewidth=2)
+ax.add_patch(circle)
+
+# Prepare point plots
+inside = ax.plot([], [], 'o', color='#2a9d8f', markersize=2, label='Inside Circle')[0]
+outside = ax.plot([], [], 'o', color='#e76f51', markersize=2, label='Outside Circle')[0]
+
+# Create text: top left (small), middle (larger)
+text_total = ax.text(-0.95, 1.13, "", fontsize=9, bbox=dict(facecolor='white', alpha=0.7, edgecolor='gray'))
+text_pi = ax.text(-0.95, 1.05, "", fontsize=11, bbox=dict(facecolor='white', alpha=0.7, edgecolor='gray'))
+
+def init():
+    inside.set_data([], [])
+    outside.set_data([], [])
+    text_total.set_text("")
+    text_pi.set_text("")
+    return inside, outside, text_total, text_pi
+
+def update(frame):
+    end = (frame + 1) * frame_points
+    x_f = x[:end]
+    y_f = y[:end]
+    inside_mask = x_f**2 + y_f**2 &lt;= 1
+
+    inside.set_data(x_f[inside_mask], y_f[inside_mask])
+    outside.set_data(x_f[~inside_mask], y_f[~inside_mask])
+
+    pi_est = 4 * np.sum(inside_mask) / len(x_f)
+    text_total.set_text(f"Total Points: {len(x_f)}")
+    text_pi.set_text(f"Estimated π ≈ {pi_est:.6f}")
+
+    return inside, outside, text_total, text_pi
+
+ani = animation.FuncAnimation(fig, update, frames=total_frames, init_func=init, blit=True, interval=100, repeat=False)
+
+# Save GIF
+ani.save("monte_carlo_pi_estimation_final.gif", writer='pillow', fps=10)
+
+# Show in Colab
+from IPython.display import Image
+Image(filename="monte_carlo_pi_estimation_final.gif")
+</code></pre>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
