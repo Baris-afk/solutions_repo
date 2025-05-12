@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>📘 Phase 1: Understanding the Concepts - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "\ud83d\udcd8 Phase 1: Understanding the Concepts";
         var mkdocs_page_input_path = "1 Physics/5 Circuits/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -76,9 +76,25 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">5 Circuits</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">📘 Phase 1: Understanding the Concepts</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#assumed-circuit-layout">⚙️ Assumed Circuit Layout</a>
+<li class="toctree-l3"><a class="reference internal" href="#equivalent-resistance-rules">🔌 Equivalent Resistance Rules</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#series-connection">➕ Series Connection</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#parallel-connection">🔁 Parallel Connection</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#circuit-to-graph-mapping">📈 Circuit-to-Graph Mapping</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#key-concepts">🧠 Key Concepts</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#benefits-of-graph-representation">✅ Benefits of Graph Representation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">🧭 Summary</a>
 </li>
 </ul>
 </li>
@@ -165,7 +181,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">5 Circuits</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">📘 Phase 1: Understanding the Concepts</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -173,273 +189,431 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h2 id="question-1-identifying-series-and-parallel-resistors">🧮 Question 1 – Identifying Series and Parallel Resistors</h2>
-<h3 id="assumed-circuit-layout">⚙️ Assumed Circuit Layout</h3>
-<h2 id="based-on-a-five-resistor-configuration-r1r5-we-propose-the-following-tentative-layout">Based on a five-resistor configuration (R1–R5), we propose the following tentative layout:</h2>
-<h2 id="reasonable-assumption-tentative-layout">📐 Reasonable Assumption (Tentative Layout)</h2>
-<p>Until you provide a diagram, here’s a commonly used resistor configuration that includes both series and parallel elements for 5 resistors:</p>
-<h2 id="_1"><img alt="alt text" src="../image.png"/></h2>
-<p>This layout suggests:</p>
+<h1 id="phase-1-understanding-the-concepts">📘 Phase 1: Understanding the Concepts</h1>
+<h2 id="equivalent-resistance-rules">🔌 Equivalent Resistance Rules</h2>
+<p>Understanding how resistors combine is fundamental before translating circuits into graph models.</p>
+<h3 id="series-connection">➕ Series Connection</h3>
+<ul>
+<li>Resistors are in <strong>series</strong> if they are connected end-to-end with no branching.</li>
+<li>The <strong>equivalent resistance</strong> is the <strong>sum</strong> of the individual resistances:</li>
+</ul>
+<div class="arithmatex">\[
+R_{\text{eq(series)}} = R_1 + R_2 + R_3 + \dots + R_n
+\]</div>
+<ul>
+<li><strong>Current</strong> through each resistor is the same.</li>
+<li><strong>Voltage</strong> divides across resistors.</li>
+</ul>
+<hr/>
+<h3 id="parallel-connection">🔁 Parallel Connection</h3>
+<ul>
+<li>Resistors are in <strong>parallel</strong> if both ends are connected to the same two nodes.</li>
+<li>The reciprocal of the <strong>equivalent resistance</strong> is the <strong>sum</strong> of reciprocals:</li>
+</ul>
+<div class="arithmatex">\[
+\frac{1}{R_{\text{eq(parallel)}}} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + \dots + \frac{1}{R_n}
+\]</div>
 <ul>
 <li>
-<p>R1 is in series with the rest of the network.</p>
+<p><strong>Voltage</strong> across each resistor is the same.</p>
 </li>
 <li>
-<p>R2 and R3 are in parallel.</p>
-</li>
-<li>
-<p>R4 and R5 are in parallel, and those two parallel branches are in series with each other.</p>
+<p><strong>Current</strong> divides among the resistors.</p>
 </li>
 </ul>
 <hr/>
-<h3 id="series-resistors">🔗 Series Resistors:</h3>
-<ul>
-<li><strong>R1</strong> is in series with the combination of the rest of the network.</li>
-<li>The two <strong>parallel branches</strong> (R2‖R3 and R4‖R5) are in series with each other.</li>
-</ul>
-<h3 id="parallel-resistors">🔀 Parallel Resistors:</h3>
-<ul>
-<li><strong>R2 is in parallel with R3</strong></li>
-<li><strong>R4 is in parallel with R5</strong></li>
-</ul>
-<h3 id="theoretical-background">📚 Theoretical Background</h3>
+<h2 id="circuit-to-graph-mapping">📈 Circuit-to-Graph Mapping</h2>
+<p><img alt="alt text" src="../image.png"/></p>
+<hr/>
+<p>To apply graph theory, we convert the electrical circuit into a mathematical graph:</p>
 <ul>
 <li>
-<p>Resistors in <strong>series</strong> share the same current:
-  <span class="arithmatex">\(<span class="arithmatex">\(R_{eq(series)} = R_1 + R_2 + \dots + R_n\)</span>\)</span><br/>
-  (Alexander &amp; Sadiku, 2017).</p>
+<p><strong>Nodes</strong> represent <strong>junctions</strong> in the circuit.</p>
 </li>
 <li>
-<p>Resistors in <strong>parallel</strong> share the same voltage:
-  <span class="arithmatex">\(<span class="arithmatex">\(\frac{1}{R_{eq(parallel)}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}\)</span>\)</span><br/>
-  (Hambley, 2014).</p>
+<p><strong>Edges</strong> represent <strong>resistors</strong>, with the edge <strong>weight</strong> equal to the resistor’s resistance (in ohms, <span class="arithmatex">\(\Omega\)</span>).</p>
 </li>
 </ul>
-<h3 id="references">🧾 References</h3>
+<h3 id="key-concepts">🧠 Key Concepts</h3>
 <ul>
-<li>Alexander, C. K., &amp; Sadiku, M. N. O. (2017). <em>Fundamentals of Electric Circuits</em> (6th ed.). McGraw-Hill Education.</li>
-<li>Hambley, A. R. (2014). <em>Electrical Engineering: Principles and Applications</em> (6th ed.). Pearson.</li>
+<li>A resistor between two junctions is modeled as an <strong>undirected weighted edge</strong> between two nodes.</li>
+<li>
+<p>The full circuit becomes a <strong>weighted undirected graph</strong> <span class="arithmatex">\(G = (V, E)\)</span>, where:</p>
+</li>
+<li>
+<p><span class="arithmatex">\(V\)</span> is the set of junctions (vertices),</p>
+</li>
+<li>
+<p><span class="arithmatex">\(E\)</span> is the set of resistors (edges with weights).</p>
+</li>
 </ul>
 <hr/>
-<h2 id="question-2-calculate-the-equivalent-resistance">🧮 Question 2 – Calculate the Equivalent Resistance</h2>
-<h2 id="_2"><img alt="alt text" src="../image-1.png"/></h2>
-<h3 id="assumed-resistor-values">🔢 Assumed Resistor Values</h3>
+<h3 id="benefits-of-graph-representation">✅ Benefits of Graph Representation</h3>
+<ul>
+<li><strong>Structured and algorithmic</strong> simplification.</li>
+<li>Supports complex topologies and nested resistor configurations.</li>
+<li>Enables usage of algorithms from <strong>graph theory</strong>, such as traversal, cycle detection, and graph reduction.</li>
+</ul>
+<hr/>
+<h2 id="summary">🧭 Summary</h2>
+<p>By understanding how resistors combine and how to represent circuits as graphs, we lay the groundwork for designing an <strong>algorithm</strong> that can automate the process of finding equivalent resistance—even in complex, nested networks.</p>
+<hr/>
+<h1 id="phase-2-develop-the-algorithm-conceptual-level">✅ Phase 2: Develop the Algorithm (Conceptual Level)</h1>
+<h2 id="objective">🔍 Objective</h2>
+<p>We aim to design an algorithm that calculates the <strong>equivalent resistance</strong> of a complex circuit represented as a <strong>graph</strong>. The method must iteratively <strong>detect</strong>, <strong>simplify</strong>, and <strong>combine</strong> resistors until the graph reduces to a single equivalent resistance between two terminals.</p>
+<hr/>
+<h2 id="key-concepts_1">🧠 Key Concepts</h2>
+<h3 id="series-connection-detection">➕ Series Connection Detection</h3>
+<p><img alt="alt text" src="../image-2.png"/></p>
+<hr/>
+<ul>
+<li>A <strong>series</strong> configuration occurs when:</li>
+<li>Two resistors share a <strong>common node</strong> of <strong>degree 2</strong>.</li>
+<li>No branching occurs at this node.</li>
+<li>The equivalent resistance for series:</li>
+</ul>
+<p>$$
+  R_{\text{eq}} = R_1 + R_2
+  $$</p>
+<hr/>
+<h3 id="parallel-connection-detection">🔁 Parallel Connection Detection</h3>
+<p><img alt="alt text" src="../image-5.png"/></p>
+<hr/>
+<ul>
+<li>A <strong>parallel</strong> configuration exists when:</li>
+<li><strong>Multiple edges</strong> connect the <strong>same pair of nodes</strong>.</li>
+<li>The equivalent resistance for parallel:</li>
+</ul>
+<div class="arithmatex">\[
+\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots + \frac{1}{R_n}
+\]</div>
+<hr/>
+<h2 id="iterative-graph-simplification">🔁 Iterative Graph Simplification</h2>
+<p>We apply the following logic <strong>iteratively</strong> until the entire graph reduces to a <strong>single edge</strong> representing the total equivalent resistance:</p>
+<ol>
+<li>Detect <strong>series</strong> resistor pairs and combine.</li>
+<li>Detect <strong>parallel</strong> resistor groups and combine.</li>
+<li>Replace each group with its <strong>equivalent resistance</strong>.</li>
+<li>Repeat until no more simplifications are possible.</li>
+</ol>
+<hr/>
+<h2 id="pseudocode-resistance-reduction-algorithm">🧾 Pseudocode: Resistance Reduction Algorithm</h2>
+<pre><code class="language-pseudo">function compute_equivalent_resistance(graph G):
+    while G has more than two nodes:
+        for each node v in G:
+            if degree(v) == 2:
+                u, w = neighbors of v
+                if edge(u, v) and edge(v, w) exist:
+                    R1 = weight of edge(u, v)
+                    R2 = weight of edge(v, w)
+                    replace with edge(u, w) with weight R1 + R2
+                    remove node v and its incident edges
+        for each pair of nodes (u, v):
+            if multiple edges exist between u and v:
+                Let R1, R2, ..., Rn be the weights of all edges(u, v)
+                compute R_eq using:
+                    1 / R_eq = 1 / R1 + 1 / R2 + ... + 1 / Rn
+                replace all edges(u, v) with a single edge of weight R_eq
+    return weight of final edge between terminals
+</code></pre>
+<hr/>
+<h2 id="handling-nested-combinations">🔄 Handling Nested Combinations</h2>
+<p><img alt="alt text" src="../image-4.png"/></p>
+<hr/>
+<ul>
+<li><strong>Nested structures</strong> (e.g. series within parallel) are simplified <strong>recursively</strong> or by <strong>repeated iteration</strong>.</li>
+<li>The graph is dynamically updated:</li>
+<li>Merging two resistors may enable a new parallel pattern.</li>
+<li>Re-check after each merge.</li>
+</ul>
+<hr/>
+<h2 id="summary_1">✅ Summary</h2>
+<p>This algorithm provides a robust and scalable method for calculating the <strong>equivalent resistance</strong> in arbitrary networks by:</p>
+<ul>
+<li>Modeling the circuit as a graph.</li>
+<li>Identifying structural patterns (series, parallel).</li>
+<li>Reducing them iteratively using physics-based rules.</li>
+</ul>
+<p>The approach is suitable for both <strong>manual analysis</strong> and <strong>automated implementations</strong> in tools like Python with <code>networkx</code>.</p>
+<hr/>
+<h1 id="phase-3-work-on-examples">✅ Phase 3: Work on Examples</h1>
+<h2 id="goal">🔍 Goal</h2>
+<p>To demonstrate how the algorithm simplifies real-world circuit cases, we analyze <strong>three examples</strong>:</p>
+<ol>
+<li>Pure Series Resistors  </li>
+<li>Pure Parallel Resistors  </li>
+<li>Nested Configuration (Series and Parallel combined)</li>
+</ol>
+<p>Each example includes a description, circuit logic, and a step-by-step simplification.</p>
+<hr/>
+<h2 id="example-1-series-resistors">🔸 Example 1: Series Resistors</h2>
+<h3 id="description">🧩 Description</h3>
+<p>Three resistors connected <strong>in series</strong> between two nodes A and D.</p>
+<ul>
+<li>
+<p><strong>Components</strong>:</p>
+</li>
+<li>
+<p><span class="arithmatex">\(R_1 = 5\ \Omega\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(R_2 = 10\ \Omega\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(R_3 = 15\ \Omega\)</span></p>
+</li>
+<li>
+<p><strong>Connection</strong>: A — R₁ — B — R₂ — C — R₃ — D</p>
+</li>
+</ul>
+<h3 id="simplification-logic">⚙️ Simplification Logic</h3>
+<ul>
+<li>Series resistors are <strong>linearly connected</strong>:</li>
+</ul>
+<div class="arithmatex">\[
+R_{\text{eq}} = R_1 + R_2 + R_3 = 5 + 10 + 15 = 30\ \Omega
+\]</div>
+<ul>
+<li>Algorithm detects each degree-2 node and collapses them iteratively:</li>
+<li>Combine A–B and B–C into A–C</li>
+<li>Then combine A–C and C–D into A–D</li>
+</ul>
+<hr/>
+<h2 id="example-2-parallel-resistors">🔸 Example 2: Parallel Resistors</h2>
+<h3 id="description_1">🧩 Description</h3>
+<p>Two resistors connected <strong>in parallel</strong> between nodes A and B.</p>
+<ul>
+<li>
+<p><strong>Components</strong>:</p>
+</li>
+<li>
+<p><span class="arithmatex">\(R_1 = 10\ \Omega\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(R_2 = 20\ \Omega\)</span></p>
+</li>
+<li>
+<p><strong>Connection</strong>:</p>
+</li>
+<li>
+<p>Path 1: A → R₁ → B  </p>
+</li>
+<li>
+<p>Path 2: A → R₂ → B</p>
+</li>
+</ul>
+<h3 id="simplification-logic_1">⚙️ Simplification Logic</h3>
+<ul>
+<li>Parallel resistors are connected across the <strong>same two nodes</strong>:</li>
+</ul>
+<div class="arithmatex">\[
+\frac{1}{R_{\text{eq}}} = \frac{1}{10} + \frac{1}{20} = \frac{3}{20}
+\Rightarrow R_{\text{eq}} = \frac{20}{3} \approx 6.67\ \Omega
+\]</div>
+<ul>
+<li>Algorithm groups all edges between A and B, replaces them with the calculated equivalent resistance.</li>
+</ul>
+<hr/>
+<h2 id="example-3-nested-configuration-series-parallel">🔸 Example 3: Nested Configuration (Series + Parallel)</h2>
+<h3 id="description_2">🧩 Description</h3>
+<ul>
+<li>
+<p><span class="arithmatex">\(R_1 = 5\ \Omega\)</span> (A → B)  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(R_2 = 10\ \Omega\)</span> (B → C)  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(R_3 = 20\ \Omega\)</span> (B → C) — <strong>parallel to R₂</strong> </p>
+</li>
+<li>
+<p><span class="arithmatex">\(R_4 = 5\ \Omega\)</span> (C → D)</p>
+</li>
+</ul>
+<h3 id="structure">🛠 Structure:</h3>
+<ul>
+<li>A — R₁ — B  </li>
+<li>B → R₂ → C  </li>
+<li>B → R₃ → C (in parallel with R₂)  </li>
+<li>C → R₄ → D</li>
+</ul>
+<h3 id="simplification-logic_2">⚙️ Simplification Logic</h3>
+<ol>
+<li>
+<p><strong>Parallel between B–C</strong>:
+$$
+\frac{1}{R_{BC}} = \frac{1}{10} + \frac{1}{20} = \frac{3}{20}
+\Rightarrow R_{BC} = \frac{20}{3} \approx 6.67\ \Omega
+$$</p>
+</li>
+<li>
+<p><strong>New path</strong> becomes:</p>
+</li>
+<li>
+<p>A — R₁ — B — <span class="arithmatex">\(R_{BC}\)</span> — C — R₄ — D</p>
+</li>
+<li>
+<p><strong>Series total</strong>:</p>
+</li>
+</ol>
+<div class="arithmatex">\[
+R_{\text{eq}} = R_1 + R_{BC} + R_4 = 5 + \frac{20}{3} + 5 = \frac{50}{3} \approx 16.67\ \Omega
+\]</div>
+<ul>
+<li>
+<p>The algorithm reduces:</p>
+</li>
+<li>
+<p>Parallel group → replaces with <span class="arithmatex">\(R_{BC}\)</span></p>
+</li>
+<li>
+<p>Remaining series → collapsed step-by-step</p>
+</li>
+</ul>
+<h2 id="visual">Visual</h2>
+<p><img alt="alt text" src="../image-6.png"/></p>
+<hr/>
+<h2 id="summary_2">✅ Summary</h2>
 <table>
 <thead>
 <tr>
-<th>Resistor</th>
-<th>Value (Ω)</th>
+<th>Type</th>
+<th>Formula Used</th>
+<th>Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>R1</td>
-<td>4</td>
+<td>Series</td>
+<td><span class="arithmatex">\(R_{\text{eq}} = R_1 + R_2 + \dots + R_n\)</span></td>
+<td><span class="arithmatex">\(30\ \Omega\)</span></td>
 </tr>
 <tr>
-<td>R2</td>
-<td>6</td>
+<td>Parallel</td>
+<td><span class="arithmatex">\(\frac{1}{R_{\text{eq}}} = \sum \frac{1}{R_i}\)</span></td>
+<td><span class="arithmatex">\(6.67\ \Omega\)</span></td>
 </tr>
 <tr>
-<td>R3</td>
-<td>3</td>
-</tr>
-<tr>
-<td>R4</td>
-<td>12</td>
-</tr>
-<tr>
-<td>R5</td>
-<td>4</td>
+<td>Nested</td>
+<td>Series + Parallel combination</td>
+<td><span class="arithmatex">\(16.67\ \Omega\)</span></td>
 </tr>
 </tbody>
 </table>
-<h3 id="step-by-step-calculation">🧠 Step-by-Step Calculation</h3>
-<ol>
-<li>
-<p><strong>R2 and R3 in Parallel:</strong>
-   $$
-   \frac{1}{R_{23}} = \frac{1}{6} + \frac{1}{3} = \frac{3}{6} \Rightarrow R_{23} = 2\ \Omega
-   $$</p>
-</li>
-<li>
-<p><strong>R4 and R5 in Parallel:</strong>
-   $$
-   \frac{1}{R_{45}} = \frac{1}{12} + \frac{1}{4} = \frac{4}{12} \Rightarrow R_{45} = 3\ \Omega
-   $$</p>
-</li>
-<li>
-<p><strong>R23 and R45 in Series:</strong>
-   $$
-   R_{2345} = 2 + 3 = 5\ \Omega
-   $$</p>
-</li>
-<li>
-<p><strong>Add R1 in Series:</strong>
-   $$
-   R_{eq} = 4 + 5 = \boxed{9\ \Omega}
-   $$</p>
-</li>
-</ol>
-<h3 id="final-answer">✅ Final Answer</h3>
-<blockquote>
-<p><strong>The equivalent resistance of the circuit is 9 Ω.</strong></p>
-</blockquote>
-<h3 id="references_1">📚 References</h3>
+<p>These examples validate how graph-based simplification can be used to iteratively reduce circuits of arbitrary complexity using consistent rules and clear patterns.</p>
+<hr/>
+<h1 id="phase-4-analyze-the-algorithm">✅ Phase 4: Analyze the Algorithm</h1>
+<hr/>
+<h2 id="efficiency-evaluation">📊 Efficiency Evaluation</h2>
+<p>Understanding the computational efficiency of the graph-based resistance simplification algorithm is key for scaling to large networks.</p>
+<h3 id="number-of-steps">🔄 Number of Steps</h3>
 <ul>
-<li>Alexander, C. K., &amp; Sadiku, M. N. O. (2017). <em>Fundamentals of Electric Circuits</em> (6th ed.). McGraw-Hill Education.  </li>
-<li>Hambley, A. R. (2014). <em>Electrical Engineering: Principles and Applications</em> (6th ed.). Pearson.</li>
+<li>
+<p>Let <span class="arithmatex">\(n\)</span> be the number of <strong>nodes</strong>, and <span class="arithmatex">\(m\)</span> be the number of <strong>edges</strong> (resistors).</p>
+</li>
+<li>
+<p>In the <strong>worst case</strong>, the algorithm performs:</p>
+</li>
+<li>
+<p><span class="arithmatex">\(O(n)\)</span> passes for series simplifications.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(O(m)\)</span> checks for parallel edge reductions.</p>
+</li>
 </ul>
-<hr/>
-<h2 id="q3-graph-representation-and-mathematical-analysis">Q3 – Graph Representation and Mathematical Analysis</h2>
-<h3 id="objective">🎯 Objective</h3>
-<p>This task explores the calculation of <strong>equivalent resistance</strong> in an electrical circuit using <strong>graph theory</strong>, a mathematical framework that allows for elegant and generalizable solutions. This technique is especially powerful for analyzing <strong>complex, nested, and cyclic networks</strong>, where traditional methods become inefficient.</p>
-<hr/>
-<h3 id="1-graph-modeling-of-the-circuit">🧱 1. Graph Modeling of the Circuit</h3>
-<p>We model the resistor network as an <strong>undirected, weighted graph</strong>:</p>
+<h3 id="complexity-of-seriesparallel-detection">📉 Complexity of Series/Parallel Detection</h3>
+<h4 id="series-detection">➕ Series Detection:</h4>
 <ul>
-<li>Nodes represent <strong>junctions</strong> (e.g., A, B, C...).</li>
-<li>Edges represent <strong>resistors</strong> with <strong>weights</strong> equal to their resistance in ohms (Ω).</li>
+<li>
+<p>For each node <span class="arithmatex">\(v\)</span>:</p>
+</li>
+<li>
+<p>Check if <span class="arithmatex">\(\text{deg}(v) = 2\)</span></p>
+</li>
+<li>
+<p>Cost: <span class="arithmatex">\(O(n)\)</span> per pass</p>
+</li>
+<li>
+<p>If two neighbors <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(w\)</span> are connected to <span class="arithmatex">\(v\)</span>:</p>
+</li>
+<li>
+<p>Combine <span class="arithmatex">\(R_{uv}\)</span> and <span class="arithmatex">\(R_{vw}\)</span> into <span class="arithmatex">\(R_{uw}\)</span></p>
+</li>
+<li>
+<p>Time per operation: <span class="arithmatex">\(O(1)\)</span></p>
+</li>
+<li>
+<p><strong>Total complexity</strong> (series-only): <span class="arithmatex">\(O(n^2)\)</span> in worst case due to repeated passes.</p>
+</li>
 </ul>
-<h4 id="key-insight">💡 Key Insight</h4>
-<p>Graph representation abstracts away the physical layout, letting us focus on <strong>connectivity and flow</strong>, not geometry. This makes it applicable to <strong>any topology</strong>.</p>
-<hr/>
-<h2 id="_3"><img alt="alt text" src="../image-2.png"/></h2>
-<hr/>
-<h3 id="2-laplacian-based-resistance-calculation">🧮 2. Laplacian-Based Resistance Calculation</h3>
-<p>To compute the <strong>resistance between two nodes</strong>, we use:</p>
+<h4 id="parallel-detection">🔁 Parallel Detection:</h4>
 <ul>
-<li>The <strong>Laplacian matrix</strong> <span class="arithmatex">\(L = D - A\)</span></li>
-<li>The <strong>Moore–Penrose pseudoinverse</strong> <span class="arithmatex">\(L^+\)</span></li>
-<li>The <strong>resistance distance formula</strong>:</li>
+<li>For each unordered pair of nodes <span class="arithmatex">\((u, v)\)</span>:</li>
+<li>Collect all edges between them: <span class="arithmatex">\(O(m)\)</span></li>
+<li>Reduce them using:</li>
 </ul>
 <div class="arithmatex">\[
-R_{eq}(i, j) = L^+_{ii} + L^+_{jj} - 2L^+_{ij}
+\frac{1}{R_{\text{eq}}} = \sum_{i=1}^{k} \frac{1}{R_i}
 \]</div>
-<hr/>
-<h3 id="3-interpretation-commentary">🔍 3. Interpretation &amp; Commentary</h3>
 <ul>
-<li>The Laplacian pseudoinverse method is <strong>mathematically rigorous</strong> and <strong>numerically stable</strong>.</li>
-<li>This approach naturally generalizes to circuits with:</li>
-<li>Multiple loops and branches</li>
-<li>Bridged or redundant paths</li>
-<li>Unconventional structures (e.g., mesh networks)</li>
-<li>The method links <strong>electrical engineering</strong> with <strong>spectral graph theory</strong>, showcasing the power of <strong>linear algebra in physical systems</strong>.</li>
+<li><strong>Total complexity</strong> (parallel-only): <span class="arithmatex">\(O(m^2)\)</span> worst case for densely connected graphs.</li>
 </ul>
 <hr/>
-<h3 id="4-theoretical-insights">🧠 4. Theoretical Insights</h3>
+<h2 id="limitations">⚠️ Limitations</h2>
+<h3 id="edge-cases-complex-cycles">🧩 Edge Cases &amp; Complex Cycles</h3>
 <ul>
-<li><strong>Resistance distance</strong> is not merely electrical—it also corresponds to <strong>expected commute times</strong> in random walks (Doyle &amp; Snell, 1984).</li>
-<li>This makes resistance a <strong>metric</strong> with geometric and probabilistic meaning.</li>
-<li>It can be used in <strong>machine learning</strong>, <strong>social network analysis</strong>, and <strong>molecular chemistry</strong> (e.g., Klein &amp; Randić, 1993).</li>
+<li>The current algorithm assumes:</li>
+<li>Graph is <strong>connected</strong>.</li>
+<li>No <strong>dependent sources</strong> or <strong>nonlinear elements</strong> (e.g., capacitors, inductors).</li>
+<li><strong>Bridging nodes</strong> (nodes that are part of multiple paths) may delay detection of simplification patterns.</li>
+<li>Circuits with <strong>cycles that are not purely parallel</strong> can be harder to simplify without advanced techniques (e.g., mesh analysis).</li>
 </ul>
 <hr/>
-<h3 id="5-references">📚 5. References</h3>
+<h2 id="potential-improvements">💡 Potential Improvements</h2>
+<h3 id="algorithm-enhancements">🧠 Algorithm Enhancements</h3>
 <ul>
-<li>Biggs, N., 1997. <em>Algebraic Graph Theory</em>. 2nd ed. Cambridge University Press.</li>
-<li>Doyle, P.G. and Snell, J.L., 1984. <em>Random Walks and Electric Networks</em>. Mathematical Association of America.</li>
-<li>Klein, D.J. and Randić, M., 1993. Resistance distance. <em>Journal of Mathematical Chemistry</em>, 12(1), pp.81–95.</li>
-<li>Mohar, B., 1991. The Laplacian spectrum of graphs. <em>Graph Theory, Combinatorics, and Applications</em>, pp.871–898.</li>
-<li>Gutman, I. and Mohar, B., 1996. The quasi-Wiener and the Kirchhoff indices coincide. <em>Journal of Chemical Information and Computer Sciences</em>, 36(5), pp.982–985.</li>
-<li>Newman, M.E.J., 2010. <em>Networks: An Introduction</em>. Oxford University Press.</li>
+<li>Use <strong>depth-first search (DFS)</strong> to identify reducible subgraphs faster.</li>
+<li>Apply <strong>union-find (disjoint sets)</strong> to manage groups of equivalent resistances.</li>
+<li>Integrate <strong>graph contraction</strong> methods to compress nodes after each reduction.</li>
 </ul>
-<hr/>
-<h3 id="6-q4-handling-complex-circuit-configurations-three-case-studies">🔬 6. Q4 – Handling Complex Circuit Configurations: Three Case Studies</h3>
-<p>The Laplacian matrix approach is especially powerful because it generalizes well to arbitrary and complex resistor networks, without requiring manual identification of series or parallel reductions. Below are three representative examples that demonstrate the robustness of this method.</p>
-<hr/>
-<h4 id="example-1-simple-parallel-and-series-combination">✅ Example 1: Simple Parallel and Series Combination</h4>
-<p><strong>Structure:</strong></p>
+<h3 id="automation-ideas">⚙️ Automation Ideas</h3>
 <ul>
-<li><span class="arithmatex">\(R_1\)</span> and <span class="arithmatex">\(R_2\)</span> in series, then in parallel with <span class="arithmatex">\(R_3\)</span></li>
-<li>Then, the result is in series with <span class="arithmatex">\(R_4\)</span></li>
+<li>Implement the algorithm in <strong>Python</strong> using <code>networkx</code> for:</li>
+<li>Graph creation</li>
+<li>Edge/weight manipulation</li>
+<li>Cycle detection</li>
 </ul>
-<p><strong>Graph Features:</strong></p>
-<ul>
-<li>Acyclic (tree structure)</li>
-<li>Easily simplified manually</li>
-<li>Validates the method against known solutions</li>
-</ul>
-<p><strong>Why It Works:</strong></p>
-<p>The Laplacian formulation captures the entire topology and edge weights (resistances). The pseudoinverse approach gives the same result as conventional techniques.</p>
+<h3 id="visualization">📈 Visualization</h3>
+<p><img alt="alt text" src="../phase4_circuit_simplification.gif"/></p>
 <hr/>
-<h4 id="example-2-nested-loops-bridge-configuration">🔁 Example 2: Nested Loops (Bridge Configuration)</h4>
-<p><strong>Structure:</strong></p>
-<ul>
-<li>A bridge circuit with resistors between nodes A–B, B–C, A–C, and a resistor forming a diagonal bridge between B–C</li>
-<li>Known as a <strong>Wheatstone Bridge</strong></li>
-</ul>
-<p><strong>Graph Features:</strong></p>
-<ul>
-<li>Contains a cycle and a bridge</li>
-<li>Cannot be simplified using only series-parallel rules</li>
-</ul>
-<p><strong>Why It Works:</strong></p>
-<p>Even though traditional methods require symmetry analysis or Kirchhoff’s laws, the Laplacian matrix method directly incorporates all paths and computes effective resistance between any two nodes.</p>
-<hr/>
-<h4 id="example-3-mesh-network-with-multiple-redundant-paths">🔄 Example 3: Mesh Network with Multiple Redundant Paths</h4>
-<p><strong>Structure:</strong></p>
-<ul>
-<li>A 6-node graph where every node is connected to at least 2 others</li>
-<li>Includes multiple loops and crossing paths</li>
-</ul>
-<p><strong>Graph Features:</strong></p>
-<ul>
-<li>Complex connectivity</li>
-<li>Multiple current distribution paths</li>
-<li>Hard to simplify manually</li>
-</ul>
-<p><strong>Why It Works:</strong></p>
-<p>This method treats the graph as a whole, solving the resistance globally using linear algebra. It does not rely on breaking the circuit into simpler blocks. This makes it especially effective in dense or irregular networks.</p>
-<hr/>
-<p><strong>Conclusion:</strong></p>
-<p>The Laplacian-based method abstracts away the complexity of resistor configuration by converting it into a matrix problem. This ensures that no matter how tangled or irregular the network becomes, the resistance can be computed <strong>reliably</strong>, <strong>automatically</strong>, and <strong>accurately</strong>.</p>
-<h2 id="-">---</h2>
-<h3 id="7-q5-efficiency-analysis-and-potential-improvements">⚙️ 7. Q5 – Efficiency Analysis and Potential Improvements</h3>
-<hr/>
-<h4 id="algorithmic-efficiency">⏱️ Algorithmic Efficiency</h4>
-<p>The core computational step in the Laplacian-based resistance calculation is obtaining the <strong>Moore–Penrose pseudoinverse</strong> <span class="arithmatex">\(L^+\)</span> of the Laplacian matrix <span class="arithmatex">\(L\)</span>.</p>
-<ul>
-<li>For a graph with <span class="arithmatex">\(n\)</span> nodes:</li>
-<li>Constructing <span class="arithmatex">\(L\)</span>: <span class="arithmatex">\(O(n + m)\)</span>, where <span class="arithmatex">\(m\)</span> is the number of edges</li>
-<li>Computing <span class="arithmatex">\(L^+\)</span> via Singular Value Decomposition (SVD): <span class="arithmatex">\(O(n^3)\)</span> in general</li>
-<li>Resistance computation: <span class="arithmatex">\(O(1)\)</span> for any pair <span class="arithmatex">\((i, j)\)</span> once <span class="arithmatex">\(L^+\)</span> is known</li>
-</ul>
-<p>Hence, the bottleneck is the <strong>matrix inversion</strong>, which becomes computationally expensive for large graphs.</p>
-<hr/>
-<h4 id="scalability-considerations">📈 Scalability Considerations</h4>
-<ul>
-<li>For <strong>small to medium-sized networks</strong> (e.g., <span class="arithmatex">\(n &lt; 1000\)</span>), the method is efficient and practical.</li>
-<li>For <strong>large-scale systems</strong>, such as power grids or nanocircuits, full pseudoinverse computation may become infeasible.</li>
-</ul>
-<hr/>
-<h4 id="potential-improvements">🛠️ Potential Improvements</h4>
-<ol>
-<li><strong>Sparse Matrix Techniques</strong>:</li>
-<li>Exploit the sparsity of Laplacians in real circuits</li>
-<li>
-<p>Use iterative solvers like Conjugate Gradient on <span class="arithmatex">\(Lx = b\)</span> instead of full inversion</p>
-</li>
-<li>
-<p><strong>Graph Partitioning</strong>:</p>
-</li>
-<li>Decompose large networks into smaller subgraphs</li>
-<li>
-<p>Apply the method hierarchically or modularly</p>
-</li>
-<li>
-<p><strong>Symbolic Computation</strong>:</p>
-</li>
-<li>
-<p>In cases with parametric resistors (e.g., <span class="arithmatex">\(R\)</span> as a variable), symbolic pseudoinverse methods (e.g., using SymPy) could preserve algebraic expressions</p>
-</li>
-<li>
-<p><strong>Parallel Computation</strong>:</p>
-</li>
-<li>Matrix operations like SVD or eigendecomposition can be accelerated using GPU-based libraries (e.g., CuPy or TensorFlow)</li>
-</ol>
-<hr/>
-<h4 id="final-note">🧠 Final Note</h4>
-<p>While the Laplacian-based resistance method may seem overkill for small circuits, its <strong>generality</strong>, <strong>robustness</strong>, and <strong>mathematical depth</strong> make it invaluable for analyzing complex electrical networks, especially in computational physics, network science, and VLSI design.</p>
+<h2 id="summary_3">✅ Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Series Detection</td>
+<td>Fast per step, repeated passes required (<span class="arithmatex">\(O(n^2)\)</span> worst case)</td>
+</tr>
+<tr>
+<td>Parallel Detection</td>
+<td>Simple but costly in dense graphs (<span class="arithmatex">\(O(m^2)\)</span> worst case)</td>
+</tr>
+<tr>
+<td>Limitations</td>
+<td>Cannot directly solve meshes, bridges, or nonlinear elements</td>
+</tr>
+<tr>
+<td>Improvements</td>
+<td>DFS, union-find, real-time animation, and better data structures</td>
+</tr>
+</tbody>
+</table>
+<p>This phase ensures the algorithm isn't just <strong>correct</strong>, but also <strong>efficient</strong>, <strong>scalable</strong>, and <strong>educationally valuable</strong> in practice.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
