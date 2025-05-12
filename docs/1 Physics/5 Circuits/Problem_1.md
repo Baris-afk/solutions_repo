@@ -37,9 +37,6 @@ $$
 
 ## 📈 Circuit-to-Graph Mapping
 
-![alt text](image.png)
-
----
 
 To apply graph theory, we convert the electrical circuit into a mathematical graph:
 
@@ -86,7 +83,6 @@ We aim to design an algorithm that calculates the **equivalent resistance** of a
 ### ➕ Series Connection Detection
 
 ![alt text](image-2.png)
-
 ---
 
 - A **series** configuration occurs when:
@@ -102,7 +98,7 @@ We aim to design an algorithm that calculates the **equivalent resistance** of a
 
 ### 🔁 Parallel Connection Detection
 
-![alt text](image-5.png)
+![alt text](image-3.png)
 
 ---
 
@@ -153,7 +149,7 @@ function compute_equivalent_resistance(graph G):
 
 ## 🔄 Handling Nested Combinations
 
-![alt text](image-4.png)
+![alt text](image.png)
 
 ---
 
@@ -297,9 +293,21 @@ $$
 
 ## Visual
 
-![alt text](image-6.png)
+![alt text](image-5.png)
 
 ---
+![alt text](image-7.png)
+
+---
+![alt text](image-8.png)
+
+---
+![alt text](image-9.png)
+
+---
+![alt text](image-10.png)
+
+
 
 ## ✅ Summary
 
@@ -375,24 +383,11 @@ $$
 
 ---
 
-## 💡 Potential Improvements
 
-### 🧠 Algorithm Enhancements
-
-- Use **depth-first search (DFS)** to identify reducible subgraphs faster.
-- Apply **union-find (disjoint sets)** to manage groups of equivalent resistances.
-- Integrate **graph contraction** methods to compress nodes after each reduction.
-
-### ⚙️ Automation Ideas
-
-- Implement the algorithm in **Python** using `networkx` for:
-  - Graph creation
-  - Edge/weight manipulation
-  - Cycle detection
 
 ### 📈 Visualization 
 
-![alt text](phase4_circuit_simplification.gif)
+![alt text](circuit_simplification_animation.gif)
 
 ---
 
@@ -406,6 +401,411 @@ $$
 | Improvements        | DFS, union-find, real-time animation, and better data structures        |
 
 This phase ensures the algorithm isn't just **correct**, but also **efficient**, **scalable**, and **educationally valuable** in practice.
+
+## Python Codes
+
+```python
+# 📘 Colab-ready animated circuit simplification (clean, labeled, and colorful)
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import matplotlib.animation as animation
+
+# Position layout of circuit elements
+positions = {
+    "B+": (0, 2),
+    "R1": (2, 0.5),
+    "R2": (2, 3.5),
+    "R3": (4, 3.5),
+    "R4": (6, 2),
+    "R5": (8, 2),
+    "R23": (3, 3.5),
+    "R45": (7, 2),
+    "R123": (3, 2),
+    "R12345": (4.5, 2),
+    "B-": (10, 2)
+}
+
+# Simplification steps
+steps = [
+    {
+        "title": "🔰 Initial Circuit: Full Layout",
+        "boxes": ["B+", "R1", "R2", "R3", "R4", "R5", "B-"],
+        "lines": [("B+", "R2"), ("R2", "R3"), ("R3", "R4"),
+                  ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
+        "highlight": []
+    },
+    {
+        "title": "🔁 Step 1: Combine R2 and R3 → R23",
+        "boxes": ["B+", "R1", "R23", "R4", "R5", "B-"],
+        "lines": [("B+", "R23"), ("R23", "R4"),
+                  ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
+        "highlight": ["R23"]
+    },
+    {
+        "title": "🔁 Step 2: Combine R4 and R5 → R45",
+        "boxes": ["B+", "R1", "R23", "R45", "B-"],
+        "lines": [("B+", "R23"), ("R23", "R45"),
+                  ("B+", "R1"), ("R1", "R45"), ("R45", "B-")],
+        "highlight": ["R45"]
+    },
+    {
+        "title": "🔁 Step 3: Combine R1 and R23 → R123",
+        "boxes": ["B+", "R123", "R45", "B-"],
+        "lines": [("B+", "R123"), ("R123", "R45"), ("R45", "B-")],
+        "highlight": ["R123"]
+    },
+    {
+        "title": "✅ Final Result: R12345",
+        "boxes": ["B+", "R12345", "B-"],
+        "lines": [("B+", "R12345"), ("R12345", "B-")],
+        "highlight": ["R12345"]
+    }
+]
+
+# Highlight color palette
+highlight_colors = {
+    "R23": "#FF6F61",
+    "R45": "#76D7C4",
+    "R123": "#85C1E9",
+    "R12345": "#DDA0DD"
+}
+
+# Function to draw one frame
+def draw_frame(i):
+    step = steps[i]
+    ax.clear()
+    ax.set_xlim(-1, 11)
+    ax.set_ylim(-1, 5)
+    ax.axis("off")
+    ax.set_title(step["title"], fontsize=16, pad=20)
+
+    # Draw blocks
+    for box in step["boxes"]:
+        x, y = positions[box]
+        color = highlight_colors.get(box, "#D6DBDF") if box in step["highlight"] else "#F2F4F4"
+        rect = patches.FancyBboxPatch((x - 0.5, y - 0.5), 1, 1,
+                                      boxstyle="round,pad=0.1", edgecolor="#2C3E50",
+                                      facecolor=color, linewidth=1.5)
+        ax.add_patch(rect)
+        ax.text(x, y, box, ha="center", va="center", fontsize=12, weight="bold")
+
+    # Draw arrows
+    for u, v in step["lines"]:
+        x1, y1 = positions[u]
+        x2, y2 = positions[v]
+        ax.annotate("",
+                    xy=(x2, y2), xytext=(x1, y1),
+                    arrowprops=dict(arrowstyle="->", lw=2, color="#34495E"))
+
+    ax.text(0, -0.8, "Simplifying using series/parallel reduction rules.",
+            fontsize=10, style='italic', color='gray')
+
+# Create animation
+fig, ax = plt.subplots(figsize=(10, 4))
+ani = animation.FuncAnimation(fig, draw_frame, frames=len(steps), interval=1500, repeat=True)
+
+# Save GIF
+gif_path = "/content/circuit_simplification_animation.gif"
+ani.save(gif_path, writer="pillow", fps=1)
+
+print("✅ GIF saved to:", gif_path)
+```
+---
+
+```python
+# 📦 Series and Parallel Resistor Simplification (Clean Visuals)
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+# Node layout for both types
+positions_series = {
+    "A": (0, 2),
+    "R1": (1.5, 2),
+    "R2": (3, 2),
+    "R3": (4.5, 2),
+    "Req": (3, 2),
+    "B": (6, 2)
+}
+
+positions_parallel = {
+    "A": (0, 2),
+    "R1": (1.5, 3),
+    "R2": (1.5, 1),
+    "Req": (1.5, 2),
+    "B": (3, 2)
+}
+
+# Highlight color
+highlight_color = {
+    "Req": "#BB8FCE"
+}
+
+# Draw block-based circuit
+def draw_circuit(title, boxes, lines, highlight=[], positions=None, note=""):
+    fig, ax = plt.subplots(figsize=(8, 4))
+    ax.set_xlim(-1, 7)
+    ax.set_ylim(0, 4)
+    ax.axis("off")
+    ax.set_title(title, fontsize=14, pad=15)
+
+    for node in boxes:
+        x, y = positions[node]
+        color = highlight_color.get(node, "#F2F4F4") if node in highlight else "#F2F4F4"
+        rect = patches.FancyBboxPatch((x - 0.5, y - 0.5), 1, 1,
+                                      boxstyle="round,pad=0.1", edgecolor="#2C3E50",
+                                      facecolor=color, linewidth=1.5)
+        ax.add_patch(rect)
+        ax.text(x, y, node, ha="center", va="center", fontsize=11, weight="bold")
+
+    for u, v in lines:
+        x1, y1 = positions[u]
+        x2, y2 = positions[v]
+        ax.annotate("",
+                    xy=(x2, y2), xytext=(x1, y1),
+                    arrowprops=dict(arrowstyle="->", lw=1.8, color="#34495E"))
+
+    if note:
+        ax.text(0, 0.2, note, fontsize=10, style='italic', color='gray')
+
+    plt.tight_layout()
+    plt.show()
+
+
+# 🔹 SERIES CONNECTION
+# Step 1: Initial
+draw_circuit(
+    "🔰 Series Connection: Step 1 – R1 → R2 → R3",
+    ["A", "R1", "R2", "R3", "B"],
+    [("A", "R1"), ("R1", "R2"), ("R2", "R3"), ("R3", "B")],
+    positions=positions_series,
+    note="Three resistors connected end-to-end in series."
+)
+
+# Step 2: Simplified to Req
+draw_circuit(
+    "✅ Series Connection: Step 2 – Combine R1, R2, R3 → Req",
+    ["A", "Req", "B"],
+    [("A", "Req"), ("Req", "B")],
+    highlight=["Req"],
+    positions=positions_series,
+    note="Equivalent resistance Req = R1 + R2 + R3"
+)
+
+# 🔸 PARALLEL CONNECTION
+# Step 1: Initial
+draw_circuit(
+    "🔰 Parallel Connection: Step 1 – R1 || R2",
+    ["A", "R1", "R2", "B"],
+    [("A", "R1"), ("R1", "B"), ("A", "R2"), ("R2", "B")],
+    positions=positions_parallel,
+    note="R1 and R2 are both connected between A and B."
+)
+
+# Step 2: Simplified to Req
+draw_circuit(
+    "✅ Parallel Connection: Step 2 – Combine R1 || R2 → Req",
+    ["A", "Req", "B"],
+    [("A", "Req"), ("Req", "B")],
+    highlight=["Req"],
+    positions=positions_parallel,
+    note="Equivalent: 1/Req = 1/R1 + 1/R2"
+)
+```
+---
+
+```python
+# 🔁 Nested Combination Circuit Simplification - Colab Ready
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+# Layout positions for nested structure
+positions = {
+    "A": (0, 2),
+    "R1": (1.5, 2),
+    "R2": (3, 3.5),
+    "R3": (3, 0.5),
+    "R23": (3, 2),
+    "R4": (4.5, 2),
+    "R123": (2.25, 2),
+    "R1234": (3.75, 2),
+    "B": (6, 2)
+}
+
+# Define nested steps
+steps = [
+    {
+        "title": "🔰 Initial Nested Circuit",
+        "boxes": ["A", "R1", "R2", "R3", "R4", "B"],
+        "lines": [("A", "R1"), ("R1", "R2"), ("R1", "R3"),
+                  ("R2", "R4"), ("R3", "R4"), ("R4", "B")],
+        "highlight": []
+    },
+    {
+        "title": "🔁 Step 1: R2 and R3 in Parallel → R23",
+        "boxes": ["A", "R1", "R23", "R4", "B"],
+        "lines": [("A", "R1"), ("R1", "R23"), ("R23", "R4"), ("R4", "B")],
+        "highlight": ["R23"]
+    },
+    {
+        "title": "🔁 Step 2: R1 and R23 in Series → R123",
+        "boxes": ["A", "R123", "R4", "B"],
+        "lines": [("A", "R123"), ("R123", "R4"), ("R4", "B")],
+        "highlight": ["R123"]
+    },
+    {
+        "title": "✅ Step 3: R123 and R4 in Series → R1234",
+        "boxes": ["A", "R1234", "B"],
+        "lines": [("A", "R1234"), ("R1234", "B")],
+        "highlight": ["R1234"]
+    }
+]
+
+# Highlight colors for merged resistors
+highlight_colors = {
+    "R23": "#F1948A",     # soft red
+    "R123": "#5DADE2",    # soft blue
+    "R1234": "#BB8FCE"    # purple
+}
+
+# Draw each step
+def draw_nested_step(step):
+    fig, ax = plt.subplots(figsize=(9, 4))
+    ax.set_xlim(-1, 7)
+    ax.set_ylim(-1, 5)
+    ax.axis("off")
+    ax.set_title(step["title"], fontsize=15, pad=15)
+
+    # Draw nodes
+    for box in step["boxes"]:
+        x, y = positions[box]
+        color = highlight_colors.get(box, "#D6DBDF") if box in step["highlight"] else "#F2F4F4"
+        rect = patches.FancyBboxPatch((x - 0.5, y - 0.5), 1, 1,
+                                      boxstyle="round,pad=0.1", edgecolor="#2C3E50",
+                                      facecolor=color, linewidth=1.5)
+        ax.add_patch(rect)
+        ax.text(x, y, box, ha="center", va="center", fontsize=11, weight="bold")
+
+    # Draw arrows
+    for u, v in step["lines"]:
+        x1, y1 = positions[u]
+        x2, y2 = positions[v]
+        ax.annotate("",
+                    xy=(x2, y2), xytext=(x1, y1),
+                    arrowprops=dict(arrowstyle="->", lw=1.8, color="#34495E"))
+
+    ax.text(0, -0.8, "Nested structure: R2 || R3 → R23, then in series with R1 and R4.",
+            fontsize=10, style='italic', color='gray')
+    plt.tight_layout()
+    plt.show()
+
+# Show all nested steps
+for step in steps:
+    draw_nested_step(step)
+```
+---
+
+```python
+# 📘 Colab-ready enhanced visualization of circuit simplification steps
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+# Position layout
+positions = {
+    "B+": (0, 2),
+    "R1": (2, 0.5),
+    "R2": (2, 3.5),
+    "R3": (4, 3.5),
+    "R4": (6, 2),
+    "R5": (8, 2),
+    "R23": (3, 3.5),
+    "R45": (7, 2),
+    "R123": (3, 2),
+    "R12345": (4.5, 2),
+    "B-": (10, 2)
+}
+
+# Steps of simplification
+steps = [
+    {
+        "title": "🔰 Initial Circuit: Full Layout",
+        "boxes": ["B+", "R1", "R2", "R3", "R4", "R5", "B-"],
+        "lines": [("B+", "R2"), ("R2", "R3"), ("R3", "R4"),
+                  ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
+        "highlight": []
+    },
+    {
+        "title": "🔁 Step 1: Combine R2 and R3 → R23",
+        "boxes": ["B+", "R1", "R23", "R4", "R5", "B-"],
+        "lines": [("B+", "R23"), ("R23", "R4"),
+                  ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
+        "highlight": ["R23"]
+    },
+    {
+        "title": "🔁 Step 2: Combine R4 and R5 → R45",
+        "boxes": ["B+", "R1", "R23", "R45", "B-"],
+        "lines": [("B+", "R23"), ("R23", "R45"),
+                  ("B+", "R1"), ("R1", "R45"), ("R45", "B-")],
+        "highlight": ["R45"]
+    },
+    {
+        "title": "🔁 Step 3: Combine R1 and R23 → R123",
+        "boxes": ["B+", "R123", "R45", "B-"],
+        "lines": [("B+", "R123"), ("R123", "R45"), ("R45", "B-")],
+        "highlight": ["R123"]
+    },
+    {
+        "title": "✅ Step 4: Final Result → R12345",
+        "boxes": ["B+", "R12345", "B-"],
+        "lines": [("B+", "R12345"), ("R12345", "B-")],
+        "highlight": ["R12345"]
+    }
+]
+
+# Highlight colors
+highlight_colors = {
+    "R23": "#FF6F61",      # orange red
+    "R45": "#76D7C4",      # mint
+    "R123": "#85C1E9",     # sky blue
+    "R12345": "#DDA0DD"    # orchid
+}
+
+# Drawing function
+def draw_step(step):
+    fig, ax = plt.subplots(figsize=(10, 4))
+    ax.set_xlim(-1, 11)
+    ax.set_ylim(-1, 5)
+    ax.axis("off")
+    ax.set_title(step["title"], fontsize=15, pad=15)
+
+    # Draw blocks
+    for box in step["boxes"]:
+        x, y = positions[box]
+        color = highlight_colors.get(box, "#D6DBDF") if box in step["highlight"] else "#F2F4F4"
+        rect = patches.FancyBboxPatch((x - 0.5, y - 0.5), 1, 1,
+                                      boxstyle="round,pad=0.1", edgecolor="#2C3E50",
+                                      facecolor=color, linewidth=1.5)
+        ax.add_patch(rect)
+        ax.text(x, y, box, ha="center", va="center", fontsize=11, weight="bold")
+
+    # Draw arrows
+    for u, v in step["lines"]:
+        x1, y1 = positions[u]
+        x2, y2 = positions[v]
+        ax.annotate("",
+                    xy=(x2, y2), xytext=(x1, y1),
+                    arrowprops=dict(arrowstyle="->", lw=1.8, color="#34495E"))
+
+    # Optional: description text below
+    ax.text(0, -0.8, "Each step simplifies the network using series/parallel reduction rules.",
+            fontsize=10, style='italic', color='gray')
+
+    plt.tight_layout()
+    plt.show()
+
+# Draw each step
+for step in steps:
+    draw_step(step)
+```
 
 
 
