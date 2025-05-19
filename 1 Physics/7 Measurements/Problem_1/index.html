@@ -172,6 +172,469 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<h1 id="measuring-earths-gravitational-acceleration-with-a-pendulum">📏 Measuring Earth's Gravitational Acceleration with a Pendulum</h1>
+<p><img alt="alt text" src="../pendulum_setup_clean.gif"/></p>
+<hr/>
+<h2 id="materials-setup">🧪 Materials &amp; Setup</h2>
+<h3 id="materials-needed">✅ Materials Needed</h3>
+<ul>
+<li>A <strong>string</strong> (~1 or 1.5 meters long)  </li>
+<li>A <strong>small weight</strong> (e.g., bag of coins, sugar, or a keychain)  </li>
+<li>A <strong>stopwatch</strong> or <strong>smartphone timer</strong> </li>
+<li>A <strong>ruler</strong> or <strong>measuring tape</strong> </li>
+</ul>
+<hr/>
+<h3 id="experimental-setup">🔧 Experimental Setup</h3>
+<ol>
+<li>
+<p><strong>Construct the Pendulum</strong><br/>
+   Attach the weight to one end of the string and secure the other end to a sturdy support, allowing it to swing freely.</p>
+</li>
+<li>
+<p><strong>Measure Pendulum Length</strong> </p>
+</li>
+<li>Measure the length <span class="arithmatex">\(L\)</span> from the <strong>suspension point</strong> to the <strong>center of mass</strong> of the weight.  </li>
+<li>
+<p>Record this value carefully using a ruler or tape measure.</p>
+</li>
+<li>
+<p><strong>Note Instrument Resolution</strong> </p>
+</li>
+<li>
+<p>Record the <strong>resolution</strong> of the measuring instrument (typically in centimeters or millimeters).</p>
+</li>
+<li>
+<p><strong>Calculate Uncertainty in Length Measurement</strong><br/>
+   Use the formula:</p>
+</li>
+</ol>
+<div class="arithmatex">\[\Delta L=\frac{\text{Resolution of Ruler}}{2}\]</div>
+<ul>
+<li>This represents the <strong>uncertainty</strong> due to the finite precision of your measuring tool.  </li>
+<li>For example, if the smallest division is 1 mm, then:<br/>
+<span class="arithmatex">\(<span class="arithmatex">\(\Delta L=\frac{1\,\text{mm}}{2}=0.5\,\text{mm}=0.0005\,\text{m}\)</span>\)</span></li>
+</ul>
+<hr/>
+<h3 id="summary-of-setup-values-example-format">📌 Summary of Setup Values (Example Format)</h3>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Symbol</th>
+<th>Value</th>
+<th>Units</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pendulum Length</td>
+<td><span class="arithmatex">\(L\)</span></td>
+<td>1.200</td>
+<td>m</td>
+<td>Measured from pivot to mass center</td>
+</tr>
+<tr>
+<td>Ruler Resolution</td>
+<td>–</td>
+<td>1</td>
+<td>mm</td>
+<td>Smallest readable unit</td>
+</tr>
+<tr>
+<td>Uncertainty in <span class="arithmatex">\(L\)</span></td>
+<td><span class="arithmatex">\(\Delta L\)</span></td>
+<td>0.0005</td>
+<td>m</td>
+<td><span class="arithmatex">\(\Delta L=\frac{1}{2}\,\text{mm}\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="data-collection">⏱️ Data Collection</h2>
+<h3 id="procedure">🌀 Procedure</h3>
+<ul>
+<li><strong>Displace</strong> the pendulum to an angle less than <span class="arithmatex">\(15^\circ\)</span> and release it gently.  </li>
+<li><strong>Measure the time</strong> it takes for <strong>10 full oscillations</strong>. Denote this time as <span class="arithmatex">\(T_{10}\)</span>.</li>
+<li><strong>Repeat the measurement</strong> a total of <strong>10 times</strong> to collect a reliable data set.</li>
+</ul>
+<hr/>
+<h3 id="record-measurements">🧾 Record Measurements</h3>
+<ul>
+<li>Collect and tabulate all <strong>10 values of</strong> <span class="arithmatex">\(T_{10}\)</span>.</li>
+<li>Use a table like the following:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Trial</th>
+<th><span class="arithmatex">\(T_{10}\)</span> (s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h3 id="statistical-analysis">📊 Statistical Analysis</h3>
+<p><img alt="alt text" src="../image.png"/></p>
+<hr/>
+<ol>
+<li><strong>Calculate the mean time for 10 oscillations:</strong></li>
+</ol>
+<div class="arithmatex">\[
+\overline{T}_{10} = \frac{1}{n} \sum_{i=1}^{n} T_{10}^{(i)}
+\]</div>
+<p>where <span class="arithmatex">\(n = 10\)</span> and <span class="arithmatex">\(T_{10}^{(i)}\)</span> is the time from the <span class="arithmatex">\(i^{\text{th}}\)</span> trial.</p>
+<ol>
+<li><strong>Compute the standard deviation</strong> of the <span class="arithmatex">\(T_{10}\)</span> values:</li>
+</ol>
+<div class="arithmatex">\[
+\sigma_T = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} \left(T_{10}^{(i)} - \overline{T}_{10}\right)^2}
+\]</div>
+<ol>
+<li><strong>Determine the uncertainty in the mean time:</strong></li>
+</ol>
+<div class="arithmatex">\[
+\Delta T_{10} = \frac{\sigma_T}{\sqrt{n}}
+\]</div>
+<p>This represents the <strong>standard error of the mean</strong>, which quantifies the precision of your mean timing result.</p>
+<hr/>
+<h3 id="example-output-table">🧮 Example Output Table</h3>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Symbol</th>
+<th>Formula</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mean of 10 times</td>
+<td><span class="arithmatex">\(\overline{T}_{10}\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{n} \sum T_{10}^{(i)}\)</span></td>
+<td>s</td>
+</tr>
+<tr>
+<td>Standard deviation</td>
+<td><span class="arithmatex">\(\sigma_T\)</span></td>
+<td><span class="arithmatex">\(\sqrt{\frac{1}{n-1} \sum (T_{10}-\overline{T}_{10})^2}\)</span></td>
+<td>s</td>
+</tr>
+<tr>
+<td>Uncertainty in mean</td>
+<td><span class="arithmatex">\(\Delta T_{10}\)</span></td>
+<td><span class="arithmatex">\(\frac{\sigma_T}{\sqrt{n}}\)</span></td>
+<td>s</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="analysis">📚 Analysis</h2>
+<hr/>
+<h3 id="comparison-with-standard-value">✅ Comparison with Standard Value</h3>
+<ul>
+<li>The experimentally determined value of gravitational acceleration is:</li>
+</ul>
+<div class="arithmatex">\[
+g_{\text{measured}} = \frac{4\pi^2 L}{T^2}
+\]</div>
+<ul>
+<li>The <strong>standard accepted value</strong> is:</li>
+</ul>
+<div class="arithmatex">\[
+g_{\text{standard}} = 9.81\, \text{m/s}^2
+\]</div>
+<ul>
+<li>Compare the measured value of <span class="arithmatex">\(g\)</span> with <span class="arithmatex">\(9.81\, \text{m/s}^2\)</span>.</li>
+<li>If the two values agree <strong>within the uncertainty</strong> <span class="arithmatex">\(\Delta g\)</span>, the experiment can be considered successful.</li>
+<li>Consider the relative error:</li>
+</ul>
+<div class="arithmatex">\[
+\text{Relative Error} = \frac{|g_{\text{measured}} - g_{\text{standard}}|}{g_{\text{standard}}} \times 100\%
+\]</div>
+<hr/>
+<h3 id="uncertainty-discussion">🧾 Uncertainty Discussion</h3>
+<h4 id="effect-of-measurement-resolution-on-delta-l">🔬 Effect of Measurement Resolution on <span class="arithmatex">\(\Delta L\)</span></h4>
+<ul>
+<li>The uncertainty in length, <span class="arithmatex">\(\Delta L\)</span>, is directly related to the <strong>resolution of the measuring instrument</strong>:</li>
+</ul>
+<div class="arithmatex">\[
+\Delta L = \frac{\text{Resolution}}{2}
+\]</div>
+<ul>
+<li>If the ruler has a coarse resolution (e.g., 1 cm), this increases <span class="arithmatex">\(\Delta L\)</span>, and in turn, increases the total uncertainty <span class="arithmatex">\(\Delta g\)</span> via:</li>
+</ul>
+<div class="arithmatex">\[
+\Delta g \propto \frac{\Delta L}{L}
+\]</div>
+<ul>
+<li><strong>Better measuring tools</strong> (e.g., a caliper or laser ruler) would reduce <span class="arithmatex">\(\Delta L\)</span> and improve the accuracy of <span class="arithmatex">\(g\)</span>.</li>
+</ul>
+<hr/>
+<h4 id="impact-of-timing-variability-on-delta-t">⏱️ Impact of Timing Variability on <span class="arithmatex">\(\Delta T\)</span></h4>
+<ul>
+<li>The time measurements are <strong>subjective</strong> if done manually, leading to random errors.</li>
+<li>Timing variability is quantified by the <strong>standard deviation</strong> <span class="arithmatex">\(\sigma_T\)</span> and the uncertainty in the mean:</li>
+</ul>
+<div class="arithmatex">\[
+\Delta T = \frac{\sigma_T}{\sqrt{n} \cdot 10}
+\]</div>
+<ul>
+<li>This impacts the uncertainty in <span class="arithmatex">\(g\)</span> quadratically:</li>
+</ul>
+<div class="arithmatex">\[
+\Delta g \propto 2 \cdot \frac{\Delta T}{T}
+\]</div>
+<ul>
+<li><strong>Using photogates or electronic timers</strong> would minimize this variability significantly.</li>
+</ul>
+<hr/>
+<h3 id="assumptions-and-limitations">⚠️ Assumptions and Limitations</h3>
+<ul>
+<li>The angle of release is <strong>assumed to be small</strong> (<span class="arithmatex">\(&lt; 15^\circ\)</span>) so that the pendulum follows <strong>simple harmonic motion</strong>.</li>
+<li>Air resistance and friction at the pivot are <strong>neglected</strong>.</li>
+<li>The string is assumed to be <strong>massless and inextensible</strong>.</li>
+<li>The center of mass of the bob is assumed to be <strong>clearly defined and accurately measurable</strong>.</li>
+<li>Human reaction time introduces <strong>systematic uncertainty</strong> in timing.</li>
+</ul>
+<hr/>
+<h3 id="conclusion">📌 Conclusion</h3>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<hr/>
+<ul>
+<li>Ensure that the final reported value of <span class="arithmatex">\(g\)</span> is written with its <strong>uncertainty</strong>:</li>
+</ul>
+<div class="arithmatex">\[
+g = g_{\text{measured}} \pm \Delta g \quad \text{(in m/s}^2\text{)}
+\]</div>
+<ul>
+<li>Evaluate whether this range includes the accepted value <span class="arithmatex">\(9.81\, \text{m/s}^2\)</span>.</li>
+</ul>
+<hr/>
+<h2 id="python-codes">Python Codes</h2>
+<pre><code class="language-python"># ▶️ Install required library (only needed once in Colab)
+!pip install -q pillow
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation, PillowWriter
+
+# === Physics Constants ===
+L = 1.2  # Pendulum length in meters
+theta_max = np.radians(15)  # Max angular displacement
+g = 9.81  # Gravitational acceleration
+omega = np.sqrt(g / L)
+period = 2 * np.pi * np.sqrt(L / g)
+t_vals = np.linspace(0, 2 * period, 100)
+
+# === Set up figure and axis ===
+fig, ax = plt.subplots(figsize=(6, 6))
+ax.set_xlim(-1.4, 1.4)
+ax.set_ylim(-1.6, 0.4)
+ax.set_aspect('equal')
+ax.axis('off')  # Hide axes
+
+# === Pendulum Graphics ===
+line, = ax.plot([], [], lw=3, color='#0077b6')
+bob = plt.Circle((0, -L), 0.06, color='#f72585', zorder=5)
+ax.add_patch(bob)
+
+# === Static Text Annotations (positioned safely outside swing) ===
+length_label = ax.text(0, 0.3, "$L = 1.2\\,\\mathrm{m}$", fontsize=13,
+                       ha='center', bbox=dict(facecolor='wheat', edgecolor='black'))
+
+angle_label = ax.text(1.1, -1.3, "", fontsize=12, color='black',
+                      bbox=dict(facecolor='lightgray', edgecolor='gray'))
+
+# === Animation Function ===
+def animate(i):
+    t = t_vals[i]
+    theta = theta_max * np.cos(omega * t)
+
+    x = L * np.sin(theta)
+    y = -L * np.cos(theta)
+
+    # Update pendulum position
+    line.set_data([0, x], [0, y])
+    bob.center = (x, y)
+
+    # Update angle text
+    angle_deg = np.degrees(theta)
+    angle_label.set_text(f"$\\theta = {angle_deg:.1f}^\\circ$")
+
+    return line, bob, angle_label
+
+# === Create Animation ===
+ani = FuncAnimation(fig, animate, frames=len(t_vals), interval=50, blit=True)
+
+# Save as GIF
+gif_path = "/content/pendulum_setup_clean.gif"
+ani.save(gif_path, writer=PillowWriter(fps=20))
+plt.close()
+
+# Display GIF
+from IPython.display import Image
+Image(filename=gif_path)
+</code></pre>
+<hr/>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+# === 🔢 Input Your Experimental Results ===
+g_measured = 9.77        # replace with your measured g
+delta_g = 0.10           # replace with your uncertainty in g
+g_standard = 9.81        # standard gravity
+
+# === ⚙️ Data Setup ===
+positions = [0, 1]
+labels = ['Measured $g$', 'Standard $g$']
+values = [g_measured, g_standard]
+errors = [delta_g, 0]  # Only measured g has uncertainty
+
+colors = ['#00b4d8', '#90be6d']  # measured and standard
+
+# === 📊 Create Plot ===
+fig, ax = plt.subplots(figsize=(10, 6))
+
+bars = ax.bar(
+    positions,
+    values,
+    yerr=errors,
+    capsize=10,
+    color=colors,
+    edgecolor='black',
+    alpha=0.9
+)
+
+# === 📍 Annotate Bars ===
+ax.text(
+    positions[0], g_measured + delta_g + 0.1,
+    f"$g_{{measured}} = {g_measured:.2f} \pm {delta_g:.2f}$ m/s²",
+    ha='center',
+    fontsize=12,
+    bbox=dict(boxstyle="round,pad=0.4", fc="#ffd6a5", ec="black", alpha=0.85)
+)
+
+ax.text(
+    positions[1], g_standard + 0.1,
+    f"$g_{{standard}} = {g_standard:.2f}$ m/s²",
+    ha='center',
+    fontsize=12,
+    bbox=dict(boxstyle="round,pad=0.4", fc="#d0f4de", ec="black", alpha=0.85)
+)
+
+# === 📘 Additional Explanation ===
+ax.annotate(
+    "Uncertainty range\n(± Δg)",
+    xy=(0, g_measured + delta_g),
+    xytext=(0.1, g_measured + delta_g + 0.6),
+    arrowprops=dict(arrowstyle="-&gt;", color='black'),
+    fontsize=11,
+    bbox=dict(boxstyle="round", fc="#fefae0", ec="gray", alpha=0.9)
+)
+
+# === 🎨 Styling ===
+ax.set_title("🌍 Comparison of Measured vs Standard Gravitational Acceleration", fontsize=16, weight='bold')
+ax.set_ylabel("Gravitational Acceleration (m/s²)", fontsize=13)
+ax.set_xticks(positions)
+ax.set_xticklabels(labels, fontsize=12)
+ax.set_ylim(0, max(g_measured + delta_g, g_standard) + 1)
+
+# Add horizontal reference line
+ax.axhline(g_standard, color='#6a994e', linestyle='--', linewidth=1.5, alpha=0.7)
+
+# Grid
+ax.yaxis.grid(True, linestyle='--', alpha=0.5)
+
+# Final layout
+plt.tight_layout()
+plt.show()
+</code></pre>
+<hr/>
+<pre><code class="language-python"># ✅ Pendulum Gravity Measurement Tool with Beautiful Plot
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 📥 Your 10 measurements of T_10 (in seconds)
+T_10_measurements = np.array([21.40, 21.52, 21.47, 21.35, 21.60, 21.43, 21.50, 21.44, 21.38, 21.46])
+
+# ⚙️ Constants
+n = len(T_10_measurements)
+ruler_resolution_mm = 1.0           # mm
+L = 1.200                           # pendulum length in meters
+delta_L = (ruler_resolution_mm / 1000) / 2  # Convert mm to m, divide by 2
+
+# 📊 Stats calculations
+T10_mean = np.mean(T_10_measurements)
+sigma_T = np.std(T_10_measurements, ddof=1)
+delta_T10 = sigma_T / np.sqrt(n)
+
+T = T10_mean / 10
+delta_T = delta_T10 / 10
+
+g = (4 * np.pi**2 * L) / (T**2)
+delta_g = g * np.sqrt((delta_L / L)**2 + (2 * delta_T / T)**2)
+
+# 🖨️ Results
+print("=== Results ===")
+print(f"Mean T_10 = {T10_mean:.4f} s")
+print(f"Standard deviation σ_T = {sigma_T:.4f} s")
+print(f"Uncertainty in mean ΔT_10 = {delta_T10:.4f} s")
+print(f"Single period T = {T:.4f} ± {delta_T:.4f} s")
+print(f"g = {g:.4f} ± {delta_g:.4f} m/s²")
+
+# 🎨 Plot
+fig, ax = plt.subplots(figsize=(10, 6))
+x = np.arange(1, n + 1)
+
+# Error bars and points
+ax.errorbar(x, T_10_measurements, yerr=delta_T10, fmt='o', color='teal',
+            ecolor='salmon', elinewidth=2, capsize=5, label='T₁₀ Measurements')
+
+# Mean line
+ax.axhline(T10_mean, color='orange', linestyle='--', linewidth=2, label=f'Mean = {T10_mean:.2f} s')
+
+# Labels and Title
+ax.set_title("Pendulum Timing Measurements ($T_{10}$)", fontsize=16, weight='bold')
+ax.set_xlabel("Trial Number", fontsize=13)
+ax.set_ylabel("Time for 10 Oscillations (s)", fontsize=13)
+ax.grid(True, linestyle='--', alpha=0.5)
+ax.legend(fontsize=12)
+
+# Annotation box
+textstr = '\n'.join((
+    f'$\overline{{T_{{10}}}}$ = {T10_mean:.2f} s',
+    f'$\sigma_T$ = {sigma_T:.3f} s',
+    f'$\\Delta T_{{10}}$ = {delta_T10:.3f} s',
+    f'$T$ = {T:.3f} s ± {delta_T:.3f} s',
+    f'$g$ = {g:.3f} ± {delta_g:.3f} m/s²'
+))
+props = dict(boxstyle='round', facecolor='wheat', alpha=0.8)
+ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=12,
+        verticalalignment='top', bbox=props)
+
+plt.tight_layout()
+plt.show()
+</code></pre>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
