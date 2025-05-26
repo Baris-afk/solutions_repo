@@ -82,7 +82,8 @@ We aim to design an algorithm that calculates the **equivalent resistance** of a
 
 ### ➕ Series Connection Detection
 
-![alt text](image-2.png)
+![alt text](image-1.png)
+
 ---
 
 - A **series** configuration occurs when:
@@ -98,7 +99,7 @@ We aim to design an algorithm that calculates the **equivalent resistance** of a
 
 ### 🔁 Parallel Connection Detection
 
-![alt text](image-3.png)
+
 
 ---
 
