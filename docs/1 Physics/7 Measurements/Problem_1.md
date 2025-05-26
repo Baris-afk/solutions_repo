@@ -64,6 +64,7 @@ $$\Delta T=\frac{\Delta T_{10}}{10}=\frac{0.013}{10}=0.0013\ \text{s}$$
 ## 4. Gravitational Acceleration Calculation
 
 Using the formula:  
+
 $$g=\frac{4\pi^2L}{T^2}$$
 
 - $$g=\frac{4\pi^2\cdot1.2}{(2.212)^2}\approx9.65\ \text{m/s}^2$$
@@ -83,6 +84,7 @@ $$
 - $$\Delta g\approx9.65\cdot\sqrt{(0.00042)^2+(2\cdot0.00059)^2}\approx0.011\ \text{m/s}^2$$
 
 - **Final Result:**  
+
 $$g=9.65\pm0.01\ \text{m/s}^2$$
 
 ## 6. Analysis
