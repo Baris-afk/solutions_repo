@@ -93,4 +93,4 @@ $$g=9.65\pm0.01\ \text{m/s}^2$$
 - **Assumptions made:**  
   - The pendulum swings in a perfect arc.  
   - Air resistance and friction at the pivot are negligible.  
-  - The swing angle is less than 15°.
+  - The swing angle is less than 15°
