@@ -293,7 +293,15 @@ $$
 
 ## Visual
 
+![alt text](image.png)
+
+---
+
 ![alt text](image-4.png)
+
+---
+
+![alt text](image-5.png)
 
 ---
 
@@ -301,15 +309,7 @@ $$
 
 ---
 
-![alt text](image-11.png)
-
----
-
-![alt text](image-12.png)
-
----
-
-![alt text](image-13.png)
+![alt text](image-7.png)
 
 
 
@@ -391,7 +391,8 @@ $$
 
 ### 📈 Visualization 
 
-![alt text](<circuit_simplification (1).gif>)
+![alt text](circuit_animation.gif)
+
 ---
 
 ## ✅ Summary
@@ -825,7 +826,6 @@ for step in steps:
 ---
 
 ```python
-# ✅ Final Mixed Circuit Visualization with Edge Labels and Formulas
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
@@ -836,13 +836,13 @@ resistor_values = {
     "R3": 30,
     "R4": 40,
     "R5": 50,
-    "R23": 1 / (1 / 20 + 1 / 30),           # ≈12
-    "R45": 40 + 50,                         # 90
-    "R123": 10 + (1 / (1 / 20 + 1 / 30)),   # ≈22
+    "R23": 1 / (1 / 20 + 1 / 30),             # ≈12
+    "R45": 40 + 50,                           # 90
+    "R123": 10 + (1 / (1 / 20 + 1 / 30)),     # ≈22
     "R12345": 10 + (1 / (1 / 20 + 1 / 30)) + 40 + 50  # ≈112
 }
 
-# Positions of nodes
+# Node positions
 positions = {
     "B+": (0, 2),
     "R1": (2, 0.5),
@@ -857,7 +857,7 @@ positions = {
     "B-": (10, 2)
 }
 
-# Simplification steps
+# Circuit simplification steps
 steps = [
     {
         "title": "🔰 Step 0: Initial Circuit",
@@ -865,10 +865,6 @@ steps = [
         "lines": [("B+", "R2"), ("R2", "R3"), ("R3", "R4"),
                   ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
         "highlight": [],
-        "label_lines": {
-            ("B+", "R2"): "R2", ("R2", "R3"): "R3", ("R3", "R4"): "R4",
-            ("B+", "R1"): "R1", ("R1", "R4"): "R4", ("R4", "R5"): "R5", ("R5", "B-"): "R5"
-        },
         "formula": "R23 = (R2 || R3) = 12.00Ω"
     },
     {
@@ -877,10 +873,6 @@ steps = [
         "lines": [("B+", "R23"), ("R23", "R4"),
                   ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
         "highlight": ["R23"],
-        "label_lines": {
-            ("B+", "R23"): "R23", ("R23", "R4"): "R23",
-            ("B+", "R1"): "R1", ("R1", "R4"): "R4", ("R4", "R5"): "R5", ("R5", "B-"): "R5"
-        },
         "formula": "R45 = R4 + R5 = 40Ω + 50Ω = 90.00Ω"
     },
     {
@@ -889,10 +881,6 @@ steps = [
         "lines": [("B+", "R23"), ("R23", "R45"),
                   ("B+", "R1"), ("R1", "R45"), ("R45", "B-")],
         "highlight": ["R45"],
-        "label_lines": {
-            ("B+", "R23"): "R23", ("R23", "R45"): "R23",
-            ("B+", "R1"): "R1", ("R1", "R45"): "R4", ("R45", "B-"): "R45"
-        },
         "formula": "R123 = R1 + R23 = 10Ω + 12Ω = 22.00Ω"
     },
     {
@@ -900,9 +888,6 @@ steps = [
         "boxes": ["B+", "R123", "R45", "B-"],
         "lines": [("B+", "R123"), ("R123", "R45"), ("R45", "B-")],
         "highlight": ["R123"],
-        "label_lines": {
-            ("B+", "R123"): "R123", ("R123", "R45"): "R123", ("R45", "B-"): "R45"
-        },
         "formula": "R12345 = R123 + R45 = 22Ω + 90Ω = 112.00Ω"
     },
     {
@@ -910,9 +895,6 @@ steps = [
         "boxes": ["B+", "R12345", "B-"],
         "lines": [("B+", "R12345"), ("R12345", "B-")],
         "highlight": ["R12345"],
-        "label_lines": {
-            ("B+", "R12345"): "R12345", ("R12345", "B-"): "R12345"
-        },
         "formula": "R_eq = 112.00Ω"
     }
 ]
@@ -930,9 +912,9 @@ def draw_step(step):
     ax.set_xlim(-1, 11)
     ax.set_ylim(-1, 5)
     ax.axis("off")
-    ax.set_title(step["title"], fontsize=13, pad=10, weight='bold', color="#2C3E50")
+    ax.set_title(step["title"], fontsize=13, weight='bold', pad=10, color="#2C3E50")
 
-    # Draw boxes
+    # Draw resistor boxes
     for box in step["boxes"]:
         x, y = positions[box]
         color = highlight_colors.get(box, "#D6DBDF") if box in step["highlight"] else "#F2F4F4"
@@ -940,30 +922,28 @@ def draw_step(step):
                                       boxstyle="round,pad=0.1", edgecolor="#2C3E50",
                                       facecolor=color, linewidth=2)
         ax.add_patch(rect)
-        ax.text(x, y, box, ha="center", va="center", fontsize=9, weight="bold", color="#34495E")
 
-    # Draw connections
+        # Label with name + Ohm if available
+        if box in resistor_values:
+            label = f"{box}\n{resistor_values[box]:.2f}Ω"
+        else:
+            label = box
+        ax.text(x, y, label, ha="center", va="center", fontsize=9, weight="bold", color="#34495E")
+
+    # Draw connections (no labels)
     for u, v in step["lines"]:
         x1, y1 = positions[u]
         x2, y2 = positions[v]
-        mx, my = (x1 + x2) / 2, (y1 + y2) / 2
-        ax.annotate("",
-                    xy=(x2, y2), xytext=(x1, y1),
+        ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
                     arrowprops=dict(arrowstyle="->", lw=2, color="#566573"))
 
-        if "label_lines" in step:
-            key = (u, v) if (u, v) in step["label_lines"] else (v, u)
-            rname = step["label_lines"].get(key)
-            if rname and rname in resistor_values:
-                rlabel = f"R = {resistor_values[rname]:.2f}Ω"
-                ax.text(mx, my + 0.25, rlabel, ha="center", va="center",
-                        fontsize=9, color="#7D3C98", weight='bold')
-
+    # Draw formula
     ax.text(0, -0.5, step["formula"], fontsize=10, weight='bold', color='#1F618D')
+
     plt.tight_layout()
     plt.show()
 
-# 🖼️ Draw all simplification steps
+# Draw all steps
 for step in steps:
     draw_step(step)
 ```
