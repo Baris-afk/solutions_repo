@@ -262,8 +262,7 @@ R_{\text{eq(series)}} = R_1 + R_2 + R_3 + \dots + R_n
 <hr/>
 <h2 id="key-concepts_1">🧠 Key Concepts</h2>
 <h3 id="series-connection-detection">➕ Series Connection Detection</h3>
-<p><img alt="alt text" src="../image-1.png"/></p>
-<hr/>
+<h2 id="_1"><img alt="alt text" src="../image-9.png"/></h2>
 <ul>
 <li>A <strong>series</strong> configuration occurs when:</li>
 <li>Two resistors share a <strong>common node</strong> of <strong>degree 2</strong>.</li>
@@ -275,7 +274,7 @@ R_{\text{eq(series)}} = R_1 + R_2 + R_3 + \dots + R_n
   $$</p>
 <hr/>
 <h3 id="parallel-connection-detection">🔁 Parallel Connection Detection</h3>
-<p><img alt="alt text" src="../image-2.png"/></p>
+<p><img alt="alt text" src="../image-8.png"/></p>
 <hr/>
 <ul>
 <li>A <strong>parallel</strong> configuration exists when:</li>
@@ -295,28 +294,8 @@ R_{\text{eq(series)}} = R_1 + R_2 + R_3 + \dots + R_n
 <li>Repeat until no more simplifications are possible.</li>
 </ol>
 <hr/>
-<h2 id="pseudocode-resistance-reduction-algorithm">🧾 Pseudocode: Resistance Reduction Algorithm</h2>
-<pre><code class="language-pseudo">function compute_equivalent_resistance(graph G):
-    while G has more than two nodes:
-        for each node v in G:
-            if degree(v) == 2:
-                u, w = neighbors of v
-                if edge(u, v) and edge(v, w) exist:
-                    R1 = weight of edge(u, v)
-                    R2 = weight of edge(v, w)
-                    replace with edge(u, w) with weight R1 + R2
-                    remove node v and its incident edges
-        for each pair of nodes (u, v):
-            if multiple edges exist between u and v:
-                Let R1, R2, ..., Rn be the weights of all edges(u, v)
-                compute R_eq using:
-                    1 / R_eq = 1 / R1 + 1 / R2 + ... + 1 / Rn
-                replace all edges(u, v) with a single edge of weight R_eq
-    return weight of final edge between terminals
-</code></pre>
-<hr/>
 <h2 id="handling-nested-combinations">🔄 Handling Nested Combinations</h2>
-<h2 id="_1"><img alt="alt text" src="../image-3.png"/></h2>
+<h2 id="_2"><img alt="alt text" src="../image-10.png"/></h2>
 <ul>
 <li><strong>Nested structures</strong> (e.g. series within parallel) are simplified <strong>recursively</strong> or by <strong>repeated iteration</strong>.</li>
 <li>The graph is dynamically updated:</li>
@@ -574,7 +553,7 @@ R_{\text{eq}} = R_1 + R_{BC} + R_4 = 5 + \frac{20}{3} + 5 = \frac{50}{3} \approx
 </ul>
 <hr/>
 <h3 id="visualization">📈 Visualization</h3>
-<p><img alt="alt text" src="../circuit_animation.gif"/></p>
+<p><img alt="alt text" src="../circuit_animation%20%282%29.gif"/></p>
 <hr/>
 <h2 id="summary_3">✅ Summary</h2>
 <table>
@@ -605,23 +584,33 @@ R_{\text{eq}} = R_1 + R_{BC} + R_4 = 5 + \frac{20}{3} + 5 = \frac{50}{3} \approx
 </table>
 <p>This phase ensures the algorithm isn't just <strong>correct</strong>, but also <strong>efficient</strong>, <strong>scalable</strong>, and <strong>educationally valuable</strong> in practice.</p>
 <h2 id="python-codes">Python Codes</h2>
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-import matplotlib.animation as animation
+<pre><code class="language-python"># 📦 Install required package (if not already available)
+!pip install imageio --quiet
 
-# Resistor values (Ohms)
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import imageio.v2 as imageio
+import os
+
+# === Setup ===
+output_folder = "frames"
+gif_name = "circuit_animation.gif"
+os.makedirs(output_folder, exist_ok=True)
+
+# Resistor values
 resistor_values = {
     "R1": 10,
     "R2": 20,
     "R3": 30,
     "R4": 40,
     "R5": 50,
-    "R23": 1 / (1 / 20 + 1 / 30),
-    "R45": 40 + 50,
-    "R123": 10 + (1 / (1 / 20 + 1 / 30)),
-    "R12345": 10 + (1 / (1 / 20 + 1 / 30)) + 40 + 50
+    "R23": 1 / (1 / 20 + 1 / 30),             # ≈12
+    "R45": 40 + 50,                           # 90
+    "R123": 10 + (1 / (1 / 20 + 1 / 30)),     # ≈22
+    "R12345": 10 + (1 / (1 / 20 + 1 / 30)) + 40 + 50  # ≈112
 }
 
+# Node positions
 positions = {
     "B+": (0, 2),
     "R1": (2, 0.5),
@@ -636,6 +625,7 @@ positions = {
     "B-": (10, 2)
 }
 
+# Circuit simplification steps
 steps = [
     {
         "title": "🔰 Step 0: Initial Circuit",
@@ -643,10 +633,6 @@ steps = [
         "lines": [("B+", "R2"), ("R2", "R3"), ("R3", "R4"),
                   ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
         "highlight": [],
-        "label_lines": {
-            ("B+", "R2"): "R2", ("R2", "R3"): "R3", ("R3", "R4"): "R4",
-            ("B+", "R1"): "R1", ("R1", "R4"): "R4", ("R4", "R5"): "R5", ("R5", "B-"): "R5"
-        },
         "formula": "R23 = (R2 || R3) = 12.00Ω"
     },
     {
@@ -655,10 +641,6 @@ steps = [
         "lines": [("B+", "R23"), ("R23", "R4"),
                   ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
         "highlight": ["R23"],
-        "label_lines": {
-            ("B+", "R23"): "R23", ("R23", "R4"): "R23",
-            ("B+", "R1"): "R1", ("R1", "R4"): "R4", ("R4", "R5"): "R5", ("R5", "B-"): "R5"
-        },
         "formula": "R45 = R4 + R5 = 90.00Ω"
     },
     {
@@ -667,10 +649,6 @@ steps = [
         "lines": [("B+", "R23"), ("R23", "R45"),
                   ("B+", "R1"), ("R1", "R45"), ("R45", "B-")],
         "highlight": ["R45"],
-        "label_lines": {
-            ("B+", "R23"): "R23", ("R23", "R45"): "R23",
-            ("B+", "R1"): "R1", ("R1", "R45"): "R4", ("R45", "B-"): "R45"
-        },
         "formula": "R123 = R1 + R23 = 22.00Ω"
     },
     {
@@ -678,23 +656,18 @@ steps = [
         "boxes": ["B+", "R123", "R45", "B-"],
         "lines": [("B+", "R123"), ("R123", "R45"), ("R45", "B-")],
         "highlight": ["R123"],
-        "label_lines": {
-            ("B+", "R123"): "R123", ("R123", "R45"): "R123", ("R45", "B-"): "R45"
-        },
         "formula": "R12345 = R123 + R45 = 112.00Ω"
     },
     {
-        "title": "✅ Final Result: R12345",
+        "title": "✅ Step 4: Final Equivalent Resistance",
         "boxes": ["B+", "R12345", "B-"],
         "lines": [("B+", "R12345"), ("R12345", "B-")],
         "highlight": ["R12345"],
-        "label_lines": {
-            ("B+", "R12345"): "R12345", ("R12345", "B-"): "R12345"
-        },
         "formula": "R_eq = 112.00Ω"
     }
 ]
 
+# Colors for highlighted resistors
 highlight_colors = {
     "R23": "#FF6F61",
     "R45": "#76D7C4",
@@ -702,15 +675,15 @@ highlight_colors = {
     "R12345": "#DDA0DD"
 }
 
-# Draw frame for animation
-def draw_frame(i):
-    step = steps[i]
-    ax.clear()
+# Drawing function
+def draw_step(step, step_idx):
+    fig, ax = plt.subplots(figsize=(11, 4.5))
     ax.set_xlim(-1, 11)
     ax.set_ylim(-1, 5)
     ax.axis("off")
-    ax.set_title(step["title"], fontsize=13, pad=10, weight='bold', color="#2C3E50")
+    ax.set_title(step["title"], fontsize=13, weight='bold', pad=10, color="#2C3E50")
 
+    # Draw resistor boxes
     for box in step["boxes"]:
         x, y = positions[box]
         color = highlight_colors.get(box, "#D6DBDF") if box in step["highlight"] else "#F2F4F4"
@@ -718,179 +691,110 @@ def draw_frame(i):
                                       boxstyle="round,pad=0.1", edgecolor="#2C3E50",
                                       facecolor=color, linewidth=2)
         ax.add_patch(rect)
-        ax.text(x, y, box, ha="center", va="center", fontsize=9, weight="bold", color="#34495E")
+        label = f"{box}\n{resistor_values[box]:.2f}Ω" if box in resistor_values else box
+        ax.text(x, y, label, ha="center", va="center", fontsize=9, weight="bold", color="#34495E")
 
+    # Draw connections
     for u, v in step["lines"]:
         x1, y1 = positions[u]
         x2, y2 = positions[v]
-        mx, my = (x1 + x2) / 2, (y1 + y2) / 2
-        ax.annotate("",
-                    xy=(x2, y2), xytext=(x1, y1),
+        ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
                     arrowprops=dict(arrowstyle="-&gt;", lw=2, color="#566573"))
 
-        if "label_lines" in step:
-            key = (u, v) if (u, v) in step["label_lines"] else (v, u)
-            rname = step["label_lines"].get(key)
-            if rname and rname in resistor_values:
-                rlabel = f"R = {resistor_values[rname]:.2f}Ω"
-                ax.text(mx, my + 0.25, rlabel, ha="center", va="center",
-                        fontsize=9, color="#7D3C98", weight='bold')
-
+    # Formula under the diagram
     ax.text(0, -0.5, step["formula"], fontsize=10, weight='bold', color='#1F618D')
+    plt.tight_layout()
 
-# Create the animation
-fig, ax = plt.subplots(figsize=(11, 4.5))
-ani = animation.FuncAnimation(fig, draw_frame, frames=len(steps), interval=1500, repeat=True)
+    # Save frame
+    path = os.path.join(output_folder, f"step_{step_idx}.png")
+    fig.savefig(path)
+    plt.close(fig)
+    return path
 
-# Save to GIF
-gif_path = "/content/circuit_simplification.gif"
-ani.save(gif_path, writer="pillow", fps=1)
+# Generate images
+image_paths = [draw_step(step, i) for i, step in enumerate(steps)]
 
+# Create GIF (15 fps, but each frame held 45 frames ≈ 3 seconds)
+frames = []
+for img_path in image_paths:
+    frame = imageio.imread(img_path)
+    frames.extend([frame] * 45)  # 15 fps × 3 seconds = 45 copies
+
+imageio.mimsave(gif_name, frames, fps=15)
+print("✅ GIF created successfully!")
+
+# Show GIF in Colab
 from IPython.display import Image
-Image(filename=gif_path)
+Image(filename=gif_name)
 </code></pre>
 <hr/>
-<pre><code class="language-python"># ✅ Final Clean Circuit Diagrams with Small Fonts and Beautiful Layout
-import matplotlib.pyplot as plt
+<pre><code class="language-python">import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-# Resistor values (Ohms)
-resistor_values = {
-    "R1": 10,
-    "R2": 20,
-    "R3": 30,
-    "Req_series": 10 + 20 + 30,
-    "Req_parallel": 1 / (1 / 10 + 1 / 20)
-}
+# === Setup resistor names ===
+resistor_names_series = ["R1", "R2", "R3"]
+resistor_names_parallel = ["R1", "R2"]
 
-# Layouts with wider spacing
+# === Node positions ===
 positions_series = {
     "A": (0, 2),
     "R1": (2, 2),
     "R2": (4, 2),
     "R3": (6, 2),
-    "Req": (4, 2),
     "B": (8, 2)
 }
 
 positions_parallel = {
     "A": (0, 2),
-    "R1": (2, 3.2),
-    "R2": (2, 0.8),
-    "Req": (2, 2),
+    "R1": (2, 3),
+    "R2": (2, 1),
     "B": (4, 2)
 }
 
-highlight_colors = {"Req": "#BB8FCE"}
-
-line_labels_series = {
-    ("A", "R1"): "R1",
-    ("R1", "R2"): "R2",
-    ("R2", "R3"): "R3",
-    ("R3", "B"): "R3"
-}
-
-line_labels_parallel = {
-    ("A", "R1"): "R1",
-    ("R1", "B"): "R1",
-    ("A", "R2"): "R2",
-    ("R2", "B"): "R2"
-}
-
-# Drawing function
-def draw_valued_circuit(title, boxes, lines, highlight=[], positions=None, line_labels=None, note="", formula=""):
-    fig, ax = plt.subplots(figsize=(11, 5))
+# === Drawing function (no values shown) ===
+def draw_circuit_no_values(title, boxes, lines, positions):
+    fig, ax = plt.subplots(figsize=(10, 4))
     ax.set_xlim(-1, 9)
-    ax.set_ylim(-0.5, 5.5)
+    ax.set_ylim(0, 4.5)
     ax.axis("off")
     ax.set_title(title, fontsize=13, pad=10, weight='bold', color="#2C3E50")
 
-    # Boxes
     for box in boxes:
         x, y = positions[box]
-        color = highlight_colors.get(box, "#D6DBDF") if box in highlight else "#F2F4F4"
         rect = patches.FancyBboxPatch(
             (x - 0.3, y - 0.3), 0.6, 0.6,
             boxstyle="round,pad=0.1",
             edgecolor="#2C3E50",
-            facecolor=color,
-            linewidth=1.8
+            facecolor="#F2F4F4",
+            linewidth=2
         )
         ax.add_patch(rect)
-        ax.text(x, y, box, ha="center", va="center", fontsize=9, weight='bold', color="#34495E")
+        ax.text(x, y, box, ha="center", va="center", fontsize=10, weight="bold", color="#34495E")
 
-    # Arrows + edge labels
     for u, v in lines:
         x1, y1 = positions[u]
         x2, y2 = positions[v]
-        mx, my = (x1 + x2) / 2, (y1 + y2) / 2
-
         ax.annotate("",
-            xy=(x2, y2), xytext=(x1, y1),
-            arrowprops=dict(arrowstyle="-&gt;", lw=2, color="#566573"))
+                    xy=(x2, y2), xytext=(x1, y1),
+                    arrowprops=dict(arrowstyle="-&gt;", lw=2, color="#566573"))
 
-        if line_labels:
-            key = (u, v) if (u, v) in line_labels else (v, u)
-            if key in line_labels:
-                rname = line_labels[key]
-                if rname in resistor_values:
-                    rlabel = f"R = {resistor_values[rname]:.2f}Ω"
-                    offset = 0.25 if abs(y2 - y1) &lt; 0.1 else 0.15
-                    ax.text(mx, my + offset, rlabel, ha="center", va="center",
-                            fontsize=9, color="#7D3C98", weight='bold')
-
-    ax.text(0, -0.2, note, fontsize=9, style='italic', color='gray')
-    ax.text(0, -0.45, formula, fontsize=10, weight='bold', color='#1F618D')
     plt.tight_layout()
     plt.show()
 
-# Values
-R1, R2, R3 = resistor_values["R1"], resistor_values["R2"], resistor_values["R3"]
-R_eq_series = resistor_values["Req_series"]
-R_eq_parallel = resistor_values["Req_parallel"]
-
-# Series Step 1
-draw_valued_circuit(
-    "🔰 Series Connection – Step 1",
-    ["A", "R1", "R2", "R3", "B"],
-    [("A", "R1"), ("R1", "R2"), ("R2", "R3"), ("R3", "B")],
-    positions=positions_series,
-    line_labels=line_labels_series,
-    note="Three resistors connected in series.",
-    formula=f"R_eq = {R1}Ω + {R2}Ω + {R3}Ω = {R_eq_series:.2f}Ω"
+# === Series Connection ===
+draw_circuit_no_values(
+    title="🔗 Series Connection",
+    boxes=["A"] + resistor_names_series + ["B"],
+    lines=[("A", "R1"), ("R1", "R2"), ("R2", "R3"), ("R3", "B")],
+    positions=positions_series
 )
 
-# Series Step 2
-draw_valued_circuit(
-    "✅ Series Connection – Step 2: Simplified Req",
-    ["A", "Req", "B"],
-    [("A", "Req"), ("Req", "B")],
-    highlight=["Req"],
-    positions=positions_series,
-    note="Replaced with equivalent Req.",
-    formula=f"R_eq = {R_eq_series:.2f}Ω"
-)
-
-# Parallel Step 1
-draw_valued_circuit(
-    "🔰 Parallel Connection – Step 1",
-    ["A", "R1", "R2", "B"],
-    [("A", "R1"), ("R1", "B"), ("A", "R2"), ("R2", "B")],
-    positions=positions_parallel,
-    line_labels=line_labels_parallel,
-    note="Two resistors connected in parallel.",
-    formula=f"1/R_eq = 1/{R1} + 1/{R2} → R_eq = {R_eq_parallel:.2f}Ω"
-)
-
-# Parallel Step 2
-draw_valued_circuit(
-    "✅ Parallel Connection – Step 2: Simplified Req",
-    ["A", "Req", "B"],
-    [("A", "Req"), ("Req", "B")],
-    highlight=["Req"],
-    positions=positions_parallel,
-    note="Replaced with equivalent Req.",
-    formula=f"R_eq = {R_eq_parallel:.2f}Ω"
+# === Parallel Connection ===
+draw_circuit_no_values(
+    title="🔀 Parallel Connection",
+    boxes=["A", "R1", "R2", "B"],
+    lines=[("A", "R1"), ("R1", "B"), ("A", "R2"), ("R2", "B")],
+    positions=positions_parallel
 )
 </code></pre>
 <hr/>
@@ -898,122 +802,62 @@ draw_valued_circuit(
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-# Resistor values (Ohms)
-resistor_values = {
-    "R1": 10,
-    "R2": 20,
-    "R3": 30,
-    "R4": 40,
-    "R23": 1 / (1 / 20 + 1 / 30),
-    "R123": 10 + (1 / (1 / 20 + 1 / 30)),
-    "R1234": 10 + (1 / (1 / 20 + 1 / 30)) + 40
-}
-
-# Node positions
+# Node positions for nested circuit
 positions = {
     "A": (0, 2),
     "R1": (1.5, 2),
     "R2": (3, 3.5),
     "R3": (3, 0.5),
-    "R23": (3, 2),
     "R4": (4.5, 2),
-    "R123": (2.25, 2),
-    "R1234": (3.75, 2),
     "B": (6, 2)
 }
 
-# Drawing steps
-steps = [
-    {
-        "title": "🔰 Step 0: Initial Nested Circuit",
-        "boxes": ["A", "R1", "R2", "R3", "R4", "B"],
-        "lines": [("A", "R1"), ("R1", "R2"), ("R1", "R3"),
-                  ("R2", "R4"), ("R3", "R4"), ("R4", "B")],
-        "highlight": [],
-        "label_lines": {
-            ("A", "R1"): "R1", ("R1", "R2"): "R2", ("R1", "R3"): "R3", ("R4", "B"): "R4"
-        },
-        "formula": "1/R23 = 1/R2 + 1/R3 → R23 = 12.00Ω"
-    },
-    {
-        "title": "🔁 Step 1: R2 || R3 → R23",
-        "boxes": ["A", "R1", "R23", "R4", "B"],
-        "lines": [("A", "R1"), ("R1", "R23"), ("R23", "R4"), ("R4", "B")],
-        "highlight": ["R23"],
-        "label_lines": {
-            ("A", "R1"): "R1", ("R1", "R23"): "R23", ("R23", "R4"): "R23", ("R4", "B"): "R4"
-        },
-        "formula": "R123 = R1 + R23 = 10Ω + 12Ω = 22.00Ω"
-    },
-    {
-        "title": "🔁 Step 2: R1 + R23 → R123",
-        "boxes": ["A", "R123", "R4", "B"],
-        "lines": [("A", "R123"), ("R123", "R4"), ("R4", "B")],
-        "highlight": ["R123"],
-        "label_lines": {
-            ("A", "R123"): "R123", ("R123", "R4"): "R123", ("R4", "B"): "R4"
-        },
-        "formula": "R1234 = R123 + R4 = 22Ω + 40Ω = 62.00Ω"
-    },
-    {
-        "title": "✅ Step 3: R123 + R4 → R1234",
-        "boxes": ["A", "R1234", "B"],
-        "lines": [("A", "R1234"), ("R1234", "B")],
-        "highlight": ["R1234"],
-        "label_lines": {
-            ("A", "R1234"): "R1234"
-        },
-        "formula": "R_eq = 62.00Ω"
-    }
+# Boxes and connections for the initial nested circuit
+boxes = ["A", "R1", "R2", "R3", "R4", "B"]
+lines = [
+    ("A", "R1"),
+    ("R1", "R2"),
+    ("R1", "R3"),
+    ("R2", "R4"),
+    ("R3", "R4"),
+    ("R4", "B")
 ]
 
-# Highlight colors
-highlight_colors = {
-    "R23": "#F1948A",
-    "R123": "#5DADE2",
-    "R1234": "#BB8FCE"
-}
-
-# Drawing function
-def draw_nested_step(step):
+# Drawing function (no values)
+def draw_nested_schematic(title, boxes, lines, positions):
     fig, ax = plt.subplots(figsize=(10, 4.5))
     ax.set_xlim(-1, 7)
     ax.set_ylim(-1, 5)
     ax.axis("off")
-    ax.set_title(step["title"], fontsize=13, pad=10, weight='bold', color="#2C3E50")
+    ax.set_title(title, fontsize=13, pad=10, weight='bold', color="#2C3E50")
 
-    for box in step["boxes"]:
+    for box in boxes:
         x, y = positions[box]
-        color = highlight_colors.get(box, "#D6DBDF") if box in step["highlight"] else "#F2F4F4"
         rect = patches.FancyBboxPatch((x - 0.3, y - 0.3), 0.6, 0.6,
-                                      boxstyle="round,pad=0.1", edgecolor="#2C3E50",
-                                      facecolor=color, linewidth=2)
+                                      boxstyle="round,pad=0.1",
+                                      edgecolor="#2C3E50",
+                                      facecolor="#F2F4F4",
+                                      linewidth=2)
         ax.add_patch(rect)
-        ax.text(x, y, box, ha="center", va="center", fontsize=9, weight="bold", color="#34495E")
+        ax.text(x, y, box, ha="center", va="center", fontsize=10, weight="bold", color="#34495E")
 
-    for u, v in step["lines"]:
+    for u, v in lines:
         x1, y1 = positions[u]
         x2, y2 = positions[v]
-        mx, my = (x1 + x2) / 2, (y1 + y2) / 2
         ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
                     arrowprops=dict(arrowstyle="-&gt;", lw=2, color="#566573"))
 
-        # Label resistors
-        if "label_lines" in step and ((u, v) in step["label_lines"] or (v, u) in step["label_lines"]):
-            key = (u, v) if (u, v) in step["label_lines"] else (v, u)
-            rname = step["label_lines"][key]
-            if rname in resistor_values:
-                rlabel = f"R = {resistor_values[rname]:.2f}Ω"
-                ax.text(mx, my + 0.25, rlabel, ha="center", va="center",
-                        fontsize=9, color="#7D3C98", weight='bold')
-
-    ax.text(0, -0.4, step["formula"], fontsize=10, weight='bold', color='#1F618D')
     plt.tight_layout()
     plt.show()
 
-# 🔁 Draw all steps
-for step in steps:
-    draw_nested_step(step)
+# Draw only the initial nested schematic
+draw_nested_schematic(
+    title="🔰 Nested Circuit – Initial Structure",
+    boxes=boxes,
+    lines=lines,
+    positions=positions
+)
+p)
 </code></pre>
 <hr/>
 <pre><code class="language-python">import matplotlib.pyplot as plt
