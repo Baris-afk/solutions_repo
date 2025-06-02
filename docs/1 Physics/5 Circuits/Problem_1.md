@@ -367,7 +367,7 @@ $$
 
 ### 📈 Visualization 
 
-![alt text](<circuit_animation (2).gif>)
+![alt text](circuit_simplification.gif)
 
 ---
 
@@ -385,148 +385,143 @@ This phase ensures the algorithm isn't just **correct**, but also **efficient**,
 ## Python Codes
 
 ```python
-# 📦 Install required package (if not already available)
-!pip install imageio --quiet
+# 🛠 Install required packages
+!pip install imageio matplotlib --quiet
 
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import imageio.v2 as imageio
 import os
 
-# === Setup ===
-output_folder = "frames"
-gif_name = "circuit_animation.gif"
-os.makedirs(output_folder, exist_ok=True)
+# 📂 Setup
+output_dir = "frames"
+gif_path = "circuit_simplification.gif"
+os.makedirs(output_dir, exist_ok=True)
 
-# Resistor values
+# 🔢 Base resistor values
+R1, R2, R3, R4, R5 = 10, 20, 30, 40, 50
+R23 = R2 + R3
+R123 = 1 / (1 / R1 + 1 / R23)
+R45 = R4 + R5
+R_eq = R123 + R45
+
+# 💾 Resistor values
 resistor_values = {
-    "R1": 10,
-    "R2": 20,
-    "R3": 30,
-    "R4": 40,
-    "R5": 50,
-    "R23": 1 / (1 / 20 + 1 / 30),             # ≈12
-    "R45": 40 + 50,                           # 90
-    "R123": 10 + (1 / (1 / 20 + 1 / 30)),     # ≈22
-    "R12345": 10 + (1 / (1 / 20 + 1 / 30)) + 40 + 50  # ≈112
+    "R1": R1, "R2": R2, "R3": R3,
+    "R4": R4, "R5": R5,
+    "R23": R23, "R123": R123,
+    "R45": R45, "Req": R_eq
 }
 
-# Node positions
+# 📍 Box positions
 positions = {
-    "B+": (0, 2),
-    "R1": (2, 0.5),
-    "R2": (2, 3.5),
-    "R3": (4, 3.5),
-    "R4": (6, 2),
-    "R5": (8, 2),
-    "R23": (3, 3.5),
-    "R45": (7, 2),
-    "R123": (3, 2),
-    "R12345": (4.5, 2),
-    "B-": (10, 2)
+    "B+": (0, 2), "R1": (2, 3.5), "R2": (2, 0.5),
+    "R3": (4, 0.5), "R23": (3, 0.5), "R123": (3.5, 2.5),
+    "R4": (5, 2), "R5": (7, 2), "R45": (6, 2),
+    "Req": (4.5, 2), "B-": (9, 2)
 }
 
-# Circuit simplification steps
+# 🧮 Steps
 steps = [
     {
         "title": "🔰 Step 0: Initial Circuit",
         "boxes": ["B+", "R1", "R2", "R3", "R4", "R5", "B-"],
-        "lines": [("B+", "R2"), ("R2", "R3"), ("R3", "R4"),
-                  ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
+        "lines": [("B+", "R1"), ("B+", "R2"), ("R2", "R3"),
+                  ("R1", "R4"), ("R3", "R4"), ("R4", "R5"), ("R5", "B-")],
         "highlight": [],
-        "formula": "R23 = (R2 || R3) = 12.00Ω"
+        "formula": "R23 = R2 + R3 = 20Ω + 30Ω = {:.2f}Ω".format(R23)
     },
     {
-        "title": "🔁 Step 1: Combine R2 || R3 → R23",
+        "title": "🔁 Step 1: Combine R2 + R3 → R23",
         "boxes": ["B+", "R1", "R23", "R4", "R5", "B-"],
-        "lines": [("B+", "R23"), ("R23", "R4"),
-                  ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
+        "lines": [("B+", "R1"), ("B+", "R23"), ("R1", "R4"),
+                  ("R23", "R4"), ("R4", "R5"), ("R5", "B-")],
         "highlight": ["R23"],
-        "formula": "R45 = R4 + R5 = 90.00Ω"
+        "formula": "R123 = R1 || R23 = 1 / (1/10 + 1/{:.2f}) = {:.2f}Ω".format(R23, R123)
     },
     {
-        "title": "🔁 Step 2: Combine R4 + R5 → R45",
-        "boxes": ["B+", "R1", "R23", "R45", "B-"],
-        "lines": [("B+", "R23"), ("R23", "R45"),
-                  ("B+", "R1"), ("R1", "R45"), ("R45", "B-")],
-        "highlight": ["R45"],
-        "formula": "R123 = R1 + R23 = 22.00Ω"
+        "title": "🔁 Step 2: Combine R1 || R23 → R123",
+        "boxes": ["B+", "R123", "R4", "R5", "B-"],
+        "lines": [("B+", "R123"), ("R123", "R4"), ("R4", "R5"), ("R5", "B-")],
+        "highlight": ["R123"],
+        "formula": "R45 = R4 + R5 = 40Ω + 50Ω = {:.2f}Ω".format(R45)
     },
     {
-        "title": "🔁 Step 3: Combine R1 + R23 → R123",
+        "title": "🔁 Step 3: Combine R4 + R5 → R45",
         "boxes": ["B+", "R123", "R45", "B-"],
         "lines": [("B+", "R123"), ("R123", "R45"), ("R45", "B-")],
-        "highlight": ["R123"],
-        "formula": "R12345 = R123 + R45 = 112.00Ω"
+        "highlight": ["R45"],
+        "formula": "Req = R123 + R45 = {:.2f}Ω + {:.2f}Ω = {:.2f}Ω".format(R123, R45, R_eq)
     },
     {
         "title": "✅ Step 4: Final Equivalent Resistance",
-        "boxes": ["B+", "R12345", "B-"],
-        "lines": [("B+", "R12345"), ("R12345", "B-")],
-        "highlight": ["R12345"],
-        "formula": "R_eq = 112.00Ω"
+        "boxes": ["B+", "Req", "B-"],
+        "lines": [("B+", "Req"), ("Req", "B-")],
+        "highlight": ["Req"],
+        "formula": "Total Equivalent Resistance: Req = {:.2f}Ω".format(R_eq)
     }
 ]
 
-# Colors for highlighted resistors
+# 🎨 Highlight colors
 highlight_colors = {
-    "R23": "#FF6F61",
-    "R45": "#76D7C4",
-    "R123": "#85C1E9",
-    "R12345": "#DDA0DD"
+    "R23": "#FF6F61", "R123": "#85C1E9",
+    "R45": "#76D7C4", "Req": "#BB8FCE"
 }
 
-# Drawing function
-def draw_step(step, step_idx):
+# 📸 Draw and save each frame
+image_paths = []
+
+def draw_step(step, index):
     fig, ax = plt.subplots(figsize=(11, 4.5))
-    ax.set_xlim(-1, 11)
+    ax.set_xlim(-1, 10)
     ax.set_ylim(-1, 5)
     ax.axis("off")
     ax.set_title(step["title"], fontsize=13, weight='bold', pad=10, color="#2C3E50")
 
-    # Draw resistor boxes
+    # Draw boxes
     for box in step["boxes"]:
         x, y = positions[box]
         color = highlight_colors.get(box, "#D6DBDF") if box in step["highlight"] else "#F2F4F4"
-        rect = patches.FancyBboxPatch((x - 0.3, y - 0.3), 0.6, 0.6,
-                                      boxstyle="round,pad=0.1", edgecolor="#2C3E50",
-                                      facecolor=color, linewidth=2)
+        rect = patches.FancyBboxPatch(
+            (x - 0.3, y - 0.3), 0.6, 0.6,
+            boxstyle="round,pad=0.1", edgecolor="#2C3E50",
+            facecolor=color, linewidth=2)
         ax.add_patch(rect)
         label = f"{box}\n{resistor_values[box]:.2f}Ω" if box in resistor_values else box
-        ax.text(x, y, label, ha="center", va="center", fontsize=9, weight="bold", color="#34495E")
+        ax.text(x, y, label, ha="center", va="center", fontsize=9.5, weight="bold", color="#34495E")
 
-    # Draw connections
+    # Draw lines
     for u, v in step["lines"]:
         x1, y1 = positions[u]
         x2, y2 = positions[v]
         ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
                     arrowprops=dict(arrowstyle="->", lw=2, color="#566573"))
 
-    # Formula under the diagram
-    ax.text(0, -0.5, step["formula"], fontsize=10, weight='bold', color='#1F618D')
-    plt.tight_layout()
+    # Formula
+    ax.text(0, -0.6, step["formula"], fontsize=10, weight='bold', color='#1F618D')
 
     # Save frame
-    path = os.path.join(output_folder, f"step_{step_idx}.png")
-    fig.savefig(path)
+    frame_path = os.path.join(output_dir, f"step_{index}.png")
+    fig.savefig(frame_path)
     plt.close(fig)
-    return path
+    image_paths.append(frame_path)
 
-# Generate images
-image_paths = [draw_step(step, i) for i, step in enumerate(steps)]
+# ⏱ Generate all frames
+for i, step in enumerate(steps):
+    draw_step(step, i)
 
-# Create GIF (15 fps, but each frame held 45 frames ≈ 3 seconds)
+# 🎞 Create GIF: 10 FPS, hold each frame for 1.5s = 15 copies per frame
 frames = []
 for img_path in image_paths:
-    frame = imageio.imread(img_path)
-    frames.extend([frame] * 45)  # 15 fps × 3 seconds = 45 copies
+    img = imageio.imread(img_path)
+    frames.extend([img] * 15)  # 10 fps × 1.5s = 15 frames
 
-imageio.mimsave(gif_name, frames, fps=15)
-print("✅ GIF created successfully!")
+imageio.mimsave(gif_path, frames, fps=10)
+print(f"✅ GIF successfully created: {gif_path}")
 
-# Show GIF in Colab
+# 🔽 Display the GIF in Colab
 from IPython.display import Image
-Image(filename=gif_name)
+Image(filename=gif_path)
 ```
 ---
 
@@ -670,87 +665,98 @@ p)
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-# Ohm values
+# Base resistor values
+R1 = 10
+R2 = 20
+R3 = 30
+R4 = 40
+R5 = 50
+
+# Step-by-step resistor combination
+R23 = R2 + R3  # Series
+R123 = 1 / (1 / R1 + 1 / R23)  # Parallel
+R45 = R4 + R5  # Series
+R_eq = R123 + R45  # Total series
+
+# Store all computed values
 resistor_values = {
-    "R1": 10,
-    "R2": 20,
-    "R3": 30,
-    "R4": 40,
-    "R5": 50,
-    "R23": 1 / (1 / 20 + 1 / 30),             # ≈12
-    "R45": 40 + 50,                           # 90
-    "R123": 10 + (1 / (1 / 20 + 1 / 30)),     # ≈22
-    "R12345": 10 + (1 / (1 / 20 + 1 / 30)) + 40 + 50  # ≈112
+    "R1": R1,
+    "R2": R2,
+    "R3": R3,
+    "R4": R4,
+    "R5": R5,
+    "R23": R23,
+    "R123": R123,
+    "R45": R45,
+    "Req": R_eq
 }
 
-# Node positions
+# Box positions for drawing
 positions = {
     "B+": (0, 2),
-    "R1": (2, 0.5),
-    "R2": (2, 3.5),
-    "R3": (4, 3.5),
-    "R4": (6, 2),
-    "R5": (8, 2),
-    "R23": (3, 3.5),
-    "R45": (7, 2),
-    "R123": (3, 2),
-    "R12345": (4.5, 2),
-    "B-": (10, 2)
+    "R1": (2, 3.5),
+    "R2": (2, 0.5),
+    "R3": (4, 0.5),
+    "R23": (3, 0.5),
+    "R123": (3.5, 2.5),
+    "R4": (5, 2),
+    "R5": (7, 2),
+    "R45": (6, 2),
+    "Req": (4.5, 2),
+    "B-": (9, 2)
 }
 
-# Circuit simplification steps
+# Steps to visualize
 steps = [
     {
         "title": "🔰 Step 0: Initial Circuit",
         "boxes": ["B+", "R1", "R2", "R3", "R4", "R5", "B-"],
-        "lines": [("B+", "R2"), ("R2", "R3"), ("R3", "R4"),
-                  ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
+        "lines": [("B+", "R1"), ("B+", "R2"), ("R2", "R3"), ("R1", "R4"), ("R3", "R4"), ("R4", "R5"), ("R5", "B-")],
         "highlight": [],
-        "formula": "R23 = (R2 || R3) = 12.00Ω"
+        "formula": "R23 = R2 + R3 = 20Ω + 30Ω = {:.2f}Ω".format(R23)
     },
     {
-        "title": "🔁 Step 1: Combine R2 || R3 → R23",
+        "title": "🔁 Step 1: Combine R2 + R3 → R23",
         "boxes": ["B+", "R1", "R23", "R4", "R5", "B-"],
-        "lines": [("B+", "R23"), ("R23", "R4"),
-                  ("B+", "R1"), ("R1", "R4"), ("R4", "R5"), ("R5", "B-")],
+        "lines": [("B+", "R1"), ("B+", "R23"), ("R1", "R4"), ("R23", "R4"), ("R4", "R5"), ("R5", "B-")],
         "highlight": ["R23"],
-        "formula": "R45 = R4 + R5 = 40Ω + 50Ω = 90.00Ω"
+        "formula": "R123 = R1 || R23 = 1 / (1/10 + 1/{:.2f}) = {:.2f}Ω".format(R23, R123)
     },
     {
-        "title": "🔁 Step 2: Combine R4 + R5 → R45",
-        "boxes": ["B+", "R1", "R23", "R45", "B-"],
-        "lines": [("B+", "R23"), ("R23", "R45"),
-                  ("B+", "R1"), ("R1", "R45"), ("R45", "B-")],
-        "highlight": ["R45"],
-        "formula": "R123 = R1 + R23 = 10Ω + 12Ω = 22.00Ω"
+        "title": "🔁 Step 2: Combine R1 || R23 → R123",
+        "boxes": ["B+", "R123", "R4", "R5", "B-"],
+        "lines": [("B+", "R123"), ("R123", "R4"), ("R4", "R5"), ("R5", "B-")],
+        "highlight": ["R123"],
+        "formula": "R45 = R4 + R5 = 40Ω + 50Ω = {:.2f}Ω".format(R45)
     },
     {
-        "title": "🔁 Step 3: Combine R1 + R23 → R123",
+        "title": "🔁 Step 3: Combine R4 + R5 → R45",
         "boxes": ["B+", "R123", "R45", "B-"],
         "lines": [("B+", "R123"), ("R123", "R45"), ("R45", "B-")],
-        "highlight": ["R123"],
-        "formula": "R12345 = R123 + R45 = 22Ω + 90Ω = 112.00Ω"
+        "highlight": ["R45"],
+        "formula": "Req = R123 + R45 = {:.2f}Ω + {:.2f}Ω = {:.2f}Ω".format(R123, R45, R_eq)
     },
     {
         "title": "✅ Step 4: Final Equivalent Resistance",
-        "boxes": ["B+", "R12345", "B-"],
-        "lines": [("B+", "R12345"), ("R12345", "B-")],
-        "highlight": ["R12345"],
-        "formula": "R_eq = 112.00Ω"
+        "boxes": ["B+", "Req", "B-"],
+        "lines": [("B+", "Req"), ("Req", "B-")],
+        "highlight": ["Req"],
+        "formula": "Total Equivalent Resistance: Req = {:.2f}Ω".format(R_eq)
     }
 ]
 
+# Highlight colors
 highlight_colors = {
     "R23": "#FF6F61",
-    "R45": "#76D7C4",
     "R123": "#85C1E9",
-    "R12345": "#DDA0DD"
+    "R45": "#76D7C4",
+    "Req": "#BB8FCE"
 }
 
 # Drawing function
 def draw_step(step):
     fig, ax = plt.subplots(figsize=(11, 4.5))
-    ax.set_xlim(-1, 11)
+    ax.set_xlim(-1, 10)
     ax.set_ylim(-1, 5)
     ax.axis("off")
     ax.set_title(step["title"], fontsize=13, weight='bold', pad=10, color="#2C3E50")
@@ -764,23 +770,19 @@ def draw_step(step):
                                       facecolor=color, linewidth=2)
         ax.add_patch(rect)
 
-        # Label with name + Ohm if available
-        if box in resistor_values:
-            label = f"{box}\n{resistor_values[box]:.2f}Ω"
-        else:
-            label = box
-        ax.text(x, y, label, ha="center", va="center", fontsize=9, weight="bold", color="#34495E")
+        # Label with name + Ω value
+        label = f"{box}\n{resistor_values[box]:.2f}Ω" if box in resistor_values else box
+        ax.text(x, y, label, ha="center", va="center", fontsize=9.5, weight="bold", color="#34495E")
 
-    # Draw connections (no labels)
+    # Draw connections
     for u, v in step["lines"]:
         x1, y1 = positions[u]
         x2, y2 = positions[v]
         ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
                     arrowprops=dict(arrowstyle="->", lw=2, color="#566573"))
 
-    # Draw formula
-    ax.text(0, -0.5, step["formula"], fontsize=10, weight='bold', color='#1F618D')
-
+    # Formula display
+    ax.text(0, -0.6, step["formula"], fontsize=10, weight='bold', color='#1F618D')
     plt.tight_layout()
     plt.show()
 
