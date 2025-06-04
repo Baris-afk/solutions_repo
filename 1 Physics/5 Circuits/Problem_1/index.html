@@ -859,32 +859,30 @@ p)
 import matplotlib.patches as patches
 
 # Base resistor values
-R1 = 10
-R2 = 20
-R3 = 30
-R4 = 40
-R5 = 50
-
-# Step-by-step resistor combination
-R23 = R2 + R3  # Series
-R123 = 1 / (1 / R1 + 1 / R23)  # Parallel
-R45 = R4 + R5  # Series
-R_eq = R123 + R45  # Total series
-
-# Store all computed values
 resistor_values = {
-    "R1": R1,
-    "R2": R2,
-    "R3": R3,
-    "R4": R4,
-    "R5": R5,
-    "R23": R23,
-    "R123": R123,
-    "R45": R45,
-    "Req": R_eq
+    "R1": 10,
+    "R2": 20,
+    "R3": 30,
+    "R4": 40,
+    "R5": 50
 }
 
-# Box positions for drawing
+# === AUTOMATED RESISTOR SIMPLIFICATION ===
+# Step 1: Combine R2 + R3 → R23 (Series)
+resistor_values["R23"] = resistor_values["R2"] + resistor_values["R3"]
+
+# Step 2: Combine R1 || R23 → R123 (Parallel)
+r1 = resistor_values["R1"]
+r23 = resistor_values["R23"]
+resistor_values["R123"] = 1 / (1 / r1 + 1 / r23)
+
+# Step 3: Combine R4 + R5 → R45 (Series)
+resistor_values["R45"] = resistor_values["R4"] + resistor_values["R5"]
+
+# Step 4: Combine R123 + R45 → Req (Series)
+resistor_values["Req"] = resistor_values["R123"] + resistor_values["R45"]
+
+# === POSITIONS AND VISUAL LAYOUT ===
 positions = {
     "B+": (0, 2),
     "R1": (2, 3.5),
@@ -899,46 +897,45 @@ positions = {
     "B-": (9, 2)
 }
 
-# Steps to visualize
 steps = [
     {
         "title": "🔰 Step 0: Initial Circuit",
         "boxes": ["B+", "R1", "R2", "R3", "R4", "R5", "B-"],
         "lines": [("B+", "R1"), ("B+", "R2"), ("R2", "R3"), ("R1", "R4"), ("R3", "R4"), ("R4", "R5"), ("R5", "B-")],
         "highlight": [],
-        "formula": "R23 = R2 + R3 = 20Ω + 30Ω = {:.2f}Ω".format(R23)
+        "formula": f"R23 = R2 + R3 = {resistor_values['R2']}Ω + {resistor_values['R3']}Ω = {resistor_values['R23']:.2f}Ω"
     },
     {
         "title": "🔁 Step 1: Combine R2 + R3 → R23",
         "boxes": ["B+", "R1", "R23", "R4", "R5", "B-"],
         "lines": [("B+", "R1"), ("B+", "R23"), ("R1", "R4"), ("R23", "R4"), ("R4", "R5"), ("R5", "B-")],
         "highlight": ["R23"],
-        "formula": "R123 = R1 || R23 = 1 / (1/10 + 1/{:.2f}) = {:.2f}Ω".format(R23, R123)
+        "formula": f"R123 = R1 || R23 = 1 / (1/{r1:.2f} + 1/{r23:.2f}) = {resistor_values['R123']:.2f}Ω"
     },
     {
         "title": "🔁 Step 2: Combine R1 || R23 → R123",
         "boxes": ["B+", "R123", "R4", "R5", "B-"],
         "lines": [("B+", "R123"), ("R123", "R4"), ("R4", "R5"), ("R5", "B-")],
         "highlight": ["R123"],
-        "formula": "R45 = R4 + R5 = 40Ω + 50Ω = {:.2f}Ω".format(R45)
+        "formula": f"R45 = R4 + R5 = {resistor_values['R4']}Ω + {resistor_values['R5']}Ω = {resistor_values['R45']:.2f}Ω"
     },
     {
         "title": "🔁 Step 3: Combine R4 + R5 → R45",
         "boxes": ["B+", "R123", "R45", "B-"],
         "lines": [("B+", "R123"), ("R123", "R45"), ("R45", "B-")],
         "highlight": ["R45"],
-        "formula": "Req = R123 + R45 = {:.2f}Ω + {:.2f}Ω = {:.2f}Ω".format(R123, R45, R_eq)
+        "formula": f"Req = R123 + R45 = {resistor_values['R123']:.2f}Ω + {resistor_values['R45']:.2f}Ω = {resistor_values['Req']:.2f}Ω"
     },
     {
         "title": "✅ Step 4: Final Equivalent Resistance",
         "boxes": ["B+", "Req", "B-"],
         "lines": [("B+", "Req"), ("Req", "B-")],
         "highlight": ["Req"],
-        "formula": "Total Equivalent Resistance: Req = {:.2f}Ω".format(R_eq)
+        "formula": f"Total Equivalent Resistance: Req = {resistor_values['Req']:.2f}Ω"
     }
 ]
 
-# Highlight colors
+# === HIGHLIGHT COLORS ===
 highlight_colors = {
     "R23": "#FF6F61",
     "R123": "#85C1E9",
@@ -946,7 +943,7 @@ highlight_colors = {
     "Req": "#BB8FCE"
 }
 
-# Drawing function
+# === DRAWING FUNCTION ===
 def draw_step(step):
     fig, ax = plt.subplots(figsize=(11, 4.5))
     ax.set_xlim(-1, 10)
@@ -979,7 +976,7 @@ def draw_step(step):
     plt.tight_layout()
     plt.show()
 
-# Draw all steps
+# === EXECUTE VISUALIZATION ===
 for step in steps:
     draw_step(step)
 </code></pre>
